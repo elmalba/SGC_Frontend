@@ -9,12 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { ColegiosComponent } from './sistema/ficha/colegios/colegios.component';
 
 import { AppRoutingModule }     from './app-routing.module';
+import { CrearColegioComponent } from './sistema/ficha/colegios/crear-colegio/crear-colegio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ColegiosComponent
+    ColegiosComponent,
+    CrearColegioComponent
   ],
   imports: [
     BrowserModule,
