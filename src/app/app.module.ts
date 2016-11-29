@@ -12,6 +12,7 @@ import { CrearColegioComponent } from './sistema/ficha/colegios/crear-colegio/cr
 import { EditarColegioComponent } from './sistema/ficha/colegios/editar-colegio/editar-colegio.component';
 
 import { AppRoutingModule }     from './app-routing.module';
+import {ColegiosService} from "./sistema/ficha/colegios.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AppRoutingModule }     from './app-routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ColegiosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

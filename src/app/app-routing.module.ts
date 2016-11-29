@@ -8,7 +8,7 @@ import { EditarColegioComponent } from './sistema/ficha/colegios/editar-colegio/
 
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/', pathMatch: 'full' },
+	//{ path: '**', redirectTo: '/', pathMatch: 'full' },
 	{ path: 'sistema/ficha/colegios',  component: ColegiosComponent },
 	{ path: 'sistema/ficha/colegios/crear-colegio',  component: CrearColegioComponent },
 	{ path: 'sistema/ficha/colegios/editar-colegio/:id',  component: EditarColegioComponent },

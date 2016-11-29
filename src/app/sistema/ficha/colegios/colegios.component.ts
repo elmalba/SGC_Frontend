@@ -1,4 +1,6 @@
-import {Component, OnInit, state} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import { ColegiosService } from '../colegios.service'
 
 @Component({
   selector: 'app-colegios',
@@ -6,10 +8,19 @@ import {Component, OnInit, state} from '@angular/core';
   styleUrls: ['./colegios.component.css']
 })
 export class ColegiosComponent implements OnInit {
+  private colegios = [];
 
-  constructor(  ) { }
+  constructor(private colegiosService: ColegiosService  ) { }
 
-  ngOnInit() {
+  getColegios(): void {
+    this.colegiosService.getColegios().then((colegios) => {this.colegios = colegios});
+    console.log(this.colegios)
   }
+
+  ngOnInit(): void {
+    this.getColegios();
+  }
+
+
 
 }
