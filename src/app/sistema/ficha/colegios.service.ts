@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
-//import 'rxjs/add/operator/map';
+import { Http, Headers } from '@angular/http';
+import { Observable } from "rxjs";
 
 import { Colegio } from './colegios/colegio'
 
@@ -16,35 +14,34 @@ export class ColegiosService {
 
   constructor(private http: Http) { }
 
-  private handleError(error: any): Promise<any> {
+/*  private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
-  }
+  }*/
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  getColegios() {
+  getColegios(): Observable<Colegio[]> {
     return this.http.get(this.colegiosUrl)
-      .toPromise()
-      .then(response => response.json().data as Colegio[])
-      .catch(this.handleError);
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Colegios'));
+
   }
 
-  /*getColegio(id: number): Promise<Colegio> {
+  getColegio(id: number): Observable<Colegio> {
     return this.getColegios()
-                .then(colegios => colegios.find(colegio => colegio.id == id));
+                .map(colegios => colegios.find(colegio => colegio.id == id));
   }
 
   updateColegio(colegio: Colegio){
     const url = `${this.colegiosUrl}/${colegio.id}`;
     return this.http
       .put(url, JSON.stringify(colegio), {headers: this.headers})
-      .toPromise()
-      .then(() => colegio)
-      .catch(this.handleError);
+      .map(() => colegio)
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Colegios'));
   }
 
-  createColegio(name: string /*otros datos): Promise<Colegio>{
+/*  createColegio(name: string /!*otros datos): Promise<Colegio>{
     return this.http
       .post(this.colegiosUrl, JSON.stringify({name: name}), {headers: this.headers})
       .toPromise()
