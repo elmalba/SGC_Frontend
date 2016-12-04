@@ -3,12 +3,17 @@
  */
 
 export class Colegio {
+  created_at: string;
+  updated_at: string;
   id: number;
   nombre: string;
   direccion: string;
-  created_at: string;
-  updated_at: string;
+  n: string;
+  region: string;
+  provincia: string;
+  localidad: string;
   comuna: string;
+  depto_provincial: string;
   telefono: string;
   mail: string;
   web: string;

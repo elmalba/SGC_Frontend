@@ -17,7 +17,8 @@ export class ColegiosService {
 /*  private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
-  }*/
+  }
+*/
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
@@ -38,23 +39,21 @@ export class ColegiosService {
     return this.http
       .put(url, JSON.stringify(colegio), {headers: this.headers})
       .map(() => colegio)
-      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Colegios'));
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Colegio'));
   }
 
-/*  createColegio(name: string /!*otros datos): Promise<Colegio>{
+  createColegio(colegio: Colegio): Observable<Colegio>{
     return this.http
-      .post(this.colegiosUrl, JSON.stringify({name: name}), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json().data)
-      .catch(this.handleError);
+      .post(this.colegiosUrl, JSON.stringify({nombre: colegio.nombre}), {headers: this.headers})
+      .map(res => res.json().data)
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t CREATE Colegio'));
   }
 
-  deleteColegio(id: number): Promise<void>{
+  deleteColegio(id: number): Observable<void>{
     const url = `${this.colegiosUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
-  }*/
+      .map(() => null)
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t DELETE Colegio'));
+  }
 
 }
