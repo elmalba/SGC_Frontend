@@ -26,7 +26,6 @@ export class ColegiosService {
     return this.http.get(this.colegiosUrl)
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Colegios'));
-
   }
 
   getColegio(id: number): Observable<Colegio> {

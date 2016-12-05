@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatriculaService } from '../matricula.service';
+
 @Component({
   selector: 'app-matricula',
   templateUrl: './matricula.component.html',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatriculaComponent implements OnInit {
 
-  constructor() { }
+  private matriculas = [];
 
-  ngOnInit() {
+  constructor(
+    private matriculaService: MatriculaService,
+  ) { }
+
+  getMatriculas() {
+    // this.matriculaService.getMatriculas().subscribe((response) => {this.matriculas = response})
+  }
+
+  ngOnInit(): void {
+    this.getMatriculas();
   }
 
 }

@@ -11,7 +11,9 @@ export class ColegiosComponent implements OnInit {
 
   private colegios = [];
 
-  constructor(private colegiosService: ColegiosService  ) { }
+  constructor(
+    private colegiosService: ColegiosService,
+  ) { }
 
   getColegios() {
     this.colegiosService.getColegios().subscribe((response) => {this.colegios = response})
