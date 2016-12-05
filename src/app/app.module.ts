@@ -15,6 +15,9 @@ import { AppRoutingModule }     from './app-routing.module';
 import { ColegiosService } from './sistema/ficha/colegios.service';
 
 import './rxjs-extensions';
+import { MatriculaComponent } from './sistema/ficha/matricula/matricula.component';
+import { CrearMatriculaComponent } from './sistema/ficha/matricula/crear-matricula/crear-matricula.component';
+import { EditarMatriculaComponent } from './sistema/ficha/matricula/editar-matricula/editar-matricula.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import './rxjs-extensions';
     LoginComponent,
     ColegiosComponent,
     CrearColegioComponent,
-    EditarColegioComponent
+    EditarColegioComponent,
+    MatriculaComponent,
+    CrearMatriculaComponent,
+    EditarMatriculaComponent
   ],
   imports: [
     BrowserModule,
