@@ -21,6 +21,7 @@ import { EditarMatriculaComponent } from './sistema/ficha/matricula/editar-matri
 
 import { ColegiosService } from './sistema/ficha/colegios.service';
 import {MatriculaService} from "./sistema/ficha/matricula.service";
+import { VerColegioComponent } from './sistema/ficha/colegios/ver-colegio/ver-colegio.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatriculaService} from "./sistema/ficha/matricula.service";
     EditarColegioComponent,
     MatriculaComponent,
     CrearMatriculaComponent,
-    EditarMatriculaComponent
+    EditarMatriculaComponent,
+    VerColegioComponent
   ],
   imports: [
     BrowserModule,

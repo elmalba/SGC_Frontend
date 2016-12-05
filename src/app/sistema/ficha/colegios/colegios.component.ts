@@ -23,6 +23,10 @@ export class ColegiosComponent implements OnInit {
     this.getColegios();
   }
 
+  deleteColegio(id: number): void {
+    this.colegiosService.deleteColegio(id);
+  }
+
 
 
 }

@@ -32,10 +32,8 @@ export class EditarColegioComponent implements OnInit {
 
     this.route.params
       .switchMap((params: Params) => this.colegiosService.getColegio(+params['id']))
-      .subscribe((colegio) => {this.selectedColegio = colegio;this.colegio = this.selectedColegio});
-
+      .subscribe((colegio) => {this.selectedColegio = colegio;this.colegio = colegio;});
   }
-
   goBack(): void {
     this.location.back();
   }
