@@ -8,7 +8,82 @@
   <div class="col-md-8 col-md-offset-1">
     <div class="demo-form-wrapper">
       <div class="form form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-1">Nombre</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-1" [(ngModel)]="matricula.nombre">
+          </div>
+          <label class="col-sm-1 control-label"for="form-control-2">Apellidos</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-2" [(ngModel)]="matricula.apellidos">
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-3">Sexo</label>
+          <div class="col-sm-2">
+            <select class="custom-select" type="text" id="form-control-3" [(ngModel)]="matricula.sexo">
+              <option value="" selected="selected"></option>
+              <option value="M">M</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="form-control-6">Fecha Nacimiento</label>
+          <div class="col-sm-4">
+            <div class="input-with-icon">
+              <input class="form-control" id="form-control-6" type="text" [(ngModel)]="matricula.fecha_nac" value="16-July-2000" data-provide="datepicker" data-date-autoclose="true" data-date-format="dd-MM-yyyy" data-date-start-view="decade" data-date-end-date="-5y">
+              <span class="icon icon-calendar input-icon"></span>
+            </div>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-4">Rut</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-4" [(ngModel)]="matricula.rut">
+          </div>
+          <div class="col-sm-1">
+            <input class="form-control" type="text" id="form-control-5" [(ngModel)]="matricula.dv">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-7">Padre</label>
+          <div class="col-sm-10">
+            <input id="form-control-7" class="form-control" type="text" [(ngModel)]="matricula.padre">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-8">Madre</label>
+          <div class="col-sm-10">
+            <input id="form-control-8" class="form-control" type="text" [(ngModel)]="matricula.madre">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-9">Apoderado</label>
+          <div class="col-sm-10">
+            <input id="form-control-9" class="form-control" type="text" [(ngModel)]="matricula.apoderado">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-10">Teléfono Fijo</label>
+          <div class="col-sm-4">
+            <input id="form-control-10" class="form-control" type="text" [(ngModel)]="matricula.fono_casa">
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-11">Teléfono Móvil</label>
+          <div class="col-sm-4">
+            <input id="form-control-11" class="form-control" type="text" [(ngModel)]="matricula.fono_movil">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-12">Nacionalidad</label>
+          <div class="col-sm-5">
+            <input id="form-control-12" class="form-control" type="text" [(ngModel)]="matricula.nacionalidad">
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-13">Estado Matricula</label>
+          <div class="col-sm-3">
+            <input id="form-control-13" class="form-control" type="text" [(ngModel)]="matricula.estado">
+          </div>
+        </div>
+        <div class="form-group">
+
+        </div>
       </div>
     </div>
   </div>

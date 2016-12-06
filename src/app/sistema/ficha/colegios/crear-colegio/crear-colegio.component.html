@@ -26,7 +26,9 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="form-control-4">Región</label>
           <div class="col-sm-4">
-            <input id="form-control-4" class="form-control" type="text" [(ngModel)]="colegio.region">
+            <select id="form-control-4" class="form-control" type="text" [(ngModel)]="colegio.region">
+              <option *ngFor="let region of regiones">{{region.nom}}</option>
+            </select>
           </div>
           <label class="col-sm-2 control-label" for="form-control-5">Provincia</label>
           <div class="col-sm-4">

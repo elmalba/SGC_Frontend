@@ -34,7 +34,9 @@
           <div class="md-label-static">
             <label class="col-sm-2 md-control-label" for="form-control-4"><b>Región:</b> {{selectedColegio.region}}</label>
             <div class="col-sm-5">
-              <input id="form-control-4" class="form-control" type="text" [(ngModel)]="colegio.region">
+              <select id="form-control-4" class="form-control" type="text" [(ngModel)]="colegio.region">
+                <option *ngFor="let region of regiones">{{region.nom}}</option>
+              </select>
             </div>
           </div>
           <div class="md-label-static">

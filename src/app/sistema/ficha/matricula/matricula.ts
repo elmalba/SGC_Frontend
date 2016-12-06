@@ -17,4 +17,7 @@ export class Matricula{
   direccion: string;
   n: number;
   comuna: string;
+  padre: string;
+  madre: string;
+  apoderado: string;
 }
