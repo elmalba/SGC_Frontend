@@ -1,3 +1,31 @@
-<p>
-  editar-matricula works!
-</p>
+<div class="title-bar">
+  <h1 class="title-bar title">Editar Alumno</h1>
+  <h5 class="title bar description">{{selectedMatricula.nombre}} {{selectedMatricula.apellidos}}, {{selectedMatricula.rut}}-{{selectedMatricula.dv}}</h5>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="demo-md-form-wrapper">
+      <div class="form form-horizontal">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form form-horizontal">
+      <div class="demo-md-form-wrapper">
+        <div class="md-form-group">
+          <div class="col-sm-2 col-sm-offset-0">
+            <button class="btn btn-default btn-block" (click)="goBack()">Volver</button>
+          </div>
+          <div class="col-sm-8">
+            <button class="btn btn-primary btn-block" (click)="saveMatricula()">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

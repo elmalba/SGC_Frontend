@@ -23,8 +23,20 @@ export class ColegiosComponent implements OnInit {
     this.getColegios();
   }
 
+  indexOfObj(id: number): number {
+    for (let i = 0; i < this.colegios.length; i++) {
+      if ( this.colegios[i].id == id) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
   deleteColegio(id: number): void {
-    this.colegiosService.deleteColegio(id);
+    this.colegiosService.deleteColegio(id).subscribe(()=>{
+      let index = this.indexOfObj(id);
+      this.colegios.splice(index,1);
+    });
   }
 
 

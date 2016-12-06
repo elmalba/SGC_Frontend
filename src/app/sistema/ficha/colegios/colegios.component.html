@@ -9,7 +9,7 @@
 					    <span class="icon icon-search input-icon"></span>
 					  </div>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<a class="btn btn-lg btn-primary btn-block" [routerLink]="['./crear-colegio']">Crear Colegio</a>
 					</div>
 				</div>
@@ -33,11 +33,12 @@
 	                </label>
 	              </th>
 	              <th>Colegio</th>
-	              <th>Dato1</th>
-	              <th>Dato2</th>
-	              <th>Dato3</th>
-	              <th>Dato4</th>
-	              <th>Dato5</th>
+	              <th>RBD</th>
+	              <th>Dirección</th>
+	              <th>Telefono</th>
+	              <th>Email</th>
+	              <th>Sostenedor</th>
+                <th>Director</th>
 	              <th></th>
 	            </tr>
 	          </thead>
@@ -49,44 +50,48 @@
 	                  <span class="custom-control-indicator"></span>
 	                </label>
 	              </td>
-	              <td class="nowrap">
+	              <td>
 	                <span class="icon-with-child m-r">
-	                  <img class="circle" width="36" height="36" src="assets/img/1099386850.jpg" alt="Jessica Brown">
-	                  <span class="icon-child bg-warning circle sq-8"></span>
+	                  <img class="circle" width="36" height="36" src="assets/img/1099386850.jpg">
+	                  <!--<span class="icon-child bg-warning circle sq-8"></span>-->
 	                </span>
 	                <strong>{{colegio.nombre}}</strong>
 	              </td>
-	              <td class="maw-320">
-	                <span class="truncate">Aliquam viverra, metus eget dictum vestibulum, er.</span>
+                <td class="maw-320">
+                  <span class="label label-info lanel-sm">{{colegio.rbd}}</span>
+                </td>
+                <td class="maw-320">
+                  <span class="truncate">{{colegio.direccion}} {{colegio.numeracion}}</span>
+                </td>
+                <td>
+                  {{colegio.telefono}}
+                </td>
+                <td>
+                  {{colegio.mail}}
 	              </td>
-	              <td>21-Jun-2016</td>
 	              <td>
-	                <span class="label label-info label-pill">New</span>
-	              </td>
-	              <td>Low</td>
-	              <td>Unassigned</td>
+                  {{colegio.sostenedor}}
+                </td>
 	              <td>
-                  <div class="btn-group pull-right">
-
-                    <a class="btn btn-primary" [routerLink]="['./ver-colegio',colegio.id]">
-                      <span class="icon icon-eye icon-lg icon-fw"></span>
-                    </a>
-                    <a class="btn btn-primary" [routerLink]="['./editar-colegio',colegio.id]">
-                      <span class="icon icon-pencil-square-o icon-lg icon-fw"></span>
-                    </a>
-                    <button class="btn btn-danger">
-                      <span class="icon icon-times icon-lg icon-fw" (click)="deleteColegio(colegio.id)"></span>
-                    </button>
+                  {{colegio.director}}
+                </td>
+	              <td>
+                  <div class="btn-toolbar pull-right">
+                    <div class="btn-group btn-group-sm">
+                      <a class="btn btn-primary btn-sm" [routerLink]="['./ver-colegio',colegio.id]">
+                        <span class="icon icon-eye icon-fw"></span>
+                      </a>
+                      <a class="btn btn-primary btn-sm" [routerLink]="['./editar-colegio',colegio.id]">
+                        <span class="icon icon-pencil-square-o icon-fw"></span>
+                      </a>
+                      <button class="btn btn-danger btn-sm">
+                        <span class="icon icon-times icon-fw" (click)="deleteColegio(colegio.id)"></span>
+                      </button>
+                      <!--                    <button class="btn btn-default btn-sm">
+                                            <span class="icon icon-cogs icon-fw"></span>
+                                          </button>-->
+                    </div>
                   </div>
-<!--	                <div class="btn-group pull-right dropdown">
-	                  <button class="btn btn-link link-muted" aria-haspopup="true" data-toggle="dropdown" type="button">
-	                    <span class="icon icon-ellipsis-h icon-lg icon-fw"></span>
-	                  </button>
-	                  <ul class="dropdown-menu dropdown-menu-right">
-	                    <li><a [routerLink]="['./editar-colegio/',colegio.id]">Editar</a></li>
-	                    <li><a href="#">Invocar</a></li>
-	                  </ul>
-	                </div>-->
 	              </td>
 	            </tr>
 	          </tbody>

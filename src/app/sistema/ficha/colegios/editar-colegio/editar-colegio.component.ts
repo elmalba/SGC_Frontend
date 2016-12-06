@@ -32,18 +32,19 @@ export class EditarColegioComponent implements OnInit {
 
     this.route.params
       .switchMap((params: Params) => this.colegiosService.getColegio(+params['id']))
-      .subscribe((colegio) => {this.selectedColegio = colegio;this.colegio = colegio;});
+      .subscribe((colegio) => {
+        this.colegio = colegio;
+        this.selectedColegio = JSON.parse(JSON.stringify(colegio));
+    });
   }
+
   goBack(): void {
     this.location.back();
   }
 
   saveColegio(): void {
-    console.log(this.selectedColegio);
-    console.log(this.colegio);
-    this.colegiosService.updateColegio(this.colegio);
+    this.colegiosService.updateColegio(this.colegio).subscribe((res) => {
+      this.selectedColegio = JSON.parse(JSON.stringify(res));
+    });
   }
-
-
-
 }

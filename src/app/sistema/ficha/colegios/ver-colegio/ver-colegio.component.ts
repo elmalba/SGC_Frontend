@@ -48,6 +48,8 @@ export class VerColegioComponent implements OnInit {
   }
 
   deleteColegio(): void {
-    this.colegiosService.deleteColegio(this.colegio.id);
+    this.colegiosService.deleteColegio(this.colegio.id).subscribe(()=>{
+      this.goBack();
+    });
   }
 }

@@ -26,8 +26,10 @@ export class CrearColegioComponent implements OnInit {
   }
 
   saveColegio(): void {
-    console.log(this.colegio);
-    this.colegiosService.createColegio(this.colegio);
+    this.colegiosService.createColegio(this.colegio).subscribe(res => {
+      this.colegio = res;
+      this.goBack();
+    });
   }
 
 }

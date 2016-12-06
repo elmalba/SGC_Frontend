@@ -23,22 +23,22 @@
             </div>
           </div>
           <div class="md-label-static">
-            <label class="md-control-label col-sm-2 col-sm-offset-8" for="form-control-3"><b>N°:</b> {{selectedColegio.n}}</label>
+            <label class="md-control-label col-sm-2 col-sm-offset-8" for="form-control-3"><b>N°:</b> {{selectedColegio.numeracion}}</label>
             <div class="col-sm-2">
-              <input id="form-control-3" class="form-control" type="text" [(ngModel)]="colegio.n">
+              <input id="form-control-3" class="form-control" type="text" [(ngModel)]="colegio.numeracion">
             </div>
           </div>
         </div>
 
         <div class="md-form-group">
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label" for="form-control-4"><b>Región:</b> {{colegio.region}}</label>
+            <label class="col-sm-2 md-control-label" for="form-control-4"><b>Región:</b> {{selectedColegio.region}}</label>
             <div class="col-sm-5">
               <input id="form-control-4" class="form-control" type="text" [(ngModel)]="colegio.region">
             </div>
           </div>
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label col-sm-offset-5" for="form-control-5"><b>Provincia:</b> {{colegio.provincia}}</label>
+            <label class="col-sm-2 md-control-label col-sm-offset-5" for="form-control-5"><b>Provincia:</b> {{selectedColegio.provincia}}</label>
             <div class="col-sm-5">
               <input id="form-control-5" class="form-control" type="text" [(ngModel)]="colegio.provincia">
             </div>
@@ -47,13 +47,13 @@
 
         <div class="md-form-group">
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label" for="form-control-6"><b>Localidad:</b> {{colegio.localidad}}</label>
+            <label class="col-sm-2 md-control-label" for="form-control-6"><b>Localidad:</b> {{selectedColegio.localidad}}</label>
             <div class="col-sm-5">
               <input id="form-control-6" class="form-control" type="text" [(ngModel)]="colegio.localidad">
             </div>
           </div>
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label col-sm-offset-5" for="form-control-7"><b>Comuna:</b> {{colegio.comuna}}</label>
+            <label class="col-sm-2 md-control-label col-sm-offset-5" for="form-control-7"><b>Comuna:</b> {{selectedColegio.comuna}}</label>
             <div class="col-sm-5">
               <input id="form-control-7" class="form-control" type="text" [(ngModel)]="colegio.comuna">
             </div>
@@ -61,21 +61,21 @@
         </div>
 
         <div class="md-form-group md-label-static">
-          <label class="col-sm-2 md-control-label" for="form-control-8"><b>Departamento Provincial:</b> {{colegio.depto_provincial}}</label>
+          <label class="col-sm-2 md-control-label" for="form-control-8"><b>Departamento Provincial:</b> {{selectedColegio.depto_prov}}</label>
           <div class="col-sm-10">
-            <input id="form-control-8" class="form-control" type="text" [(ngModel)]="colegio.depto_provincial">
+            <input id="form-control-8" class="form-control" type="text" [(ngModel)]="colegio.depto_prov">
           </div>
         </div>
 
         <div class="md-form-group">
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label" for="form-control-9"><b>Teléfono:</b> {{colegio.telefono}}</label>
+            <label class="col-sm-2 md-control-label" for="form-control-9"><b>Teléfono:</b> {{selectedColegio.telefono}}</label>
             <div class="col-sm-5">
               <input id="form-control-9" class="form-control" type="text" [(ngModel)]="colegio.telefono">
             </div>
           </div>
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label col-sm-offset-5" for="form-control-10"><b>Web:</b> {{colegio.web}}</label>
+            <label class="col-sm-2 md-control-label col-sm-offset-5" for="form-control-10"><b>Web:</b> {{selectedColegio.web}}</label>
             <div class="col-sm-5">
               <input id="form-control-10" class="form-control" type="text" [(ngModel)]="colegio.web">
             </div>
@@ -83,21 +83,21 @@
         </div>
 
         <div class="md-form-group md-label-static">
-          <label class="col-sm-2 md-control-label" for="form-control-11"><b>Email:</b> {{colegio.mail}}</label>
+          <label class="col-sm-2 md-control-label" for="form-control-11"><b>Email:</b> {{selectedColegio.mail}}</label>
           <div class="col-sm-10">
             <input id="form-control-11" class="form-control" type="text" [(ngModel)]="colegio.mail">
           </div>
         </div>
 
         <div class="md-form-group md-label-static">
-          <label class="col-sm-2 md-control-label" for="form-control-12"><b>Sostenedor:</b> {{colegio.sostenedor}}</label>
+          <label class="col-sm-2 md-control-label" for="form-control-12"><b>Sostenedor:</b> {{selectedColegio.sostenedor}}</label>
           <div class="col-sm-10">
             <input id="form-control-12" class="form-control" type="text" [(ngModel)]="colegio.sostenedor">
           </div>
         </div>
 
         <div class="md-form-group md-label-static">
-          <label class="col-sm-2 md-control-label" for="form-control-13"><b>Director:</b> {{colegio.director}}</label>
+          <label class="col-sm-2 md-control-label" for="form-control-13"><b>Director:</b> {{selectedColegio.director}}</label>
           <div class="col-sm-10">
             <input id="form-control-13" class="form-control" type="text" [(ngModel)]="colegio.director">
           </div>
@@ -105,13 +105,13 @@
 
         <div class="md-form-group">
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label" for="form-control-14"><b>RBD:</b> {{colegio.rbd}}</label>
+            <label class="col-sm-2 md-control-label" for="form-control-14"><b>RBD:</b> {{selectedColegio.rbd}}</label>
             <div class="col-sm-2">
               <input id="form-control-14" class="form-control" type="text" [(ngModel)]="colegio.rbd">
             </div>
           </div>
           <div class="md-label-static">
-            <label class="col-sm-2 md-control-label col-sm-offset-2" for="form-control-15"><b>Dependencia:</b> {{colegio.dependencia}}</label>
+            <label class="col-sm-2 md-control-label col-sm-offset-2" for="form-control-15"><b>Dependencia:</b> {{selectedColegio.dependencia}}</label>
             <div class="col-sm-8">
               <input id="form-control-15" class="form-control" type="text" [(ngModel)]="colegio.dependencia">
             </div>

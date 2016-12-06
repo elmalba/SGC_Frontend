@@ -10,6 +10,7 @@ import { VerColegioComponent } from './sistema/ficha/colegios/ver-colegio/ver-co
 import { MatriculaComponent } from './sistema/ficha/matricula/matricula.component';
 import { CrearMatriculaComponent } from './sistema/ficha/matricula/crear-matricula/crear-matricula.component';
 import { EditarMatriculaComponent } from './sistema/ficha/matricula/editar-matricula/editar-matricula.component';
+import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/ver-matricula.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'sistema/ficha/matriculas',  component: MatriculaComponent },
   { path: 'sistema/ficha/matriculas/crear-matricula',  component: CrearMatriculaComponent },
   { path: 'sistema/ficha/matriculas/editar-matricula/:id',  component: EditarMatriculaComponent },
+  { path: 'sistema/ficha/matriculas/ver-matricula/:id',  component: VerMatriculaComponent },
 ];
 
 @NgModule({

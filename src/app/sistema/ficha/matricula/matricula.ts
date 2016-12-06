@@ -3,7 +3,18 @@
  */
 
 export class Matricula{
-  created_at: string;
-  updated_at: string;
   id: number;
+  nombre: string;
+  apellidos: string;
+  rut: number;
+  dv: string;
+  fecha_nac: string;
+  fono_casa: string;
+  fono_movil: string;
+  sexo: string;
+  nacionalidad: string;
+  estado: string;
+  direccion: string;
+  n: number;
+  comuna: string;
 }

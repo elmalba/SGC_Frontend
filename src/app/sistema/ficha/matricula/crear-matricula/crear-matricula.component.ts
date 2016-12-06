@@ -27,8 +27,10 @@ export class CrearMatriculaComponent implements OnInit {
   }
 
   saveMatricula() {
-    console.log(this.matricula);
-    // this.matriculaService.createMatricula(this.matricula);
+    this.matriculaService.createMatricula(this.matricula).subscribe((matricula) => {
+      this.matricula = matricula;
+      this.goBack();
+    });
   }
 
 }

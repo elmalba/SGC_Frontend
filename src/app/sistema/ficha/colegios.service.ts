@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 
 import { Colegio } from './colegios/colegio'
@@ -12,7 +12,10 @@ export class ColegiosService {
 
   private colegiosUrl = 'http://api.innovacolegio.cl/colegios';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+
+    this.http=http;
+  }
 
 /*  private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
@@ -35,16 +38,15 @@ export class ColegiosService {
 
   updateColegio(colegio: Colegio){
     const url = `${this.colegiosUrl}/${colegio.id}`;
-    return this.http
-      .put(url, JSON.stringify(colegio), {headers: this.headers})
+    return this.http.put(url, JSON.stringify(colegio), {headers: this.headers})
       .map(() => colegio)
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Colegio'));
   }
 
   createColegio(colegio: Colegio): Observable<Colegio>{
-    return this.http
-      .post(this.colegiosUrl, JSON.stringify({nombre: colegio.nombre}), {headers: this.headers})
-      .map(res => res.json().data)
+    let options = new RequestOptions({headers: this.headers});
+    return this.http.post(this.colegiosUrl, JSON.stringify(colegio), options)
+      .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t CREATE Colegio'));
   }
 

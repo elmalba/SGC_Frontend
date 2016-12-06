@@ -30,7 +30,12 @@ export class EditarMatriculaComponent implements OnInit {
 
     this.sub = this.route.params.subscribe( params => { this.id = +params['id'];});
 
-
+    this.route.params
+      .switchMap((params: Params) => this.matriculaService.getMatricula(+params['id']))
+      .subscribe((matricula) => {
+        this.matricula = matricula;
+        this.selectedMatricula = JSON.parse(JSON.stringify(matricula));
+      });
   }
 
   goBack(): void {
@@ -38,7 +43,8 @@ export class EditarMatriculaComponent implements OnInit {
   }
 
   saveMatricula() {
-    console.log(this.matricula);
-    // this.matriculaService.updateMatricula(this.matricula);
+    this.matriculaService.updateMatricula(this.matricula).subscribe((res) => {
+      this.selectedMatricula = JSON.parse(JSON.stringify(res));
+    });
   }
 }

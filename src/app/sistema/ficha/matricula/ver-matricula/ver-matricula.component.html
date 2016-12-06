@@ -1,6 +1,6 @@
 <div class="title-bar">
-  <h1 class="title-bar title">Crear Alumno</h1>
-  <p class="title bar description"></p>
+  <h1 class="title-bar title">Ver Alumno</h1>
+  <h5 class="title bar description">{{matricula.nombre}} {{matricula.apellidos}}, {{matricula.rut}}-{{matricula.dv}}</h5>
 
 </div>
 
@@ -18,11 +18,14 @@
   <div class="col-md-8 col-md-offset-1">
     <div class="form form-horizontal">
       <div class="form-group">
-        <div class="col-sm-2 col-sm-offset-2">
+        <div class="col-sm-6 col-sm-offset-2">
           <button class="btn btn-default btn-block" (click)="goBack()">Volver</button>
         </div>
-        <div class="col-sm-8">
-          <button class="btn btn-primary btn-block" (click)="saveMatricula()">Guardar</button>
+        <div class="col-sm-2">
+          <button class="btn btn-primary btn-block" (click)="goToEdit(matricula.id)">Editar</button>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-danger btn-block" (click)="deleteMatricula()">Borrar</button>
         </div>
       </div>
     </div>
