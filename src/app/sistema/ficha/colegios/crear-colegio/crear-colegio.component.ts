@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location }                 from '@angular/common';
+
 import { Colegio } from '../colegio';
 import { ColegiosService } from '../../colegios.service';
 
