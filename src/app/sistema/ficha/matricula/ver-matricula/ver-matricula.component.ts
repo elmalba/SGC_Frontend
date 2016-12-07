@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }       from '@angular/common';
 
-import { Matricula } from '../matricula';
+import { Matricula, Apoderado } from '../matricula';
 import { MatriculaService } from '../../matricula.service';
 
 @Component({
@@ -16,6 +16,9 @@ export class VerMatriculaComponent implements OnInit {
   private sub: any;
 
   matricula: Matricula;
+  padre: Apoderado;
+  madre: Apoderado;
+  apoderado: Apoderado;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +29,9 @@ export class VerMatriculaComponent implements OnInit {
 
   ngOnInit() {
     this.matricula = new Matricula();
+    this.padre = new Apoderado(false);
+    this.madre = new Apoderado(false);
+    this.apoderado = new Apoderado(false);
 
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -43,7 +49,7 @@ export class VerMatriculaComponent implements OnInit {
   }
 
   goToEdit(id: number){
-    this.router.navigate(['sistema/ficha/matricula/editar-matricula',id],{relativeTo: this.route.parent});
+    this.router.navigate(['sistema/ficha/matriculas/editar-matricula',id],{relativeTo: this.route.parent});
 
   }
 

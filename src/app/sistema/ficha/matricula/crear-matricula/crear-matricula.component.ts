@@ -25,7 +25,7 @@ export class CrearMatriculaComponent implements OnInit {
     this.matricula = new Matricula();
     this.padre = new Apoderado(false);
     this.madre = new Apoderado(false);
-    this.apoderado = new Apoderado(false);
+    this.apoderado = new Apoderado(true);
   }
 
   goBack(): void {
@@ -33,20 +33,24 @@ export class CrearMatriculaComponent implements OnInit {
   }
 
   onChange(changed: Apoderado, other: Apoderado) {
-    if ( changed.selected && !other.selected) {
-      this.apoderado = changed;
+    if ( !changed.selected && !other.selected ) {
+      this.apoderado = new Apoderado(true);
     }
 
-    if ( changed.selected && other.selected) {
+    else if ( changed.selected && other.selected ) {
       other.selected = false;
-      this.apoderado = changed;
+      this.apoderado = JSON.parse(JSON.stringify(changed));
+      this.apoderado.selected = false;
     }
-
-    if ( !changed.selected && !other.selected) {
-      this.apoderado = new Apoderado(false);
+    else if ( changed.selected && !other.selected ) {
+      this.apoderado = JSON.parse(JSON.stringify(changed));
+      this.apoderado.selected = false;
     }
-
-    return;
+    else if ( !changed.selected && other.selected ){
+      this.apoderado = JSON.parse(JSON.stringify(other));
+      this.apoderado.selected = false;
+    }
+    console.log(this.apoderado);
   }
 
   saveMatricula() {

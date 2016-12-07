@@ -8,7 +8,345 @@
   <div class="col-md-8 col-md-offset-1">
     <div class="demo-form-wrapper">
       <div class="form form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-1">Nombre</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-1" [(ngModel)]="matricula.nombre" readonly>
+          </div>
+          <label class="col-sm-1 control-label"for="form-control-2">Apellidos</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-2" [(ngModel)]="matricula.apellidos" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-3">Sexo</label>
+          <div class="col-sm-2">
+            <input class="form-control" type="text" id="form-control-3" [(ngModel)]="matricula.sexo" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-6">Fecha Nacimiento</label>
+          <div class="col-sm-4">
+            <div class="input-with-icon">
+              <input class="form-control" id="form-control-6" type="text" [(ngModel)]="matricula.fecha_nac" readonly>
+              <span class="icon icon-calendar input-icon"></span>
+            </div>
+          </div>
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-4">Rut</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-4" [(ngModel)]="matricula.rut" readonly>
+          </div>
+          <div class="col-sm-1">
+            <input class="form-control" type="text" id="form-control-5" [(ngModel)]="matricula.dv" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-10">Teléfono Fijo</label>
+          <div class="col-sm-4">
+            <input id="form-control-10" class="form-control" type="text" [(ngModel)]="matricula.fono_casa" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-11">Teléfono Móvil</label>
+          <div class="col-sm-4">
+            <input id="form-control-11" class="form-control" type="text" [(ngModel)]="matricula.fono_movil" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-12">Nacionalidad</label>
+          <div class="col-sm-5">
+            <input id="form-control-12" class="form-control" type="text" [(ngModel)]="matricula.nacionalidad" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-13">Estado Matricula</label>
+          <div class="col-sm-3">
+            <input id="form-control-13" class="form-control" type="text" [(ngModel)]="matricula.estado" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-15">Dirección</label>
+          <div class="col-sm-3">
+            <input id="form-control-15" class="form-control" type="text" [(ngModel)]="matricula.direccion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-16">N°</label>
+          <div class="col-sm-2">
+            <input id="form-control-16" class="form-control" type="text" [(ngModel)]="matricula.numeracion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-14">Comuna</label>
+          <div class="col-sm-3">
+            <input id="form-control-14" class="form-control" type="text" [(ngModel)]="matricula.comuna" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+    <div class="demo-form-wrapper">
+      <div class="form form-horizontal">
+        <div class="form-group">
+          <h3 class="title">Padre</h3>
+          <p class="title-bar-description" *ngIf="padre.selected">Apoderado</p>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-17">Nombre</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-17" [(ngModel)]="padre.nombre" readonly>
+          </div>
+          <label class="col-sm-1 control-label"for="form-control-18">Apellidos</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-18" [(ngModel)]="padre.apellidos" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-19">Sexo</label>
+          <div class="col-sm-2">
+            <input class="form-control" type="text" id="form-control-19" [(ngModel)]="padre.sexo" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-20">Fecha Nacimiento</label>
+          <div class="col-sm-4">
+            <div class="input-with-icon">
+              <input class="form-control" id="form-control-20" type="text" [(ngModel)]="padre.fecha_nac" readonly>
+              <span class="icon icon-calendar input-icon"></span>
+            </div>
+          </div>
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-21">Rut</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-21" [(ngModel)]="padre.rut" readonly>
+          </div>
+          <div class="col-sm-1">
+            <input class="form-control" type="text" id="form-control-22" [(ngModel)]="padre.dv" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-23">Teléfono Fijo</label>
+          <div class="col-sm-4">
+            <input id="form-control-23" class="form-control" type="text" [(ngModel)]="padre.fono_casa" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-24">Teléfono Móvil</label>
+          <div class="col-sm-4">
+            <input id="form-control-24" class="form-control" type="text" [(ngModel)]="padre.fono_movil" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-30">Email</label>
+          <div class="col-sm-10">
+            <input id="form-control-30" class="form-control" type="text" [(ngModel)]="padre.mail" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-25">Nacionalidad</label>
+          <div class="col-sm-5">
+            <input id="form-control-25" class="form-control" type="text" [(ngModel)]="padre.nacionalidad" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-26">Estado Civil</label>
+          <div class="col-sm-3">
+            <input id="form-control-26" class="form-control" type="text" [(ngModel)]="padre.estado_civil" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-31">Titulo</label>
+          <div class="col-sm-4">
+            <input id="form-control-31" class="form-control" type="text" [(ngModel)]="padre.titulo" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-32">Ocupación</label>
+          <div class="col-sm-4">
+            <input id="form-control-32" class="form-control" type="text" [(ngModel)]="padre.ocupacion" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-27">Dirección</label>
+          <div class="col-sm-3">
+            <input id="form-control-27" class="form-control" type="text" [(ngModel)]="padre.direccion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-29">N°</label>
+          <div class="col-sm-2">
+            <input id="form-control-29" class="form-control" type="text" [(ngModel)]="padre.numeracion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-28">Comuna</label>
+          <div class="col-sm-3">
+            <input id="form-control-28" class="form-control" type="text" [(ngModel)]="padre.comuna" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+    <div class="demo-form-wrapper">
+      <div class="form form-horizontal">
+        <div class="form-group">
+          <h3 class="title">Madre</h3>
+          <p class="title-bar-description" *ngIf="madre.selected">Apoderado</p>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-33">Nombre</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-33" [(ngModel)]="madre.nombre" readonly>
+          </div>
+          <label class="col-sm-1 control-label"for="form-control-34">Apellidos</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-34" [(ngModel)]="madre.apellidos" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-35">Sexo</label>
+          <div class="col-sm-2">
+            <input class="form-control" type="text" id="form-control-35" [(ngModel)]="madre.sexo" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-36">Fecha Nacimiento</label>
+          <div class="col-sm-4">
+            <div class="input-with-icon">
+              <input class="form-control" id="form-control-36" type="text" [(ngModel)]="madre.fecha_nac" readonly>
+              <span class="icon icon-calendar input-icon"></span>
+            </div>
+          </div>
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-37">Rut</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-37" [(ngModel)]="madre.rut" readonly>
+          </div>
+          <div class="col-sm-1">
+            <input class="form-control" type="text" id="form-control-38" [(ngModel)]="madre.dv" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-39">Teléfono Fijo</label>
+          <div class="col-sm-4">
+            <input id="form-control-39" class="form-control" type="text" [(ngModel)]="madre.fono_casa" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-40">Teléfono Móvil</label>
+          <div class="col-sm-4">
+            <input id="form-control-40" class="form-control" type="text" [(ngModel)]="madre.fono_movil" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-41">Email</label>
+          <div class="col-sm-10">
+            <input id="form-control-41" class="form-control" type="text" [(ngModel)]="madre.mail" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-42">Nacionalidad</label>
+          <div class="col-sm-5">
+            <input id="form-control-42" class="form-control" type="text" [(ngModel)]="madre.nacionalidad" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-43">Estado Civil</label>
+          <div class="col-sm-3">
+            <input id="form-control-43" class="form-control" type="text" [(ngModel)]="madre.estado_civil" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-44">Titulo</label>
+          <div class="col-sm-4">
+            <input id="form-control-44" class="form-control" type="text" [(ngModel)]="madre.titulo" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-45">Ocupación</label>
+          <div class="col-sm-4">
+            <input id="form-control-45" class="form-control" type="text" [(ngModel)]="madre.ocupacion" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-46">Dirección</label>
+          <div class="col-sm-3">
+            <input id="form-control-46" class="form-control" type="text" [(ngModel)]="madre.direccion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-48">N°</label>
+          <div class="col-sm-2">
+            <input id="form-control-48" class="form-control" type="text" [(ngModel)]="madre.numeracion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-47">Comuna</label>
+          <div class="col-sm-3">
+            <input id="form-control-47" class="form-control" type="text" [(ngModel)]="madre.comuna" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="true">
+  <div class="col-md-8 col-md-offset-1">
+    <div class="demo-form-wrapper">
+      <div class="form form-horizontal">
+        <h3 class="title">Apoderado</h3>
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-49">Nombre</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-49" [(ngModel)]="apoderado.nombre" readonly>
+          </div>
+          <label class="col-sm-1 control-label"for="form-control-50">Apellidos</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-50" [(ngModel)]="apoderado.apellidos" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-51">Sexo</label>
+          <div class="col-sm-2">
+            <input class="form-control" type="text" id="form-control-51" [(ngModel)]="apoderado.sexo" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-52">Fecha Nacimiento</label>
+          <div class="col-sm-4">
+            <div class="input-with-icon">
+              <input class="form-control" id="form-control-52" type="text" [(ngModel)]="apoderado.fecha_nac" readonly>
+              <span class="icon icon-calendar input-icon"></span>
+            </div>
+          </div>
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-53">Rut</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" id="form-control-53" [(ngModel)]="apoderado.rut" readonly>
+          </div>
+          <div class="col-sm-1">
+            <input class="form-control" type="text" id="form-control-54" [(ngModel)]="apoderado.dv" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-55">Teléfono Fijo</label>
+          <div class="col-sm-4">
+            <input id="form-control-55" class="form-control" type="text" [(ngModel)]="apoderado.fono_casa" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-56">Teléfono Móvil</label>
+          <div class="col-sm-4">
+            <input id="form-control-56" class="form-control" type="text" [(ngModel)]="apoderado.fono_movil" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-1 col-sm-offset-1 control-label" for="form-control-57">Email</label>
+          <div class="col-sm-10">
+            <input id="form-control-57" class="form-control" type="text" [(ngModel)]="apoderado.mail" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-58">Nacionalidad</label>
+          <div class="col-sm-5">
+            <input id="form-control-58" class="form-control" type="text" [(ngModel)]="apoderado.nacionalidad" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-59">Estado Civil</label>
+          <div class="col-sm-3">
+            <input id="form-control-59" class="form-control" type="text" [(ngModel)]="apoderado.estado_civil" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-60">Titulo</label>
+          <div class="col-sm-4">
+            <input id="form-control-60" class="form-control" type="text" [(ngModel)]="apoderado.titulo" readonly>
+          </div>
+          <label class="col-sm-2 control-label" for="form-control-61">Ocupación</label>
+          <div class="col-sm-4">
+            <input id="form-control-61" class="form-control" type="text" [(ngModel)]="apoderado.ocupacion" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="form-control-62">Dirección</label>
+          <div class="col-sm-3">
+            <input id="form-control-62" class="form-control" type="text" [(ngModel)]="apoderado.direccion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-64">N°</label>
+          <div class="col-sm-2">
+            <input id="form-control-64" class="form-control" type="text" [(ngModel)]="apoderado.numeracion" readonly>
+          </div>
+          <label class="col-sm-1 control-label" for="form-control-63">Comuna</label>
+          <div class="col-sm-3">
+            <input id="form-control-63" class="form-control" type="text" [(ngModel)]="apoderado.comuna" readonly>
+          </div>
+        </div>
       </div>
     </div>
   </div>
