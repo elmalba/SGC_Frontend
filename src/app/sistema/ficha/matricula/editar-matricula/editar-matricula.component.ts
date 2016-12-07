@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }                 from '@angular/common';
 
-import { Matricula } from '../matricula';
+import { Matricula, Apoderado } from '../matricula';
 import { MatriculaService } from '../../matricula.service';
 
 @Component({
@@ -16,7 +16,15 @@ export class EditarMatriculaComponent implements OnInit {
   private sub: any;
 
   selectedMatricula: Matricula;
+  selectedPadre: Apoderado;
+  selectedMadre: Apoderado;
+  selectedApoderado: Apoderado;
+
+
   matricula: Matricula;
+  padre: Apoderado;
+  madre: Apoderado;
+  apoderado: Apoderado;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +34,14 @@ export class EditarMatriculaComponent implements OnInit {
 
   ngOnInit() {
     this.selectedMatricula = new Matricula();
+    this.selectedPadre = new Apoderado(false);
+    this.selectedMadre = new Apoderado(false);
+    this.selectedApoderado = new Apoderado(true);
+
     this.matricula = new Matricula();
+    this.padre = new Apoderado(false);
+    this.madre = new Apoderado(false);
+    this.apoderado = new Apoderado(true);
 
     this.sub = this.route.params.subscribe( params => { this.id = +params['id'];});
 
