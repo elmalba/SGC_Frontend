@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import './rxjs-extensions';
 
 import { AppRoutingModule }     from './app-routing.module';
@@ -20,7 +21,7 @@ import { CrearMatriculaComponent } from './sistema/ficha/matricula/crear-matricu
 import { EditarMatriculaComponent } from './sistema/ficha/matricula/editar-matricula/editar-matricula.component';
 
 import { ColegiosService } from './sistema/ficha/colegios.service';
-import {MatriculaService} from "./sistema/ficha/matricula.service";
+import { MatriculaService } from "./sistema/ficha/matricula.service";
 import { VerColegioComponent } from './sistema/ficha/colegios/ver-colegio/ver-colegio.component';
 import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/ver-matricula.component';
 
@@ -41,7 +42,8 @@ import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/v
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2Bs3ModalModule
   ],
   providers: [
     ColegiosService,

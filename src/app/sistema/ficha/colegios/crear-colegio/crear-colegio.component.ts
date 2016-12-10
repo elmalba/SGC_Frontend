@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Location }                 from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Colegio } from '../colegio';
 import { ColegiosService } from '../../colegios.service';
@@ -10,6 +11,8 @@ import { ColegiosService } from '../../colegios.service';
   styleUrls: ['./crear-colegio.component.css']
 })
 export class CrearColegioComponent implements OnInit {
+  @ViewChild('modal')
+  modal: ModalComponent;
 
   colegio: Colegio;
 
@@ -44,10 +47,19 @@ export class CrearColegioComponent implements OnInit {
     this.location.back();
   }
 
+  openModal(): void {
+    this.modal.open();
+  }
+
+  closeModal(): void {
+    this.modal.close();
+    this.goBack();
+  }
+
   saveColegio(): void {
     this.colegiosService.createColegio(this.colegio).subscribe(res => {
       this.colegio = res;
-      this.goBack();
+      this.openModal();
     });
   }
 

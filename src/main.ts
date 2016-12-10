@@ -1,3 +1,4 @@
+import 'bootstrap/js/modal';
 import './polyfills.ts';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

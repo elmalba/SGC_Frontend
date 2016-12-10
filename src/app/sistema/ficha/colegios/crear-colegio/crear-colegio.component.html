@@ -103,6 +103,19 @@
         </div>
         <div class="col-sm-8">
           <button class="btn btn-primary btn-block" (click)="saveColegio()">Guardar</button>
+
+          <modal [animation]="animationsEnabled" #modal>
+            <modal-header [show-close]="true">
+              <h4 class="modal-title">Curso creado con éxito.</h4>
+            </modal-header>
+            <modal-body>
+              Presione Ok para continuar.
+            </modal-body>
+            <modal-footer>
+              <button type="button" class="btn btn-primary" (click)="closeModal()">Ok</button>
+            </modal-footer>
+          </modal>
+
         </div>
       </div>
     </div>
