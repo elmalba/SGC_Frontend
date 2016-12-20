@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }       from '@angular/common';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { ColegiosService } from '../../colegios.service';
 import { Colegio } from '../colegio';
@@ -11,6 +12,8 @@ import { Colegio } from '../colegio';
   styleUrls: ['./ver-colegio.component.css']
 })
 export class VerColegioComponent implements OnInit {
+  @ViewChild('modal')
+  modal: ModalComponent;
 
   id: number;
   private sub: any;
@@ -47,8 +50,21 @@ export class VerColegioComponent implements OnInit {
 
   }
 
+  modalOpen(): void {
+    this.modal.open();
+  }
+
+  modalClose(): void {
+    this.deleteColegio();
+  }
+
+  modalDismiss(): void {
+    this.modal.dismiss();
+  }
+
   deleteColegio(): void {
     this.colegiosService.deleteColegio(this.colegio.id).subscribe(()=>{
+      this.modalClose();
       this.goBack();
     });
   }

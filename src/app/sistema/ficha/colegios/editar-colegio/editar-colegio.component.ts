@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }       from '@angular/common';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { ColegiosService } from '../../colegios.service';
 import { Colegio } from '../colegio';
@@ -11,6 +12,8 @@ import { Colegio } from '../colegio';
   styleUrls: ['./editar-colegio.component.css']
 })
 export class EditarColegioComponent implements OnInit {
+  @ViewChild('modal')
+  modal: ModalComponent;
 
   id: number;
   private sub: any;
@@ -60,9 +63,18 @@ export class EditarColegioComponent implements OnInit {
     this.location.back();
   }
 
+  modalOpen(): void {
+    this.modal.open();
+  }
+
+  modalClose(): void {
+    this.modal.close();
+  }
+
   saveColegio(): void {
     this.colegiosService.updateColegio(this.colegio).subscribe((res) => {
       this.selectedColegio = JSON.parse(JSON.stringify(res));
+      this.modalOpen();
     });
   }
 }

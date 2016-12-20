@@ -103,7 +103,21 @@
           <button class="btn btn-primary btn-block" (click)="goToEdit(colegio.id)">Editar</button>
         </div>
         <div class="col-sm-2">
-          <button class="btn btn-danger btn-block" (click)="deleteColegio()">Borrar</button>
+          <button class="btn btn-danger btn-block" (click)="modalOpen()">Borrar</button>
+
+          <modal [animation]="animationsEnabled" #modal>
+            <modal-header [show-close]="true">
+              <h4 class="modal-title">Eliminar Colegio.</h4>
+            </modal-header>
+            <modal-body>
+              Haga click en Ok para continuar eliminando el colegio seleccionado.
+            </modal-body>
+            <modal-footer>
+              <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
+              <button type="button" class="btn btn-primary" (click)="modalClose()">Ok</button>
+            </modal-footer>
+          </modal>
+
         </div>
       </div>
     </div>

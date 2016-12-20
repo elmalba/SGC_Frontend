@@ -85,8 +85,22 @@
                         <span class="icon icon-pencil-square-o icon-fw"></span>
                       </a>
                       <button class="btn btn-danger btn-sm">
-                        <span class="icon icon-times icon-fw" (click)="deleteColegio(colegio.id)"></span>
+                        <span class="icon icon-times icon-fw" (click)="modalOpen(colegio.id)"></span>
                       </button>
+
+                      <modal [animation]="animationsEnabled" #modal>
+                        <modal-header [show-close]="true">
+                          <h4 class="modal-title">Eliminar Colegio.</h4>
+                        </modal-header>
+                        <modal-body>
+                          Haga click en Ok para continuar eliminando el colegio seleccionado.
+                        </modal-body>
+                        <modal-footer>
+                          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
+                          <button type="button" class="btn btn-primary" (click)="modalClose(selectedColegio_id)">Ok</button>
+                        </modal-footer>
+                      </modal>
+
                       <!--                    <button class="btn btn-default btn-sm">
                                             <span class="icon icon-cogs icon-fw"></span>
                                           </button>-->

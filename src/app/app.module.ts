@@ -24,6 +24,17 @@ import { ColegiosService } from './sistema/ficha/colegios.service';
 import { MatriculaService } from "./sistema/ficha/matricula.service";
 import { VerColegioComponent } from './sistema/ficha/colegios/ver-colegio/ver-colegio.component';
 import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/ver-matricula.component';
+import { CursosComponent } from './libros/cursos/cursos.component';
+import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
+import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.component';
+import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
+import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
+import { EliminarCursoComponent } from './libros/cursos/eliminar-curso/eliminar-curso.component';
+import { CrearAsignaturaComponent } from './libros/asignaturas/crear-asignatura/crear-asignatura.component';
+import { VerAsignaturaComponent } from './libros/asignaturas/ver-asignatura/ver-asignatura.component';
+import { ModificarAsugnaturaComponent } from './libros/asignaturas/modificar-asugnatura/modificar-asugnatura.component';
+import { ModificarAsignaturaComponent } from './libros/asignaturas/modificar-asignatura/modificar-asignatura.component';
+import { EliminarAsignaturaComponent } from './libros/asignaturas/eliminar-asignatura/eliminar-asignatura.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +47,18 @@ import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/v
     CrearMatriculaComponent,
     EditarMatriculaComponent,
     VerColegioComponent,
-    VerMatriculaComponent
+    VerMatriculaComponent,
+    CursosComponent,
+    AsignaturasComponent,
+    CrearCursoComponent,
+    VerCursoComponent,
+    ModificarCursoComponent,
+    EliminarCursoComponent,
+    CrearAsignaturaComponent,
+    VerAsignaturaComponent,
+    ModificarAsugnaturaComponent,
+    ModificarAsignaturaComponent,
+    EliminarAsignaturaComponent
   ],
   imports: [
     BrowserModule,

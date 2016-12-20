@@ -47,11 +47,11 @@ export class CrearColegioComponent implements OnInit {
     this.location.back();
   }
 
-  openModal(): void {
+  modalOpen(): void {
     this.modal.open();
   }
 
-  closeModal(): void {
+  modalClose(): void {
     this.modal.close();
     this.goBack();
   }
@@ -59,7 +59,7 @@ export class CrearColegioComponent implements OnInit {
   saveColegio(): void {
     this.colegiosService.createColegio(this.colegio).subscribe(res => {
       this.colegio = res;
-      this.openModal();
+      this.modalOpen();
     });
   }
 
