@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }       from '@angular/common';
 
 import { Matricula, Apoderado } from '../matricula';
-import { MatriculaService } from '../../matricula.service';
+import { MatriculaService } from '../../../../services/sistema/ficha/matricula.service';
 
 @Component({
   selector: 'app-ver-matricula',

@@ -20,21 +20,25 @@ import { MatriculaComponent } from './sistema/ficha/matricula/matricula.componen
 import { CrearMatriculaComponent } from './sistema/ficha/matricula/crear-matricula/crear-matricula.component';
 import { EditarMatriculaComponent } from './sistema/ficha/matricula/editar-matricula/editar-matricula.component';
 
-import { ColegiosService } from './sistema/ficha/colegios.service';
-import { MatriculaService } from "./sistema/ficha/matricula.service";
+import { ColegiosService } from './services/sistema/ficha/colegios.service';
+import { MatriculaService } from "./services/sistema/ficha/matricula.service";
 import { VerColegioComponent } from './sistema/ficha/colegios/ver-colegio/ver-colegio.component';
 import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/ver-matricula.component';
+
 import { CursosComponent } from './libros/cursos/cursos.component';
-import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
 import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.component';
 import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
 import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
 import { EliminarCursoComponent } from './libros/cursos/eliminar-curso/eliminar-curso.component';
+
+import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
 import { CrearAsignaturaComponent } from './libros/asignaturas/crear-asignatura/crear-asignatura.component';
 import { VerAsignaturaComponent } from './libros/asignaturas/ver-asignatura/ver-asignatura.component';
-import { ModificarAsugnaturaComponent } from './libros/asignaturas/modificar-asugnatura/modificar-asugnatura.component';
 import { ModificarAsignaturaComponent } from './libros/asignaturas/modificar-asignatura/modificar-asignatura.component';
 import { EliminarAsignaturaComponent } from './libros/asignaturas/eliminar-asignatura/eliminar-asignatura.component';
+
+import { ProfesorComponent } from './libros/profesor/profesor.component';
+import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-profesor.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +60,10 @@ import { EliminarAsignaturaComponent } from './libros/asignaturas/eliminar-asign
     EliminarCursoComponent,
     CrearAsignaturaComponent,
     VerAsignaturaComponent,
-    ModificarAsugnaturaComponent,
     ModificarAsignaturaComponent,
-    EliminarAsignaturaComponent
+    EliminarAsignaturaComponent,
+    ProfesorComponent,
+    CrearProfesorComponent
   ],
   imports: [
     BrowserModule,

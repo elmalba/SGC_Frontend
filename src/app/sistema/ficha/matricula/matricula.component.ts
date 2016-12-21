@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MatriculaService } from '../matricula.service';
+import { MatriculaService } from '../../../services/sistema/ficha/matricula.service';
 
 @Component({
   selector: 'app-matricula',

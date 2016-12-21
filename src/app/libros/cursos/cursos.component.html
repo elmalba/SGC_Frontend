@@ -1,3 +1,104 @@
-<p>
-  cursos works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="demo-form-wrapper">
+      <form class="form form-horizontal">
+        <div class="form-group form-group-lg">
+          <div class="col-md-4 col-md-offset-1">
+            <div class="input-with-icon">
+              <input class="form-control input-thick" type="text" placeholder="Buscar&hellip;">
+              <span class="icon icon-search input-icon"></span>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <a class="btn btn-lg btn-primary btn-block" [routerLink]="['./crear-curso']">Crear Curso</a>
+          </div>
+          <div class="col-md-3">
+            <a class="btn btn-lg btn-outline-primary btn-block" [routerLink]="['./profesor/crear-profesor']">Crear Profesor</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-middle table-striped">
+            <thead>
+            <tr class="bg-primary">
+              <th>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </th>
+              <th>Curso</th>
+              <th>Profesor Jefe</th>
+<!--              <th></th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let curso of cursos">
+              <td>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </td>
+<!--              <td>
+	                <span class="icon-with-child m-r">
+	                  <img class="circle" width="36" height="36" src="assets/img/1099386850.jpg">
+                    &lt;!&ndash;<span class="icon-child bg-warning circle sq-8"></span>&ndash;&gt;
+	                </span>
+                <strong> </strong>
+              </td>-->
+              <td class="maw-320">
+                <span><a [routerLink]="['./ver-curso',curso.id]">{{ curso.grado }} {{ curso.curso }}</a></span>
+              </td>
+              <td class="maw-320">
+                <span class="truncate"> {{ curso.profesor }}</span>
+              </td>
+
+<!--              <td>
+                <div class="btn-toolbar pull-right">
+                  <div class="btn-group btn-group-sm">
+                    <a class="btn btn-primary btn-sm" [routerLink]="['./ver-colegio',colegio.id]">
+                      <span class="icon icon-eye icon-fw"></span>
+                    </a>
+                    <a class="btn btn-primary btn-sm" [routerLink]="['./editar-colegio',colegio.id]">
+                      <span class="icon icon-pencil-square-o icon-fw"></span>
+                    </a>
+                    <button class="btn btn-danger btn-sm">
+                      <span class="icon icon-times icon-fw" (click)="modalOpen(colegio.id)"></span>
+                    </button>
+
+                    <modal [animation]="animationsEnabled" #modal>
+                      <modal-header [show-close]="true">
+                        <h4 class="modal-title">Eliminar Colegio.</h4>
+                      </modal-header>
+                      <modal-body>
+                        Haga click en Ok para continuar eliminando el colegio seleccionado.
+                      </modal-body>
+                      <modal-footer>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
+                        <button type="button" class="btn btn-primary" (click)="modalClose(selectedColegio_id)">Ok</button>
+                      </modal-footer>
+                    </modal>
+
+                    &lt;!&ndash;                    <button class="btn btn-default btn-sm">
+                                          <span class="icon icon-cogs icon-fw"></span>
+                                        </button>&ndash;&gt;
+                  </div>
+                </div>
+              </td>-->
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

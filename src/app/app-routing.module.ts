@@ -12,6 +12,20 @@ import { CrearMatriculaComponent } from './sistema/ficha/matricula/crear-matricu
 import { EditarMatriculaComponent } from './sistema/ficha/matricula/editar-matricula/editar-matricula.component';
 import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/ver-matricula.component';
 
+import { CursosComponent } from './libros/cursos/cursos.component';
+import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.component';
+import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
+import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
+import { EliminarCursoComponent } from './libros/cursos/eliminar-curso/eliminar-curso.component';
+
+import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
+import { CrearAsignaturaComponent } from './libros/asignaturas/crear-asignatura/crear-asignatura.component';
+import { VerAsignaturaComponent } from './libros/asignaturas/ver-asignatura/ver-asignatura.component';
+import { ModificarAsignaturaComponent } from './libros/asignaturas/modificar-asignatura/modificar-asignatura.component';
+import { EliminarAsignaturaComponent } from './libros/asignaturas/eliminar-asignatura/eliminar-asignatura.component';
+
+import { ProfesorComponent } from './libros/profesor/profesor.component';
+import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-profesor.component';
 
 const routes: Routes = [
 	//{ path: '**', redirectTo: '/', pathMatch: 'full' },
@@ -24,6 +38,11 @@ const routes: Routes = [
   { path: 'sistema/ficha/matriculas/crear-matricula',  component: CrearMatriculaComponent },
   { path: 'sistema/ficha/matriculas/editar-matricula/:id',  component: EditarMatriculaComponent },
   { path: 'sistema/ficha/matriculas/ver-matricula/:id',  component: VerMatriculaComponent },
+
+  { path: 'libros',  component: CursosComponent },
+  { path: 'libros/crear-curso',  component: CrearCursoComponent },
+  { path: 'libros/ver-curso/:id',  component: VerCursoComponent },
+  { path: 'libros/profesor/crear-profesor',  component: CrearProfesorComponent },
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 
-import { Colegio } from './colegios/colegio'
+import { Colegio } from '../../../sistema/ficha/colegios/colegio'
 
 @Injectable()
 export class ColegiosService {

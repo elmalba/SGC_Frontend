@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Colegio } from '../colegio';
-import { ColegiosService } from '../../colegios.service';
+import { ColegiosService } from '../../../../services/sistema/ficha/colegios.service';
 
 @Component({
   selector: 'app-crear-colegio',
