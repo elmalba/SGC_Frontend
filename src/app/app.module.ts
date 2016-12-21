@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import './rxjs-extensions';
 
+import { FilterCursoProf } from './pipes/filter-curso-prof.pipe';
+
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -30,6 +32,7 @@ import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.com
 import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
 import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
 import { EliminarCursoComponent } from './libros/cursos/eliminar-curso/eliminar-curso.component';
+import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
 
 import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
 import { CrearAsignaturaComponent } from './libros/asignaturas/crear-asignatura/crear-asignatura.component';
@@ -39,6 +42,9 @@ import { EliminarAsignaturaComponent } from './libros/asignaturas/eliminar-asign
 
 import { ProfesorComponent } from './libros/profesor/profesor.component';
 import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-profesor.component';
+import {CursosService} from "./services/libros/cursos.service";
+import {ProfesoresService} from "./services/libros/profesores.service";
+import {AsignaturasService} from "./services/libros/asignaturas.service";
 
 @NgModule({
   declarations: [
@@ -63,7 +69,10 @@ import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-p
     ModificarAsignaturaComponent,
     EliminarAsignaturaComponent,
     ProfesorComponent,
-    CrearProfesorComponent
+    CrearProfesorComponent,
+    FilterCursoProf,
+    AsignarProfComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -75,6 +84,9 @@ import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-p
   providers: [
     ColegiosService,
     MatriculaService,
+    CursosService,
+    ProfesoresService,
+    AsignaturasService,
   ],
   bootstrap: [AppComponent]
 })

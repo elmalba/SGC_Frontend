@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common'
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
+import { ProfesoresService } from '../../../services/libros/profesores.service';
 import { Profesor } from '../profesor';
 
 @Component({
@@ -14,40 +15,13 @@ export class CrearProfesorComponent implements OnInit {
   modal: ModalComponent;
 
   profesor: Profesor;
-  cursos = [];
-
-  grados = [
-    {"id":"1ro básico"},
-    {"id":"2do básico"},
-    {"id":"3ro básico"},
-    {"id":"4to básico"},
-    {"id":"5to básico"},
-    {"id":"6to básico"},
-    {"id":"7mo básico"},
-    {"id":"8vo básico"},
-    {"id":"1ro medio"},
-    {"id":"2do medio"},
-    {"id":"3ro medio"},
-    {"id":"4to medio"},
-  ];
-
-  letras = [
-    {"id":"A"},
-    {"id":"B"},
-    {"id":"C"},
-    {"id":"D"},
-    {"id":"E"},
-    {"id":"F"},
-    {"id":"G"},
-    {"id":"H"},
-    {"id":"I"},
-    {"id":"J"},
-    {"id":"K"},
-    {"id":"L"},
-    {"id":"M"},
-    {"id":"N"},
-    {"id":"O"},
-    {"id":"P"},
+  cursosId = [];
+  cursos = [
+    {"grado":"1ro medio", "curso":"A", "profesor":"Atos", "id":1 },
+    {"grado":"8vo básico", "curso":"H", "profesor":"Portos", "id":2 },
+    {"grado":"3ro medio", "curso":"B", "profesor":"Dartagnan", "id":3 },
+    {"grado":"7mo básico", "curso":"B", "profesor":null, "id":4 },
+    {"grado":"4to básico", "curso":"C", "profesor":null, "id":5 },
   ];
 
   constructor(
@@ -64,7 +38,7 @@ export class CrearProfesorComponent implements OnInit {
 
   saveProfesor() {
     this.profesor["cursos"] = this.cursos;
-    // this.modalOpen();
+    this.modalOpen();
   }
 
   modalOpen(): void {
@@ -77,11 +51,11 @@ export class CrearProfesorComponent implements OnInit {
   }
 
   addCurso() {
-    this.cursos.push({"grado":"","curso":""});
+    this.cursosId.push({"id":""});
   }
 
   susCurso() {
-    this.cursos.pop();
+    this.cursosId.pop();
   }
 
 

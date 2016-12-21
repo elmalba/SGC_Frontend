@@ -37,7 +37,7 @@
               </th>
               <th>Curso</th>
               <th>Profesor Jefe</th>
-<!--              <th></th>-->
+              <th></th>
             </tr>
             </thead>
             <tbody>
@@ -58,42 +58,42 @@
               <td class="maw-320">
                 <span><a [routerLink]="['./ver-curso',curso.id]">{{ curso.grado }} {{ curso.curso }}</a></span>
               </td>
-              <td class="maw-320">
-                <span class="truncate"> {{ curso.profesor }}</span>
+              <td>
+                <span class="truncate" *ngIf="(curso.profesor)"> {{ curso.profesor }}</span>
+                <div class="demo-btn-toolbar btn-toolbar" *ngIf="!(curso.profesor)">
+                  <div class="btn-group btn-group-sm">
+                    <a class="btn btn-outline-primary btn-sm" [routerLink]="['./',curso.id,'asignar-prof']">
+                      <span class="icon icon-plus icon-fw"></span>
+                    </a>
+                  </div>
+                </div>
               </td>
 
-<!--              <td>
-                <div class="btn-toolbar pull-right">
+              <td>
+                <div class="demo-btn-toolbar btn-toolbar pull-right">
                   <div class="btn-group btn-group-sm">
-                    <a class="btn btn-primary btn-sm" [routerLink]="['./ver-colegio',colegio.id]">
-                      <span class="icon icon-eye icon-fw"></span>
-                    </a>
-                    <a class="btn btn-primary btn-sm" [routerLink]="['./editar-colegio',colegio.id]">
+                    <a class="btn btn-primary btn-sm" [routerLink]="['./editar-curso',curso.id]">
                       <span class="icon icon-pencil-square-o icon-fw"></span>
                     </a>
-                    <button class="btn btn-danger btn-sm">
-                      <span class="icon icon-times icon-fw" (click)="modalOpen(colegio.id)"></span>
+                    <button class="btn btn-danger btn-sm" (click)="modalOpen(curso.id)">
+                      <span class="icon icon-times icon-fw"></span>
                     </button>
 
                     <modal [animation]="animationsEnabled" #modal>
                       <modal-header [show-close]="true">
-                        <h4 class="modal-title">Eliminar Colegio.</h4>
+                        <h4 class="modal-title">Eliminar Curso</h4>
                       </modal-header>
                       <modal-body>
-                        Haga click en Ok para continuar eliminando el colegio seleccionado.
+                        Haga click en Ok para continuar eliminando el curso seleccionado.
                       </modal-body>
                       <modal-footer>
                         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
                         <button type="button" class="btn btn-primary" (click)="modalClose(selectedColegio_id)">Ok</button>
                       </modal-footer>
                     </modal>
-
-                    &lt;!&ndash;                    <button class="btn btn-default btn-sm">
-                                          <span class="icon icon-cogs icon-fw"></span>
-                                        </button>&ndash;&gt;
                   </div>
                 </div>
-              </td>-->
+              </td>
             </tr>
             </tbody>
           </table>

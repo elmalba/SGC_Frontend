@@ -3,6 +3,7 @@ import { Location } from '@angular/common'
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Curso } from '../curso';
+import { CursosService } from '../../../services/libros/cursos.service';
 
 @Component({
   selector: 'app-crear-curso',
@@ -52,6 +53,7 @@ export class CrearCursoComponent implements OnInit {
 
   constructor(
     private location: Location,
+    private cursosService: CursosService,
   ) {
   }
 
@@ -61,7 +63,7 @@ export class CrearCursoComponent implements OnInit {
     if (this.default_date.getMonth() > 4) {
       this.default_date.setFullYear(this.default_date.getFullYear() + 1);
     }
-    this.curso.year = this.default_date.getFullYear().toString();
+    this.curso.anio = this.default_date.getFullYear().toString();
   }
 
   goBack(): void {
@@ -69,7 +71,10 @@ export class CrearCursoComponent implements OnInit {
   }
 
   saveCurso() {
-    this.modalOpen();
+    this.cursosService.createCurso(this.curso).subscribe((res) => {
+      this.modalOpen();
+    });
+
   }
 
   modalOpen(): void {

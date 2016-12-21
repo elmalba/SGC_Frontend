@@ -17,6 +17,7 @@ import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.com
 import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
 import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
 import { EliminarCursoComponent } from './libros/cursos/eliminar-curso/eliminar-curso.component';
+import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
 
 import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
 import { CrearAsignaturaComponent } from './libros/asignaturas/crear-asignatura/crear-asignatura.component';
@@ -43,6 +44,8 @@ const routes: Routes = [
   { path: 'libros/crear-curso',  component: CrearCursoComponent },
   { path: 'libros/ver-curso/:id',  component: VerCursoComponent },
   { path: 'libros/profesor/crear-profesor',  component: CrearProfesorComponent },
+  { path: 'libros/:id/asignar-prof',  component: AsignarProfComponent },
+  { path: 'libros/editar-curso/:id',  component: ModificarCursoComponent },
 ];
 
 @NgModule({

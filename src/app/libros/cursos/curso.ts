@@ -2,9 +2,9 @@
  * Created by matias on 20-12-16.
  */
 export class Curso {
-  id: string;
+  id: number;
   grado: string;
   curso: string;
-  year: string;
+  anio: string;
   profesor: string;
 }

@@ -7,16 +7,15 @@ import { CursosService } from '../../../services/libros/cursos.service';
 import { ProfesoresService } from '../../../services/libros/profesores.service';
 
 @Component({
-  selector: 'app-modificar-curso',
-  templateUrl: './modificar-curso.component.html',
-  styleUrls: ['./modificar-curso.component.css']
+  selector: 'app-asignar-prof',
+  templateUrl: './asignar-prof.component.html',
+  styleUrls: ['./asignar-prof.component.css']
 })
-export class ModificarCursoComponent implements OnInit {
+export class AsignarProfComponent implements OnInit {
   @ViewChild('modal')
   modal: ModalComponent;
 
   curso: Curso;
-  selectedCurso: Curso;
 
   profesores = [
     {"nombre":"Pedro Fernandez","id":1},
@@ -33,8 +32,6 @@ export class ModificarCursoComponent implements OnInit {
 
   ngOnInit() {
     this.curso = new Curso();
-    this.selectedCurso = new Curso();
-    this.selectedCurso.profesor = "Juan Pérez";
   }
 
   goBack(): void {
