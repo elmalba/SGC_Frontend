@@ -1,126 +1,117 @@
-<div class="title-bar">
-  <h1 class="title-bar title">Ver Colegio</h1>
-  <h3 class="title bar description">{{colegio.nombre}}</h3>
-
-</div>
 <div class="row">
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-xs-12">
     <div class="demo-form-wrapper">
-      <div class="form form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-1">Nombre del Establecimiento</label>
-          <div class="col-sm-10">
-            <input id="form-control-1" class="form-control" type="text" [(ngModel)]="colegio.nombre" readonly>
+      <form class="form form-horizontal">
+        <div class="form-group form-group-lg">
+          <div class="col-md-7 col-md-offset-1">
+            <div class="input-with-icon">
+              <input class="form-control input-thick" type="text" placeholder="Buscar&hellip;">
+              <span class="icon icon-search input-icon"></span>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <a class="btn btn-lg btn-primary btn-block" [routerLink]="['../crear-colegio']">Crear Colegio</a>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-2">Dirección</label>
-          <div class="col-sm-6">
-            <input id="form-control-2" class="form-control" type="text" [(ngModel)]="colegio.direccion" readonly>
-          </div>
-          <label class="col-sm-2 control-label" for="form-control-3">N°</label>
-          <div class="col-sm-2">
-            <input id="form-control-3" class="form-control" type="text" [(ngModel)]="colegio.numeracion" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-4">Región</label>
-          <div class="col-sm-4">
-            <input id="form-control-4" class="form-control" type="text" [(ngModel)]="colegio.region" readonly>
-          </div>
-          <label class="col-sm-2 control-label" for="form-control-5">Provincia</label>
-          <div class="col-sm-4">
-            <input id="form-control-5" class="form-control" type="text" [(ngModel)]="colegio.provincia" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-6">Localidad</label>
-          <div class="col-sm-4">
-            <input id="form-control-6" class="form-control" type="text" [(ngModel)]="colegio.localidad" readonly>
-          </div>
-          <label class="col-sm-2 control-label" for="form-control-7">Comuna</label>
-          <div class="col-sm-4">
-            <input id="form-control-7" class="form-control" type="text" [(ngModel)]="colegio.comuna" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-8">Departamento Provincial</label>
-          <div class="col-sm-10">
-            <input id="form-control-8" class="form-control" type="text" [(ngModel)]="colegio.depto_prov" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-9">Teléfono</label>
-          <div class="col-sm-3">
-            <input id="form-control-9" class="form-control" type="text" [(ngModel)]="colegio.telefono" readonly>
-          </div>
-          <label class="col-sm-2 control-label" for="form-control-10">Web</label>
-          <div class="col-sm-5">
-            <input id="form-control-10" class="form-control" type="text" [(ngModel)]="colegio.web" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-11">Email</label>
-          <div class="col-sm-10">
-            <input id="form-control-11" class="form-control" type="text" [(ngModel)]="colegio.mail" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-12">Sostenedor</label>
-          <div class="col-sm-10">
-            <input id="form-control-12" class="form-control" type="text" [(ngModel)]="colegio.sostenedor" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-13">Director</label>
-          <div class="col-sm-10">
-            <input id="form-control-13" class="form-control" type="text" [(ngModel)]="colegio.director" readonly>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-14">RBD</label>
-          <div class="col-sm-2">
-            <input id="form-control-14" class="form-control" type="text" [(ngModel)]="colegio.rbd" readonly>
-          </div>
-          <label class="col-sm-2 control-label" for="form-control-15">Dependencia</label>
-          <div class="col-sm-6">
-            <input id="form-control-15" class="form-control" type="text" [(ngModel)]="colegio.dependencia" readonly>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-1">
-    <div class="form form-horizontal">
-      <div class="form-group">
-        <div class="col-sm-6 col-sm-offset-2">
-          <button class="btn btn-default btn-block" (click)="goBack()">Volver</button>
-        </div>
-        <div class="col-sm-2">
-          <button class="btn btn-primary btn-block" (click)="goToEdit(colegio.id)">Editar</button>
-        </div>
-        <div class="col-sm-2">
-          <button class="btn btn-danger btn-block" (click)="modalOpen()">Borrar</button>
+  <div class="col-xs-12">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-middle">
+            <thead>
+            <tr>
+              <th>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </th>
+              <th>Colegio</th>
+              <th>RBD</th>
+              <th>Dirección</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Sostenedor</th>
+              <th>Director</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let colegio of colegios">
+              <td>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </td>
+              <td>
+	                <span class="icon-with-child m-r">
+	                  <img class="circle" width="36" height="36" src="assets/img/1099386850.jpg">
+                    <!--<span class="icon-child bg-warning circle sq-8"></span>-->
+	                </span>
+                <strong>{{colegio.nombre}}</strong>
+              </td>
+              <td class="maw-320">
+                <span class="label label-info lanel-sm">{{colegio.rbd}}</span>
+              </td>
+              <td class="maw-320">
+                <span class="truncate">{{colegio.direccion}} {{colegio.numeracion}}</span>
+              </td>
+              <td>
+                {{colegio.telefono}}
+              </td>
+              <td>
+                {{colegio.mail}}
+              </td>
+              <td>
+                {{colegio.sostenedor}}
+              </td>
+              <td>
+                {{colegio.director}}
+              </td>
+              <td>
+                <div class="btn-toolbar pull-right">
+                  <div class="btn-group btn-group-sm">
+                    <a class="btn btn-primary btn-sm" [routerLink]="['./',colegio.id]">
+                      <span class="icon icon-eye icon-fw"></span>
+                    </a>
+                    <a class="btn btn-primary btn-sm" [routerLink]="['../editar-colegio',colegio.id]">
+                      <span class="icon icon-pencil-square-o icon-fw"></span>
+                    </a>
+                    <button class="btn btn-danger btn-sm">
+                      <span class="icon icon-times icon-fw" (click)="modalOpen(colegio.id)"></span>
+                    </button>
 
-          <modal [animation]="animationsEnabled" #modal>
-            <modal-header [show-close]="true">
-              <h4 class="modal-title">Eliminar Colegio.</h4>
-            </modal-header>
-            <modal-body>
-              Haga click en Ok para continuar eliminando el colegio seleccionado.
-            </modal-body>
-            <modal-footer>
-              <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
-              <button type="button" class="btn btn-primary" (click)="modalClose()">Ok</button>
-            </modal-footer>
-          </modal>
+                    <modal [animation]="animationsEnabled" #modal>
+                      <modal-header [show-close]="true">
+                        <h4 class="modal-title">Eliminar Colegio.</h4>
+                      </modal-header>
+                      <modal-body>
+                        Haga click en Ok para continuar eliminando el colegio seleccionado.
+                      </modal-body>
+                      <modal-footer>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
+                        <button type="button" class="btn btn-primary" (click)="modalClose(selectedColegio_id)">Ok</button>
+                      </modal-footer>
+                    </modal>
 
+                    <!--                    <button class="btn btn-default btn-sm">
+                                          <span class="icon icon-cogs icon-fw"></span>
+                                        </button>-->
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </div>
-

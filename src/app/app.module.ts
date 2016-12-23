@@ -12,7 +12,10 @@ import { FilterCursoProf } from './pipes/filter-curso-prof.pipe';
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { RootComponent } from './root.component';
 import { LoginComponent } from './login/login.component';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ColegiosComponent } from './sistema/ficha/colegios/colegios.component';
 import { CrearColegioComponent } from './sistema/ficha/colegios/crear-colegio/crear-colegio.component';
@@ -31,25 +34,33 @@ import { CursosComponent } from './libros/cursos/cursos.component';
 import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.component';
 import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
 import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
-import { EliminarCursoComponent } from './libros/cursos/eliminar-curso/eliminar-curso.component';
+
 import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
 
 import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
 import { CrearAsignaturaComponent } from './libros/asignaturas/crear-asignatura/crear-asignatura.component';
 import { VerAsignaturaComponent } from './libros/asignaturas/ver-asignatura/ver-asignatura.component';
 import { ModificarAsignaturaComponent } from './libros/asignaturas/modificar-asignatura/modificar-asignatura.component';
-import { EliminarAsignaturaComponent } from './libros/asignaturas/eliminar-asignatura/eliminar-asignatura.component';
+
 
 import { ProfesorComponent } from './libros/profesor/profesor.component';
 import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-profesor.component';
 import {CursosService} from "./services/libros/cursos.service";
 import {ProfesoresService} from "./services/libros/profesores.service";
 import {AsignaturasService} from "./services/libros/asignaturas.service";
+import { ColegioDetailComponent } from './sistema/ficha/colegios/colegio-detail/colegio-detail.component';
+import { MatriculaDetailComponent } from './sistema/ficha/matricula/matricula-detail/matricula-detail.component';
+import { CursoDetailComponent } from './libros/cursos/curso-detail/curso-detail.component';
+import { AsignaturaDetailComponent } from './libros/asignaturas/asignatura-detail/asignatura-detail.component';
 
 @NgModule({
   declarations: [
+    RootComponent,
+
     AppComponent,
     LoginComponent,
+
+    DashboardComponent,
     ColegiosComponent,
     CrearColegioComponent,
     EditarColegioComponent,
@@ -63,15 +74,17 @@ import {AsignaturasService} from "./services/libros/asignaturas.service";
     CrearCursoComponent,
     VerCursoComponent,
     ModificarCursoComponent,
-    EliminarCursoComponent,
     CrearAsignaturaComponent,
     VerAsignaturaComponent,
     ModificarAsignaturaComponent,
-    EliminarAsignaturaComponent,
     ProfesorComponent,
     CrearProfesorComponent,
     FilterCursoProf,
     AsignarProfComponent,
+    ColegioDetailComponent,
+    MatriculaDetailComponent,
+    CursoDetailComponent,
+    AsignaturaDetailComponent,
 
   ],
   imports: [
@@ -88,6 +101,6 @@ import {AsignaturasService} from "./services/libros/asignaturas.service";
     ProfesoresService,
     AsignaturasService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [RootComponent]
 })
 export class AppModule { }

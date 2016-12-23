@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Location }       from '@angular/common';
 
-import { Matricula, Apoderado } from '../matricula';
 import { MatriculaService } from '../../../../services/sistema/ficha/matricula.service';
+
 
 @Component({
   selector: 'app-ver-matricula',
@@ -12,50 +10,35 @@ import { MatriculaService } from '../../../../services/sistema/ficha/matricula.s
 })
 export class VerMatriculaComponent implements OnInit {
 
-  id: number;
-  private sub: any;
-
-  matricula: Matricula;
-  padre: Apoderado;
-  madre: Apoderado;
-  apoderado: Apoderado;
+  private matriculas = [
+    {"id":1},
+  ];
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location,
     private matriculaService: MatriculaService,
   ) { }
 
-  ngOnInit() {
-    this.matricula = new Matricula();
-    this.padre = new Apoderado(false);
-    this.madre = new Apoderado(false);
-    this.apoderado = new Apoderado(false);
-
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
-    });
-
-    this.route.params
-      .switchMap((params: Params) => this.matriculaService.getMatricula(+params['id']))
-      .subscribe((matricula) => {
-        this.matricula = matricula;
-      });
+  getMatriculas() {
+    this.matriculaService.getMatriculas().subscribe((response) => {this.matriculas = response})
   }
 
-  goBack(): void {
-    this.location.back();
+  ngOnInit(): void {
+    this.getMatriculas();
   }
 
-  goToEdit(id: number){
-    this.router.navigate(['sistema/ficha/matriculas/editar-matricula',id],{relativeTo: this.route.parent});
-
+  indexOfObj(id: number): number {
+    for (let i = 0; i < this.matriculas.length; i++) {
+      if ( this.matriculas[i].id == id) {
+        return i;
+      }
+    }
+    return -1;
   }
 
-  deleteMatricula(): void {
-    this.matriculaService.deleteMatricula(this.matricula.id).subscribe(()=>{
-      this.goBack();
+  deleteMatricula(id: number){
+    this.matriculaService.deleteMatricula(id).subscribe(() => {
+      let index = this.indexOfObj(id);
+      this.matriculas.splice(index,1);
     });
   }
 

@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Location }       from '@angular/common';
+import {Component, OnInit, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
-import { ColegiosService } from '../../../../services/sistema/ficha/colegios.service';
-import { Colegio } from '../colegio';
+import { ColegiosService } from '../../../../services/sistema/ficha/colegios.service'
+import {Colegio} from "../colegio";
 
 @Component({
   selector: 'app-ver-colegio',
@@ -15,57 +13,53 @@ export class VerColegioComponent implements OnInit {
   @ViewChild('modal')
   modal: ModalComponent;
 
-  id: number;
-  private sub: any;
+  private colegios = [
+    {"id":1},
+  ];
+  selectedColegio_id: number;
 
-  colegio: Colegio;
+  constructor(
+    private colegiosService: ColegiosService,
+  ) { }
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private location: Location,
-              private colegiosService: ColegiosService,) {
+  getColegios() {
+    this.colegiosService.getColegios().subscribe((response) => {this.colegios = response})
   }
 
-  ngOnInit() {
-    this.colegio = new Colegio();
-
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
-    });
-
-    this.route.params
-      .switchMap((params: Params) => this.colegiosService.getColegio(+params['id']))
-      .subscribe((colegio) => {
-        this.colegio = colegio;
-      });
+  ngOnInit(): void {
+    this.getColegios();
   }
 
-  goBack(): void {
-    this.location.back();
+  indexOfObj(id: number): number {
+    for (let i = 0; i < this.colegios.length; i++) {
+      if ( this.colegios[i].id == id) {
+        return i;
+      }
+    }
+    return -1;
   }
 
-  goToEdit(id: number){
-    console.log(this.route);
-    this.router.navigate(['./editar-colegio',id],{relativeTo: this.route.parent});
-
-  }
-
-  modalOpen(): void {
+  modalOpen(id: number): void {
     this.modal.open();
+    this.selectedColegio_id = id;
   }
 
-  modalClose(): void {
-    this.deleteColegio();
+  modalClose(id: number): void {
+    this.deleteColegio(id);
   }
 
   modalDismiss(): void {
     this.modal.dismiss();
   }
 
-  deleteColegio(): void {
-    this.colegiosService.deleteColegio(this.colegio.id).subscribe(()=>{
-      this.modalClose();
-      this.goBack();
+
+  deleteColegio(id: number): void {
+    this.colegiosService.deleteColegio(id).subscribe(()=>{
+      let index = this.indexOfObj(id);
+      this.colegios.splice(index,1);
+      this.modal.close();
+      this.selectedColegio_id = null;
     });
   }
+
 }

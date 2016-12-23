@@ -33,6 +33,7 @@ export class EditarMatriculaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scrollTo(0,0);
     this.selectedMatricula = new Matricula();
     this.selectedPadre = new Apoderado(false);
     this.selectedMadre = new Apoderado(false);
