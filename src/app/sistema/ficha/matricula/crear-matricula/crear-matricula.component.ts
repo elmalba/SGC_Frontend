@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Location }                 from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Matricula, Apoderado } from '../matricula';
 import { MatriculaService } from '../../../../services/sistema/ficha/matricula.service';
@@ -10,6 +11,8 @@ import { MatriculaService } from '../../../../services/sistema/ficha/matricula.s
   styleUrls: ['./crear-matricula.component.css']
 })
 export class CrearMatriculaComponent implements OnInit {
+  @ViewChild('modal')
+  modal: ModalComponent;
 
   matricula: Matricula;
   padre: Apoderado;
@@ -53,6 +56,16 @@ export class CrearMatriculaComponent implements OnInit {
     console.log(this.apoderado);
   }
 
+  modalOpen(): void {
+    this.modal.open();
+  }
+
+  modalClose(): void {
+    this.modal.close();
+    this.goBack();
+  }
+
+
   saveMatricula() {
     this.matricula.madre = this.madre;
     this.matricula.padre = this.padre;
@@ -60,8 +73,7 @@ export class CrearMatriculaComponent implements OnInit {
 
     this.matriculaService.createMatricula(this.matricula).subscribe((matricula) => {
       this.matricula = matricula;
-      console.log(this.matricula);
-      this.goBack();
+      this.modalOpen();
     });
   }
 

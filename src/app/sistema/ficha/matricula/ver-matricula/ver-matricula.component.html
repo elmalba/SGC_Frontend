@@ -84,20 +84,20 @@
                     <a class="btn btn-primary btn-sm" [routerLink]="['../editar-matricula',matricula.id]">
                       <span class="icon icon-pencil-square-o icon-fw"></span>
                     </a>
-                    <button class="btn btn-danger btn-sm">
-                      <span class="icon icon-times icon-fw" (click)="deleteMatricula(matricula.id)"></span>
+                    <button class="btn btn-danger btn-sm" (click)="modalOpen(matricula.id)">
+                      <span class="icon icon-times icon-fw"></span>
                     </button>
 
                     <modal [animation]="animationsEnabled" #modal>
                       <modal-header [show-close]="true">
-                        <h4 class="modal-title">Eliminar Colegio.</h4>
+                        <h4 class="modal-title">Eliminar Matricula</h4>
                       </modal-header>
                       <modal-body>
-                        Haga click en Ok para continuar eliminando el colegio seleccionado.
+                        Haga click en Ok para continuar eliminando la matricula seleccionada.
                       </modal-body>
                       <modal-footer>
                         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
-                        <button type="button" class="btn btn-primary" (click)="modalClose(selectedColegio_id)">Ok</button>
+                        <button type="button" class="btn btn-primary" (click)="modalClose(selectedMatricula_id)">Ok</button>
                       </modal-footer>
                     </modal>
 

@@ -64,7 +64,7 @@ export class ColegioDetailComponent implements OnInit {
 
   deleteColegio(): void {
     this.colegiosService.deleteColegio(this.colegio.id).subscribe(()=>{
-      this.modalClose();
+      this.modal.close();
       this.goBack();
     });
   }

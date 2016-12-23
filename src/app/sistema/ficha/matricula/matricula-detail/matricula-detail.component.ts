@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }       from '@angular/common';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Matricula, Apoderado } from '../matricula';
 import { MatriculaService } from '../../../../services/sistema/ficha/matricula.service';
@@ -11,6 +12,8 @@ import { MatriculaService } from '../../../../services/sistema/ficha/matricula.s
   styleUrls: ['./matricula-detail.component.css']
 })
 export class MatriculaDetailComponent implements OnInit {
+  @ViewChild('modal')
+  modal: ModalComponent;
 
   id: number;
   private sub: any;
@@ -53,8 +56,21 @@ export class MatriculaDetailComponent implements OnInit {
 
   }
 
+  modalOpen(): void {
+    this.modal.open();
+  }
+
+  modalClose(): void {
+    this.deleteMatricula();
+  }
+
+  modalDismiss(): void {
+    this.modal.dismiss();
+  }
+
   deleteMatricula(): void {
     this.matriculaService.deleteMatricula(this.matricula.id).subscribe(()=>{
+      this.modal.close();
       this.goBack();
     });
   }

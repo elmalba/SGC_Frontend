@@ -538,6 +538,18 @@
           </div>
           <div class="col-sm-9">
             <button class="btn btn-primary btn-block" (click)="saveMatricula()">Guardar</button>
+
+            <modal [animation]="animationsEnabled" #modal>
+              <modal-header [show-close]="true">
+                <h4 class="modal-title">Matricula  modificada con éxito.</h4>
+              </modal-header>
+              <modal-body>
+                Presione Ok para continuar.
+              </modal-body>
+              <modal-footer>
+                <button type="button" class="btn btn-primary" (click)="modalClose()">Ok</button>
+              </modal-footer>
+            </modal>
           </div>
         </div>
       </div>

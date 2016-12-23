@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }                 from '@angular/common';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Matricula, Apoderado } from '../matricula';
 import { MatriculaService } from '../../../../services/sistema/ficha/matricula.service';
@@ -11,6 +12,8 @@ import { MatriculaService } from '../../../../services/sistema/ficha/matricula.s
   styleUrls: ['./editar-matricula.component.css']
 })
 export class EditarMatriculaComponent implements OnInit {
+  @ViewChild('modal')
+  modal: ModalComponent;
 
   id: number;
   private sub: any;
@@ -58,9 +61,19 @@ export class EditarMatriculaComponent implements OnInit {
     this.location.back();
   }
 
+  modalOpen(): void {
+    this.modal.open();
+  }
+
+  modalClose(): void {
+    this.modal.close();
+    this.goBack();
+  }
+
   saveMatricula() {
     this.matriculaService.updateMatricula(this.matricula).subscribe((res) => {
       this.selectedMatricula = JSON.parse(JSON.stringify(res));
+      this.modalOpen();
     });
   }
 }

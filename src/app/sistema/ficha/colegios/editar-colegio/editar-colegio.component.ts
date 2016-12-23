@@ -46,6 +46,7 @@ export class EditarColegioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scrollTo(0,0);
     this.selectedColegio = new Colegio();
     this.colegio = new Colegio();
 
@@ -69,6 +70,7 @@ export class EditarColegioComponent implements OnInit {
 
   modalClose(): void {
     this.modal.close();
+    this.goBack();
   }
 
   saveColegio(): void {
