@@ -76,8 +76,8 @@ const routes: Routes = [
 ];
 
 const rootRoutes: Routes = [
-  { path: '', redirectTo: 'index', pathMatch: 'full'},
-  { path: 'index', component: AppComponent, children: routes },
+  { path: '', redirectTo: 'app', pathMatch: 'full'},
+  { path: 'app', component: AppComponent, children: routes },
   { path: 'login', component: LoginComponent },
 ];
 
