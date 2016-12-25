@@ -8,17 +8,12 @@ import { Location } from '@angular/common'
 })
 export class CursoDetailComponent implements OnInit {
 
-  asignatura_id: any;
-  asignaturas = [
-    {"id":"1","nombre":"MAT"},
-    {"id":"2","nombre":"ING"},
-    {"id":"3","nombre":"LEN"},
-    {"id":"4","nombre":"CIE"},
-    {"id":"5","nombre":"HIS"},
-    {"id":"6","nombre":"EDF"},
-    {"id":"7","nombre":"MUS"},
-    {"id":"8","nombre":"ART"},
-    {"id":"9","nombre":"ORI"},
+  selectedTabId: number;
+  tabs = [
+    {"id":1,"path":'lista',"label":"Lista Curso","icon":"icon-users"},
+    {"id":2,"path":'notas',"label":"Notas","icon":"icon-check-square-o"},
+    {"id":3,"path":'asistencia',"label":"Asistencia","icon":"icon-calendar-check-o"},
+    {"id":4,"path":'anotaciones',"label":"Anotaciones","icon":"icon-bullhorn"},
   ];
 
   constructor(
@@ -26,15 +21,15 @@ export class CursoDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  showAsignatura(id: number){
-    this.asignatura_id = id;
-    console.log(this.asignatura_id,id);
+    this.selectedTabId = 1;
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  setActive(id: number){
+    this.selectedTabId = id;
   }
 
 }

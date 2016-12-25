@@ -25,13 +25,12 @@ import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.com
 import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
 import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
 import { CursoDetailComponent } from './libros/cursos/curso-detail/curso-detail.component';
-import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
+import { CursoNotasComponent } from './libros/cursos/curso-notas/curso-notas.component';
+import { CursoListaComponent } from './libros/cursos/curso-lista/curso-lista.component';
+import { CursoAsistenciaComponent } from './libros/cursos/curso-asistencia/curso-asistencia.component';
+import { CursoAnotacionesComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones.component';
 
-import { AsignaturasComponent } from './libros/asignaturas/asignaturas.component';
-import { CrearAsignaturaComponent } from './libros/asignaturas/crear-asignatura/crear-asignatura.component';
-import { VerAsignaturaComponent } from './libros/asignaturas/ver-asignatura/ver-asignatura.component';
-import { ModificarAsignaturaComponent } from './libros/asignaturas/modificar-asignatura/modificar-asignatura.component';
-import { AsignaturaDetailComponent } from './libros/asignaturas/asignatura-detail/asignatura-detail.component';
+import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
 
 import { ProfesorComponent } from './libros/profesor/profesor.component';
 import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-profesor.component';
@@ -67,7 +66,16 @@ const routes: Routes = [
       { path: '', redirectTo: 'ver-cursos', pathMatch: 'full' },
       { path: 'ver-cursos', component: VerCursoComponent },
       { path: 'crear-curso',  component: CrearCursoComponent },
-      { path: 'ver-cursos/:id',  component: CursoDetailComponent },
+      { path: 'ver-cursos/:id',  component: CursoDetailComponent,
+        children: [
+          {path:'', redirectTo:'lista',pathMatch: 'full'},
+          {path: 'lista', component: CursoListaComponent },
+          {path: 'notas', component: CursoNotasComponent },
+          {path: 'asistencia', component: CursoAsistenciaComponent },
+          {path: 'anotaciones', component: CursoAnotacionesComponent },
+
+        ]
+      },
       { path: 'profesor/crear-profesor',  component: CrearProfesorComponent },
       { path: ':id/asignar-prof',  component: AsignarProfComponent },
       { path: 'editar-curso/:id',  component: ModificarCursoComponent },
