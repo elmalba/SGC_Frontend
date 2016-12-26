@@ -27,13 +27,14 @@ export class CursosService {
 
   getCurso(id: number): Observable<any> {
     return this.getCursos()
-      .map(cursos => cursos.find(curso => curso.id == id));
+      .map(cursos => cursos.find(curso => curso.curso.id == id));
   }
 
   updateCurso(curso: Curso){
     const url = `${this.cursosUrl}/${curso.id}`;
     let payload = {};
-    payload['curso'] = JSON.stringify(curso);
+    payload['curso'] = JSON.parse(JSON.stringify(curso));
+    console.log(payload);
     return this.http.put(url, JSON.stringify(payload), {headers: this.headers})
       .map(() => curso)
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Curso'));
@@ -42,7 +43,7 @@ export class CursosService {
   createCurso(curso: Curso): Observable<Curso>{
     let options = new RequestOptions({headers: this.headers});
     let payload = {};
-    payload['curso'] = JSON.stringify(curso);
+    payload['curso'] = JSON.parse(JSON.stringify(curso));
     console.log(payload);
     return this.http.post(this.cursosUrl, JSON.stringify(payload), options)
       .map(res => res.json())

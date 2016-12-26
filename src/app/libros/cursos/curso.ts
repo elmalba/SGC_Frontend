@@ -7,4 +7,5 @@ export class Curso {
   curso: string;
   anio: string;
   profesor: string;
+  prof_jefe: number;
 }

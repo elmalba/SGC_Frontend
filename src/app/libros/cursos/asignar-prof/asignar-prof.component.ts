@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common'
+import { ActivatedRoute, Params } from '@angular/router';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Curso } from '../curso';
@@ -15,29 +16,55 @@ export class AsignarProfComponent implements OnInit {
   @ViewChild('modal')
   modal: ModalComponent;
 
+  id: number;
+  private sub: any;
+
   curso: Curso;
 
   profesores = [
-    {"nombre":"Pedro Fernandez","id":1},
-    {"nombre":"Juan Carlos Giadach","id":2},
-    {"nombre":"Ivan Arenas","id":3},
-    {"nombre":"Valentin Trujillo","id":4},
+    {"nombre":"Pedro","apellidos":"Fernandez","id":1},
   ];
 
   constructor(
     private location: Location,
     private cursosService: CursosService,
     private profesoresService: ProfesoresService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
     this.curso = new Curso();
+    this.getProfesores();
+
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
+
+    this.route.params
+      .switchMap((params: Params) => this.cursosService.getCurso(+params['id']))
+      .subscribe((curso) => {
+        this.curso = curso.curso;
+      });
+
+  }
+  //services
+  getProfesores() {
+    this.profesoresService.getProfesors().subscribe((res) => {
+      this.profesores = res;
+    })
   }
 
+  saveCurso() {
+    this.cursosService.updateCurso(this.curso).subscribe((res) => {
+      this.modalOpen();
+    });
+
+  }
+  //navigation
   goBack(): void {
     this.location.back();
   }
-
+  //modal
   modalOpen(): void {
     this.modal.open();
   }
@@ -45,10 +72,6 @@ export class AsignarProfComponent implements OnInit {
   modalClose(): void {
     this.modal.close();
     this.goBack();
-  }
-
-  saveCurso() {
-    this.modalOpen();
   }
 
 }

@@ -45,7 +45,6 @@ export class ColegioDetailComponent implements OnInit {
   }
 
   goToEdit(id: number){
-    console.log(this.route.parent);
     this.router.navigate(['./editar-colegio',id],{relativeTo: this.route.parent});
 
   }

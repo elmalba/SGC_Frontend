@@ -33,6 +33,7 @@ export class VerCursoComponent implements OnInit {
   getCursos() {
     this.cursosService.getCursos().subscribe((res) => {
       this.cursos = res;
+      console.log(res);
     })
   }
 

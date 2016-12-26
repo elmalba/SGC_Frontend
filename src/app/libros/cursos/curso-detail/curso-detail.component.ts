@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common'
+import { ActivatedRoute, Router, Params } from '@angular/router';
+
+import { CursosService } from '../../../services/libros/cursos.service';
 
 @Component({
   selector: 'app-curso-detail',
@@ -7,6 +9,10 @@ import { Location } from '@angular/common'
   styleUrls: ['./curso-detail.component.css']
 })
 export class CursoDetailComponent implements OnInit {
+  id: number;
+  private sub: any;
+
+  private curso: any;
 
   selectedTabId: number;
   tabs = [
@@ -17,19 +23,38 @@ export class CursoDetailComponent implements OnInit {
   ];
 
   constructor(
-    private location: Location,
+    private cursosService: CursosService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.selectedTabId = 1;
+
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
+
+    this.route.params
+      .switchMap((params: Params) => this.cursosService.getCurso(+params['id']))
+      .subscribe((curso) => {
+        this.curso = curso;
+      });
   }
 
+  //navigation
   goBack(): void {
-    this.location.back();
+    //change to router.navigate to navigate to parent route app/libro/ver-cursos
+    //this.location.back navigates inside tabs, bad for tab logic.
+    this.router.navigate(['./'],{relativeTo: this.route.parent});
   }
 
+  //tab logic
   setActive(id: number){
     this.selectedTabId = id;
   }
+
+  //service
+
 
 }
