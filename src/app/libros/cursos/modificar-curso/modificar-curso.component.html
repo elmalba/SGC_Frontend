@@ -4,14 +4,17 @@
 
 </div>
 <div class="row">
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-8 col-sm-offset-2">
     <div class="demo-form-wrapper">
       <div class="form form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="form-control-1">Profesor: {{selectedCurso.profesor}}</label>
+        <div class="md-form-group md-has-value md-label-static">
+          <label class="control-label" for="form-control-1">Profesor: {{selectedCurso?.profesor.nombre}} {{selectedCurso?.profesor.apellidos}}</label>
           <div class="col-sm-10">
-            <select class="form-control" id="form-control-1" type="text" [(ngModel)]="curso.profesor">
-              <option *ngFor="let profesor of profesores" [ngValue]="profesor.id">{{ profesor.nombre }}</option>
+            <select class="md-form-control" id="form-control-1" type="text"
+                    [(ngModel)]="curso?.curso.prof_jefe">
+              <option *ngFor="let profesor of profesores" [ngValue]="profesor.id">
+                {{ profesor?.usuario?.nombre }} {{ profesor?.usuario?.apellidos }}
+              </option>
             </select>
           </div>
         </div>
@@ -28,7 +31,7 @@
           <button class="btn btn-default btn-block" (click)="goBack()">Volver</button>
         </div>
         <div class="col-sm-8">
-          <button class="btn btn-primary btn-block" (click)="saveCurso()">Guardar</button>
+          <button class="btn btn-primary btn-block" (click)="saveCurso()" [disabled]="!(curso?.curso.id)">Guardar</button>
 
           <modal [animation]="animationsEnabled" #modal>
             <modal-header [show-close]="true">

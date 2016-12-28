@@ -68,7 +68,7 @@
                     <a class="btn btn-primary btn-sm" [routerLink]="['../editar-curso',curso.curso.id]">
                       <span class="icon icon-pencil-square-o icon-fw"></span>
                     </a>
-                    <button class="btn btn-danger btn-sm" (click)="modalOpen(curso.id)">
+                    <button class="btn btn-danger btn-sm" (click)="modalOpen(curso.curso.id)">
                       <span class="icon icon-times icon-fw"></span>
                     </button>
 
@@ -81,7 +81,7 @@
                       </modal-body>
                       <modal-footer>
                         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalDismiss()">Cancelar</button>
-                        <button type="button" class="btn btn-primary" (click)="modalClose(selectedColegio_id)">Ok</button>
+                        <button type="button" class="btn btn-primary" (click)="modalClose(selectedCurso_id)">Ok</button>
                       </modal-footer>
                     </modal>
                   </div>

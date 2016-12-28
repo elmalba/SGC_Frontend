@@ -61,10 +61,11 @@ import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-p
 
 //Servicios
 import { MatriculaService } from "./services/sistema/ficha/matricula.service";
-import { ColegiosService } from './services/sistema/ficha/colegios.service';
+import {ColegiosService } from './services/sistema/ficha/colegios.service';
 import {CursosService} from "./services/libros/cursos.service";
 import {ProfesoresService} from "./services/libros/profesores.service";
 import {AsignaturasService} from "./services/libros/asignaturas.service";
+import {Curso} from "./libros/cursos/curso";
 
 
 

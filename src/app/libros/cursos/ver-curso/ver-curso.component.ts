@@ -13,12 +13,7 @@ export class VerCursoComponent implements OnInit {
   @ViewChild('modal')
   modal: ModalComponent;
 
-  cursos = [
-    {"grado":"1ro medio", "curso":"A", "profesor":"Juan Pérez", "id":1 },
-    {"grado":"8vo básico", "curso":"H", "profesor":"Juan Pérez", "id":2 },
-    {"grado":"3ro medio", "curso":"B", "profesor":"Juan Pérez", "id":3 },
-    {"grado":"7mo básico", "curso":"B", "profesor":null, "id":4 },
-  ];
+  cursos = [];
 
   selectedCurso_id: number;
 
@@ -39,7 +34,7 @@ export class VerCursoComponent implements OnInit {
 
   indexOfObj(id: number): number {
     for (let i = 0; i < this.cursos.length; i++) {
-      if ( this.cursos[i].id == id) {
+      if ( this.cursos[i].curso.id == id) {
         return i;
       }
     }

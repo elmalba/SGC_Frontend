@@ -19,7 +19,7 @@ export class AsignarProfComponent implements OnInit {
   id: number;
   private sub: any;
 
-  curso: Curso;
+  curso: any;
 
   profesores = [
     {"nombre":"Pedro","apellidos":"Fernandez","id":1},
@@ -33,7 +33,6 @@ export class AsignarProfComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.curso = new Curso();
     this.getProfesores();
 
     this.sub = this.route.params.subscribe(params => {
@@ -43,7 +42,7 @@ export class AsignarProfComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.cursosService.getCurso(+params['id']))
       .subscribe((curso) => {
-        this.curso = curso.curso;
+        this.curso = curso;
       });
 
   }
@@ -55,10 +54,9 @@ export class AsignarProfComponent implements OnInit {
   }
 
   saveCurso() {
-    this.cursosService.updateCurso(this.curso).subscribe((res) => {
+    this.cursosService.updateCurso(this.curso.curso).subscribe((res) => {
       this.modalOpen();
     });
-
   }
   //navigation
   goBack(): void {

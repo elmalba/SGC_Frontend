@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common'
+import { ActivatedRoute, Params } from '@angular/router';
+
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Curso } from '../curso';
@@ -15,8 +17,11 @@ export class ModificarCursoComponent implements OnInit {
   @ViewChild('modal')
   modal: ModalComponent;
 
-  curso: Curso;
-  selectedCurso: Curso;
+  id: number;
+  private sub: any;
+
+  curso: any;
+  selectedCurso: any;
 
   profesores = [
     {"nombre":"Pedro Fernandez","id":1},
@@ -29,18 +34,42 @@ export class ModificarCursoComponent implements OnInit {
     private location: Location,
     private cursosService: CursosService,
     private profesoresService: ProfesoresService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.curso = new Curso();
-    this.selectedCurso = new Curso();
-    this.selectedCurso.profesor = "Juan Pérez";
+    this.getProfesores();
+
+    this.sub = this.route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
+
+    this.route.params
+      .switchMap((params: Params) => this.cursosService.getCurso(+params['id']))
+      .subscribe((curso) => {
+        this.curso = curso;
+        this.selectedCurso = JSON.parse(JSON.stringify(curso));
+        console.log(this.selectedCurso);
+      });
   }
 
+  //services
+  getProfesores() {
+    this.profesoresService.getProfesors().subscribe((res) => {
+      this.profesores = res;
+    })
+  }
+
+  saveCurso() {
+    this.cursosService.updateCurso(this.curso.curso).subscribe((res) => {
+      this.modalOpen();
+    });
+  }
+  //navigation
   goBack(): void {
     this.location.back();
   }
-
+  //modal
   modalOpen(): void {
     this.modal.open();
   }
@@ -50,8 +79,5 @@ export class ModificarCursoComponent implements OnInit {
     this.goBack();
   }
 
-  saveCurso() {
-    this.modalOpen();
-  }
 
 }

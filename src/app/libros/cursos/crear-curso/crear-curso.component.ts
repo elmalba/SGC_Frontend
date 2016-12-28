@@ -17,6 +17,9 @@ export class CrearCursoComponent implements OnInit {
   private default_date: Date;
   private curso: Curso;
 
+  modalMessage: string;
+  modalErrorMessage: string;
+
   grados = [
     {"id":"1ro básico"},
     {"id":"2do básico"},
@@ -64,6 +67,7 @@ export class CrearCursoComponent implements OnInit {
       this.default_date.setFullYear(this.default_date.getFullYear() + 1);
     }
     this.curso.anio = this.default_date.getFullYear().toString();
+    this.modalErrorMessage ='';
   }
 
   goBack(): void {
@@ -72,9 +76,15 @@ export class CrearCursoComponent implements OnInit {
 
   saveCurso() {
     this.cursosService.createCurso(this.curso).subscribe((res) => {
+      this.modalMessage = 'Curso creado con éxito.';
       this.modalOpen();
+    }, (error:any) => {
+      if (error == 422){
+        this.modalMessage = 'Curso no creado.';
+        this.modalErrorMessage = 'Curso ya existente.';
+        this.modalOpen();
+      }
     });
-
   }
 
   modalOpen(): void {
@@ -83,7 +93,7 @@ export class CrearCursoComponent implements OnInit {
 
   modalClose(): void {
     this.modal.close();
-    this.goBack();
+    this.modalErrorMessage = '';
   }
 
 }

@@ -1,3 +1,56 @@
-<p>
-  curso-notas-ver works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="demo-btn-toolbar btn-toolbar">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-outline-info"
+                    *ngFor="let asignatura of asignaturas"
+                    (click)="setAsignatura(asignatura.id)"
+                    [ngClass]="{'active': (asignatura.id == selectedAsignatura.id)}">{{asignatura.label}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-middle table-striped table-bordered">
+            <thead>
+            <tr class="bg-primary">
+              <th>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </th>
+              <th>N°</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>N° Mat</th>
+              <th>Excepciones</th>
+              <th *ngFor="let item of createRange(selectedAsignatura.cantNotas); let currentIndex = index">{{currentIndex+1}}</th>
+              <th>Prom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let alumno of selectedAsignaturaAlumnos">
+              <td>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </td>
+              <td>{{alumno.numero}}</td>
+              <td>{{alumno.nombre}}</td>
+              <td>{{alumno.apellidos}}</td>
+              <td>{{alumno.nMat}}</td>
+              <td>{{alumno.exc}}</td>
+              <td *ngFor="let nota of alumno.notas">{{nota.value | number:'1.1-2' }}</td>
+              <td>{{getPromedio(selectedAsignatura.id, alumno.nMat) | number:'1.1-2' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

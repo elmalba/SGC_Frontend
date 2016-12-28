@@ -49,12 +49,14 @@
 
           <modal [animation]="animationsEnabled" #modal>
             <modal-header [show-close]="true">
-              <h4 class="modal-title">Curso creado con éxito.</h4>
+              <h4 class="modal-title">{{modalMessage}}</h4>
             </modal-header>
             <modal-body>
-              Presione Ok para continuar.
+              <p class="modal-dialog">{{modalErrorMessage}}</p>
+              <p>Presione <strong>Ok</strong> para continuar o <strong>Volver</strong> para salir</p>
             </modal-body>
             <modal-footer>
+              <button type="button" class="btn btn-default" (click)="goBack()">Volver</button>
               <button type="button" class="btn btn-primary" (click)="modalClose()">Ok</button>
             </modal-footer>
           </modal>
