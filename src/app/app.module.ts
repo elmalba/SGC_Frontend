@@ -7,8 +7,9 @@ import { RouterModule } from '@angular/router';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import './rxjs-extensions';
 
+//pipes
 import { FilterCursoProf } from './pipes/filter-curso-prof.pipe';
-
+import { CalcPromedio } from './pipes/calc-promedio.pipe'
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -89,7 +90,6 @@ import {Curso} from "./libros/cursos/curso";
     ModificarCursoComponent,
     ProfesorComponent,
     CrearProfesorComponent,
-    FilterCursoProf,
     AsignarProfComponent,
     ColegioDetailComponent,
     MatriculaDetailComponent,
@@ -104,7 +104,8 @@ import {Curso} from "./libros/cursos/curso";
     CursoAsistenciaIngresarComponent,
     CursoAnotacionesVerComponent,
     CursoAnotacionesIngresarComponent,
-
+    FilterCursoProf,
+    CalcPromedio,
   ],
   imports: [
     BrowserModule,

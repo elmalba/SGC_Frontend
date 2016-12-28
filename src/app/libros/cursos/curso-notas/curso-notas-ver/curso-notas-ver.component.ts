@@ -51,7 +51,6 @@ export class CursoNotasVerComponent implements OnInit {
 
   ngOnInit() {
     this.setAsignatura(1);
-    console.log(this.selectedAsignaturaAlumnos);
   }
 
   //template rendering
@@ -85,7 +84,5 @@ export class CursoNotasVerComponent implements OnInit {
     }
     return sum/total;
   }
-
-
 
 }

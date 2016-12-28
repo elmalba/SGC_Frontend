@@ -1,3 +1,68 @@
-<p>
-  curso-notas-ingresar works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="demo-btn-toolbar btn-toolbar">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-outline-info"
+                    *ngFor="let asignatura of asignaturas"
+                    (click)="setAsignatura(asignatura.id)"
+                    [ngClass]="{'active': (asignatura.id == selectedAsignatura.id)}">{{asignatura.label}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-middle table-striped table-bordered">
+            <thead>
+            <tr class="bg-primary">
+              <th rowspan="2">
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </th>
+              <th rowspan="2">#</th>
+              <th rowspan="2" >Nombre</th>
+              <th rowspan="2">Apellidos</th>
+              <th rowspan="2">N° Mat</th>
+              <th rowspan="2">Excepciones</th>
+              <th rowspan="1" [attr.colspan]="selectedAsignatura.cantNotas + 1" class="text-center  ">Notas</th>
+            </tr>
+            <tr class="bg-primary">
+              <th rowspan="1" colspan="1" *ngFor="let item of createRange(selectedAsignatura.cantNotas); let currentIndex = index">{{currentIndex+1}}</th>
+              <th rowspan="1" colspan="1">Prom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let alumno of selectedAsignaturaAlumnos">
+              <td>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </td>
+              <td>{{alumno.numero}}</td>
+              <td>{{alumno.nombre}}</td>
+              <td>{{alumno.apellidos}}</td>
+              <td>{{alumno.nMat}}</td>
+              <td>{{alumno.exc}}</td>
+              <td *ngFor="let nota of alumno.notas">
+                <input class="form-control"
+                       style="width:50px"
+                       type="number"
+                       min="1.0"
+                       max="7.0"
+                       [(ngModel)]="nota.value"
+                       (ngModelChange)="restrictValue(nota,alumno.nMat,selectedAsignatura.id)" />
+              </td>
+              <td>{{ alumno.notas | calcPromedio | number:'1.1-2' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
