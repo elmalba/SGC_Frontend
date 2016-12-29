@@ -4,13 +4,15 @@ import { Observable } from "rxjs";
 
 import { Matricula } from '../../../sistema/ficha/matricula/matricula';
 
+import * as globalVar from '../../../globals';
+
 @Injectable()
 export class MatriculaService {
   static get parameters(){
     return [[Http]]
   }
 
-  private matriculasUrl = 'http://api.innovacolegio.cl/alumnos';
+  private matriculasUrl = globalVar.apiUrl+'/alumnos';
 
   constructor( private http: Http) { }
 

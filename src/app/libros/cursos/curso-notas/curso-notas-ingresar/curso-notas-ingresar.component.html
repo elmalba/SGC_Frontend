@@ -54,7 +54,8 @@
                        min="1.0"
                        max="7.0"
                        [(ngModel)]="nota.value"
-                       (ngModelChange)="restrictValue(nota,alumno.nMat,selectedAsignatura.id)" />
+                       (ngModelChange)="restrictValue(nota,alumno.nMat,selectedAsignatura.id)"
+                       (change)="onChange($event,nota.id)"/>
               </td>
               <td>{{ alumno.notas | calcPromedio | number:'1.1-2' }}</td>
             </tr>

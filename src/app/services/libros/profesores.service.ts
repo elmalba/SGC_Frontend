@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 
+import * as globalVar from '../../globals';
+
 @Injectable()
 export class ProfesoresService {
   static get parameters(){
     return [[Http]]
   }
 
-  private profesorsUrl = 'http://api.innovacolegio.cl/profesors';
+  private profesorsUrl = globalVar.apiUrl+'/profesors';
 
   constructor(private http: Http) {
 

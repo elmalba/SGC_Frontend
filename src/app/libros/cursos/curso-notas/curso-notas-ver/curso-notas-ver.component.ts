@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { CursosService } from '../../../../services/libros/cursos.service';
 
 @Component({
   selector: 'app-curso-notas-ver',
@@ -47,10 +50,28 @@ export class CursoNotasVerComponent implements OnInit {
   selectedAsignatura: any;
   selectedAsignaturaAlumnos = [];
 
-  constructor() { }
+  id: number;
+  private sub: any;
+
+  curso: any;
+
+  constructor(
+    private cursosService: CursosService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
     this.setAsignatura(1);
+
+    this.sub = this.route.parent.parent.params.subscribe(params => {
+      this.id = params['id'];
+    });
+
+    this.route.parent.parent.params
+      .switchMap((params: Params) => this.cursosService.getCursoById(params['id']))
+      .subscribe((curso) => {
+        this.curso = curso;
+      });
   }
 
   //template rendering

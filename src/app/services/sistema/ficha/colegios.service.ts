@@ -4,13 +4,15 @@ import { Observable } from "rxjs";
 
 import { Colegio } from '../../../sistema/ficha/colegios/colegio'
 
+import * as globalVar from '../../../globals';
+
 @Injectable()
 export class ColegiosService {
   static get parameters(){
     return [[Http]]
   }
 
-  private colegiosUrl = 'http://api.innovacolegio.cl/colegios';
+  private colegiosUrl = globalVar.apiUrl+'/colegios';
 
   constructor(private http: Http) {
 

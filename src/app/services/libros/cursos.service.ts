@@ -4,13 +4,15 @@ import { Observable } from "rxjs";
 
 import { Curso } from '../../libros/cursos/curso';
 
+import * as globalVar from '../../globals';
+
 @Injectable()
 export class CursosService {
   static get parameters(){
     return [[Http]]
   }
 
-  private cursosUrl = 'http://api.innovacolegio.cl/cursos';
+  private cursosUrl = globalVar.apiUrl+'/cursos';
 
   constructor(private http: Http) {
 
@@ -35,7 +37,14 @@ export class CursosService {
     return this.http.get(url)
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Curso BY ID'));
-}
+  }
+
+  getAsignaturasByCursoId(id): Observable<any> {
+    const url = `${this.cursosUrl}/${id}/asignaturas`;
+    return this.http.get(url)
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Asignaturas by CursoID'));
+  }
 
   updateCurso(curso: Curso){
     const url = `${this.cursosUrl}/${curso.id}`;

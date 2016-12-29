@@ -85,4 +85,9 @@ export class CursoNotasIngresarComponent implements OnInit {
     }
   }
 
+  onChange(event,value){
+    console.log(value);
+    console.log(event);
+  }
+
 }

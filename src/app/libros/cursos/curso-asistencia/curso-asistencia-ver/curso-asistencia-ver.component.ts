@@ -12,4 +12,5 @@ export class CursoAsistenciaVerComponent implements OnInit {
   ngOnInit() {
   }
 
+
 }
