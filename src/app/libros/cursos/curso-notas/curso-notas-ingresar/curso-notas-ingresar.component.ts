@@ -79,15 +79,30 @@ export class CursoNotasIngresarComponent implements OnInit {
     if(nota.value > 7.0){
       nota.value=7.0;
       updatedNota.value = nota.value;
-    } else if(nota.value < 1.0){
+    }  else if(nota.value == 0){
+      nota.value = null;
+      updatedNota.value = nota.value;
+    } else if(nota.value < 1.0 && nota.value!=null){
       nota.value=1.0;
       updatedNota.value = nota.value;
     }
   }
 
-  onChange(event,value){
-    console.log(value);
-    console.log(event);
+  onChange(nota: any){
+    this.saveNota(nota);
+  }
+
+  //services
+  saveNota(nota: any){
+    console.log(nota);
+  }
+
+  saveNotas(){
+    for (let alumno of this.selectedAsignaturaAlumnos){
+      for (let nota of alumno.notas){
+        this.saveNota(nota);
+      }
+    }
   }
 
 }
