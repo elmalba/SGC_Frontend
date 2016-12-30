@@ -22,11 +22,12 @@ import * as getDay from 'date-fns/get_day';
 })
 export class CursoAsistenciaVerComponent implements OnInit {
 
-  month = [];
-
   viewDate: Date;
   weekStartsOn: number;
   view: any;
+
+  inasistenciaMonth = [];
+  month = [];
 
   constructor() { }
 
@@ -38,10 +39,10 @@ export class CursoAsistenciaVerComponent implements OnInit {
       weekStartsOn: this.weekStartsOn
     });
 
-    console.log(this.view);
+    this.inasistenciaMonth.push({'day': this.viewDate , 'cant':10});
   }
 
-
+  //calendar rendering
   getMonthView: Function = ({viewDate, weekStartsOn}:
     {viewDate: Date, weekStartsOn: number})
     : MonthView => {
@@ -84,6 +85,35 @@ export class CursoAsistenciaVerComponent implements OnInit {
     ];
 
     return dayNames.find(day => day.id == dayNumber).name;
+  };
+
+  getMonthName(monthNumber: number){
+    let monthNames =[
+      {'id':0,'name':'Enero'},
+      {'id':1,'name':'Febrero'},
+      {'id':2,'name':'Marzo'},
+      {'id':3,'name':'Abril'},
+      {'id':4,'name':'Mayo'},
+      {'id':5,'name':'Junio'},
+      {'id':6,'name':'Julio'},
+      {'id':7,'name':'Agosto'},
+      {'id':8,'name':'Septiembre'},
+      {'id':9,'name':'Octubre'},
+      {'id':10,'name':'Noviembre'},
+      {'id':11,'name':'Diciembre'},
+    ];
+
+    return monthNames.find(day => day.id == monthNumber).name;
+  };
+
+  getInasistenciaByDia(day: Date): number{
+    let cant: number;
+    if( this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString()) ){
+      cant = this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString()).cant;
+    } else {
+      cant = 0;
+    }
+    return cant;
   }
 
 }

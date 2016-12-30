@@ -1,8 +1,20 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
+      <div class="card-header">
+        <div class="center-block">
+          <div class="btn-toolbar">
+            <div class="btn-group">
+              <button class="btn btn-info"><span class="icon icon-arrow-left"></span></button>
+              <button class="btn btn-outline-info"> <h4 class="card-title text-center text-capitalize">{{ getMonthName(viewDate.getMonth()) }}</h4> </button>
+              <button class="btn btn-info"><span class="icon icon-arrow-right"></span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <div class="card-body">
-        <div class="cal-days">
+        <div>
           <div *ngFor="let rowIndex of view.rowOffsets">
             <div class="row gutter-xs">
               <div *ngFor="let day of view.days | slice : rowIndex : rowIndex + 7">
@@ -11,7 +23,7 @@
                   <button class="btn btn-block"
                           [ngClass]="{'btn-outline-info': day.inMonth, 'text-muted': !(day.inMonth)}"
                           [disabled]="!(day.inMonth)">
-                    <p>{{ getDayName(day.date.getDay()) }}</p>
+                    <p>{{ getDayName(day.date.getDay()) }} <i class="text-danger">{{ getInasistenciaByDia(day.date) }}</i></p>
                     {{day.date.toString() | date }}
                   </button>
                 </div>
