@@ -2,12 +2,14 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <div class="center-block">
-          <div class="btn-toolbar">
-            <div class="btn-group">
-              <button class="btn btn-info"><span class="icon icon-arrow-left"></span></button>
-              <button class="btn btn-outline-info"> <h4 class="card-title text-center text-capitalize">{{ getMonthName(viewDate.getMonth()) }}</h4> </button>
-              <button class="btn btn-info"><span class="icon icon-arrow-right"></span></button>
+        <div class="row">
+          <div class="col-md-offset-5 col-md-3">
+            <div class="btn-toolbar">
+              <div class="btn-group">
+                <button class="btn btn-info" (click)="decrement()"><span class="icon icon-arrow-left"></span></button>
+                <button class="btn btn-outline-info" (click)="today()"> <h4 class="card-title text-center text-capitalize">{{ getMonthName(viewDate.getMonth()) }}</h4> </button>
+                <button class="btn btn-info" (click)="increment()"><span class="icon icon-arrow-right"></span></button>
+              </div>
             </div>
           </div>
         </div>
@@ -21,11 +23,48 @@
                 <div *ngIf="!(day.date.getDay()==0)"
                       class="col-md-2">
                   <button class="btn btn-block"
-                          [ngClass]="{'btn-outline-info': day.inMonth, 'text-muted': !(day.inMonth)}"
-                          [disabled]="!(day.inMonth)">
-                    <p>{{ getDayName(day.date.getDay()) }} <i class="text-danger">{{ getInasistenciaByDia(day.date) }}</i></p>
+                          [ngClass]="{'btn-outline-info': day.inMonth && (getInasistenciaByDia(day.date)<=5),
+                                      'btn-outline-danger': day.inMonth && (getInasistenciaByDia(day.date)>5),
+                                      'text-muted': !(day.inMonth),
+                                      'hide-day': !(day.inMonth)}"
+                          [disabled]="!(day.inMonth)"
+                          (click)="modalOpen(day.date)">
+                    <p>{{ getDayName(day.date.getDay()) }} <i class="text-warning">{{ getInasistenciaByDia(day.date) }}</i></p>
                     {{day.date.toString() | date }}
                   </button>
+
+                  <modal [animation]="animationsEnabled" #modal>
+                    <modal-header [show-close]="false">
+                      <h4 class="modal-title">Inasistentes</h4>
+                      <h5>{{selectedDay?.day.toString() | date }}</h5>
+                    </modal-header>
+                    <modal-body>
+                      <div class="table-responsive" *ngIf="selectedDay.alumnos.length > 0">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-info">
+                              <th>#</th>
+                              <th>Nombre</th>
+                              <th>Apellidos</th>
+                              <th>N° Mat.</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let alumno of selectedDay?.alumnos">
+                              <td>{{alumno.numero}}</td>
+                              <td>{{alumno.nombre}}</td>
+                              <td>{{alumno.apellidos}}</td>
+                              <td>{{alumno.nMat}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </modal-body>
+                    <modal-footer>
+                      <button type="button" class="btn btn-primary" (click)="modalClose()">Ok</button>
+                    </modal-footer>
+                  </modal>
+
                 </div>
               </div>
             </div>

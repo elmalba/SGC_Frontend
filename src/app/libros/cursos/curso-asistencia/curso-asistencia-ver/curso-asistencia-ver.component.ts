@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 /** date-fns**/
-
-import * as differenceInDays from 'date-fns/difference_in_days';
-import * as  startOfWeek from 'date-fns/start_of_week';
-import * as  addDays from 'date-fns/add_days';
-import * as  endOfWeek from 'date-fns/end_of_week';
-import * as  startOfMonth from 'date-fns/start_of_month';
-import * as  endOfMonth from 'date-fns/end_of_month';
-import * as  isSameMonth from 'date-fns/is_same_month';
-import * as  startOfDay from 'date-fns/start_of_day';
-import * as isSameDay from 'date-fns/is_same_day';
-import * as getDay from 'date-fns/get_day';
+import {
+  differenceInDays,
+  startOfWeek,
+  addDays,
+  subDays,
+  addWeeks,
+  subWeeks,
+  addMonths,
+  subMonths,
+  endOfWeek,
+  startOfMonth,
+  endOfMonth,
+  isSameMonth,
+  startOfDay,
+  isSameDay,
+  getDay,} from 'date-fns';
 
 /****/
 
@@ -21,6 +27,8 @@ import * as getDay from 'date-fns/get_day';
   styleUrls: ['./curso-asistencia-ver.component.css']
 })
 export class CursoAsistenciaVerComponent implements OnInit {
+  @ViewChild('modal')
+  modal: ModalComponent;
 
   viewDate: Date;
   weekStartsOn: number;
@@ -28,6 +36,7 @@ export class CursoAsistenciaVerComponent implements OnInit {
 
   inasistenciaMonth = [];
   month = [];
+  selectedDay: any;
 
   constructor() { }
 
@@ -39,8 +48,49 @@ export class CursoAsistenciaVerComponent implements OnInit {
       weekStartsOn: this.weekStartsOn
     });
 
-    this.inasistenciaMonth.push({'day': this.viewDate , 'cant':10});
+    this.inasistenciaMonth.push(
+      {'day': this.viewDate , 'cant':3,
+        'alumnos':[
+          {'numero':1,'nombre':'Ivan','apellidos':'Arenas','nMat':10,'exc':''},
+          {'numero':2,'nombre':'Valentin','apellidos':'Trujillo','nMat':15,'exc':''},
+          {'numero':3,'nombre':'Don','apellidos':'Carter','nMat':230,'exc':''},
+        ]
+      },
+      {'day': subDays(this.viewDate,2) , 'cant':6,
+        'alumnos':[
+          {'numero':1,'nombre':'Ivan','apellidos':'Arenas','nMat':10,'exc':''},
+          {'numero':2,'nombre':'Valentin','apellidos':'Trujillo','nMat':15,'exc':''},
+          {'numero':3,'nombre':'Don','apellidos':'Carter','nMat':230,'exc':''},
+          {'numero':4,'nombre':'Richard','apellidos':'Gere','nMat':210,'exc':''},
+          {'numero':5,'nombre':'Marcelo','apellidos':'Comparini','nMat':110,'exc':''},
+          {'numero':6,'nombre':'Federico','apellidos':'Sanchez','nMat':73,'exc':''},
+
+        ]
+      }
+    );
+
+    this.selectedDay = {'day': new Date() ,'cant':0,'alumnos':[]};
   }
+
+  //modal
+  modalOpen(day: Date): void {
+    this.selectedDay = this.setSelectedDay(day);
+    this.modal.open();
+  }
+
+  modalClose(): void {
+    this.modal.close();
+    this.selectedDay = {'day': new Date() ,'cant':0,'alumnos':[]};
+  }
+
+  setSelectedDay(day: Date): any{
+    if( this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString()) ){
+      return this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString());
+    } else {
+      return {'day':day,'cant':0,'alumnos':[]};
+    }
+  }
+
 
   //calendar rendering
   getMonthView: Function = ({viewDate, weekStartsOn}:
@@ -72,6 +122,29 @@ export class CursoAsistenciaVerComponent implements OnInit {
     };
 
   };
+
+  increment(): void {
+
+    this.viewDate = addMonths(this.viewDate,1);
+    this.view = this.getMonthView({
+      viewDate: this.viewDate,
+      weekStartsOn: this.weekStartsOn
+    });
+
+  }
+
+  decrement(): void {
+
+    this.viewDate = subMonths(this.viewDate,1);
+    this.view = this.getMonthView({
+      viewDate: this.viewDate,
+      weekStartsOn: this.weekStartsOn
+    });
+  }
+
+  today(): void {
+    this.viewDate = new Date();
+  }
 
   getDayName(dayNumber: number){
     let dayNames =[
@@ -109,7 +182,7 @@ export class CursoAsistenciaVerComponent implements OnInit {
   getInasistenciaByDia(day: Date): number{
     let cant: number;
     if( this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString()) ){
-      cant = this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString()).cant;
+      cant = this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString()).alumnos.length;
     } else {
       cant = 0;
     }
