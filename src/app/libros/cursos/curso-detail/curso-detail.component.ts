@@ -14,8 +14,8 @@ export class CursoDetailComponent implements OnInit {
 
   private curso: any;
 
-  selectedTabId: number;
-  tabs = [
+  private currentTabPath: string = '';
+  private tabs = [
     {"id":1,"path":'lista',"label":"Lista Curso","icon":"icon-users"},
     {"id":2,"path":'notas',"label":"Notas","icon":"icon-check-square-o"},
     {"id":3,"path":'asistencia',"label":"Asistencia","icon":"icon-calendar-check-o"},
@@ -26,11 +26,14 @@ export class CursoDetailComponent implements OnInit {
     private cursosService: CursosService,
     private route: ActivatedRoute,
     private router: Router,
-  ) { }
+  ) {
+    this.router.events.subscribe((res) => {
+        this.currentTabPath = this.route.children[0].toString();
+      }
+    )
+  }
 
   ngOnInit() {
-    this.selectedTabId = 1;
-
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -49,11 +52,10 @@ export class CursoDetailComponent implements OnInit {
     this.router.navigate(['./'],{relativeTo: this.route.parent});
   }
 
-  //tab logic
-  setActive(id: number){
-    this.selectedTabId = id;
+  goToTab(path: string){
+    this.router.navigate(['.',path],{relativeTo: this.route});
   }
-
+  
   //service
 
 

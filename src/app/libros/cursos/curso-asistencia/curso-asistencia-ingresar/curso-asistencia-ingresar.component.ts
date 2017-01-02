@@ -94,10 +94,14 @@ export class CursoAsistenciaIngresarComponent implements OnInit {
     this.selectedDay = {'day': new Date() ,'alumnos':[]};
   }
 
+  modalDismiss(): void {
+    this.modal.dismiss();
+  }
+
   setSelectedDay(day: Date): any{
     this.selectedDay = {
       'day': day,
-      'alumnos': JSON.parse(JSON.stringify(this.alumnos)),
+      'alumnos': this.alumnos,
     };
 
     if(this.inasistenciaMonth.find(res => res.day.toDateString() == day.toDateString())){
@@ -117,6 +121,17 @@ export class CursoAsistenciaIngresarComponent implements OnInit {
       }
     }
 
+  }
+
+  //logic
+  saveAsistencia(){
+    console.log(this.selectedDay.alumnos);
+    this.modalClose();
+  }
+
+  toggleValue(alumno: any) {
+    alumno.asistencia = !(alumno.asistencia);
+    console.log(alumno.asistencia);
   }
 
   //calendar rendering

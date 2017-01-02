@@ -56,10 +56,14 @@
                           </tr>
                           </thead>
                           <tbody>
-                          <tr *ngFor="let alumno of selectedDay?.alumnos" [ngClass]="{'bg-danger-inverse':!(alumno.asistencia)}">
+                          <tr *ngFor="let alumno of selectedDay.alumnos" [ngClass]="{'bg-danger-inverse':!(alumno.asistencia)}">
                             <td>
                               <label class="custom-control custom-control-primary custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" [ngModel]="!(alumno.asistencia)">
+                                <input class="custom-control-input"
+                                       name="toggleAsistencia"
+                                       type="checkbox"
+                                       [ngModel]="!(alumno.asistencia)"
+                                       (change)="toggleValue(alumno)">
                                 <span class="custom-control-indicator"></span>
                               </label>
                             </td>
@@ -73,7 +77,8 @@
                       </div>
                     </modal-body>
                     <modal-footer>
-                      <button type="button" class="btn btn-primary" (click)="modalClose()">Ok</button>
+                      <button type="button" class="btn" (click)="modalDismiss()">Cerrar</button>
+                      <button type="button" class="btn btn-primary" (click)="saveAsistencia()">Continuar</button>
                     </modal-footer>
                   </modal>
 
