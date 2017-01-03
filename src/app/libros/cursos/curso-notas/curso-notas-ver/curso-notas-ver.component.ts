@@ -10,16 +10,7 @@ import { CursosService } from '../../../../services/libros/cursos.service';
 })
 export class CursoNotasVerComponent implements OnInit {
 
-  asignaturas = [
-    {'id':1,'label':'LEN','nombre':'','cantNotas':5},
-    {'id':2,'label':'MAT','nombre':'','cantNotas':7},
-    {'id':3,'label':'FIS','nombre':'','cantNotas':8},
-    {'id':4,'label':'CSO','nombre':'','cantNotas':7},
-    {'id':5,'label':'ART','nombre':'','cantNotas':10},
-    {'id':6,'label':'BIO','nombre':'','cantNotas':15},
-    {'id':7,'label':'EDF','nombre':'','cantNotas':4},
-    {'id':8,'label':'REL','nombre':'','cantNotas':5},
-  ];
+  asignaturas = [];
 
   alumnos = [
     {'id':1, 'alumnos':[
@@ -53,25 +44,30 @@ export class CursoNotasVerComponent implements OnInit {
   id: number;
   private sub: any;
 
-  curso: any;
-
   constructor(
     private cursosService: CursosService,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.setAsignatura(1);
 
     this.sub = this.route.parent.parent.params.subscribe(params => {
       this.id = params['id'];
     });
 
     this.route.parent.parent.params
-      .switchMap((params: Params) => this.cursosService.getCursoById(params['id']))
-      .subscribe((curso) => {
-        this.curso = curso;
+      .switchMap((params: Params) => this.cursosService.getAsignaturasByCursoId(params['id']))
+      .subscribe((res) => {
+        this.asignaturas = res.asignaturas;
+        this.setAsignatura(this.asignaturas[0].asignatura.datos.id);
       });
+
+    this.selectedAsignatura = {'datos':{
+      'id':1,
+      'nombre': 'Lenguaje y Comunicación',
+      'ponderacion':true,
+    },'cantidad':0,'info_notas':[]}
+
   }
 
   //template rendering
@@ -84,26 +80,29 @@ export class CursoNotasVerComponent implements OnInit {
   }
 
   setAsignatura(id: number) {
-    this.selectedAsignatura = this.asignaturas.find(res => res.id == id);
-    if (this.alumnos.find(res => res.id == id)){
-      this.selectedAsignaturaAlumnos = this.alumnos.find(res => res.id == id).alumnos;
-    } else {
-      this.selectedAsignaturaAlumnos =[];
-    }
+    this.selectedAsignatura = this.asignaturas.find(res => res.asignatura.datos.id == id).asignatura;
+    this.getAlumnos(this.selectedAsignatura);
+  }
+
+  getAlumnos(asignatura: any){
+    this.cursosService.getNotasAlumnosByCursoId(this.id,asignatura.datos.id).subscribe((res) => {
+      this.selectedAsignaturaAlumnos = res.notas_alumnos;
+      console.log(res);
+      console.log(this.selectedAsignaturaAlumnos);
+    })
   }
 
   //logic
-  public getPromedio(asignId: number, alumnoId: number): number{
-    let notas = this.alumnos.find(res => res.id == asignId).alumnos.find(res => res.nMat == alumnoId).notas;
+  public getPromedio(notas): number{
     let sum: number = 0;
     let total: number = 0;
     for(let nota of notas){
-      if(!(nota.value == null)){
-        sum += nota.value;
+      if(!(nota.valor == null)){
+        sum += nota.valor;
         total += 1;
       }
     }
-    return sum/total;
+    return isNaN(sum/total)? 1.0 : sum/total ;
   }
 
 }

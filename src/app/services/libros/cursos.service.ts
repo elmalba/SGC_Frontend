@@ -46,6 +46,13 @@ export class CursosService {
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Asignaturas by CursoID'));
   }
 
+  getNotasAlumnosByCursoId(id,asignatura): Observable<any> {
+    const url = `${this.cursosUrl}/${id}/notas_alumno?asignatura_id=${asignatura}`;
+    return this.http.get(url)
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Notas Alumnos by CursoID'));
+  }
+
   updateCurso(curso: Curso){
     const url = `${this.cursosUrl}/${curso.id}`;
     let payload = {};

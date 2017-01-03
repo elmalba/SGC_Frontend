@@ -13,11 +13,11 @@ export class CalcPromedio implements PipeTransform {
     let sum: number = 0;
     let total: number = 0;
     for(let nota of notas){
-      if(nota.value){
-        sum += nota.value;
+      if(nota.valor){
+        sum += nota.valor;
         total += 1;
       }
     }
-    return sum/total;
+    return isNaN(sum/total)? 1.0 : sum/total ;
   }
 }

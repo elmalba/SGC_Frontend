@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { CursosService } from '../../../../services/libros/cursos.service';
+import { NotasService } from '../../../../services/libros/notas.service';
 
 @Component({
   selector: 'app-curso-notas-ingresar',
@@ -7,39 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CursoNotasIngresarComponent implements OnInit {
 
-  asignaturas = [
-    {'id':1,'label':'LEN','nombre':'','cantNotas':5},
-    {'id':2,'label':'MAT','nombre':'','cantNotas':7},
-    {'id':3,'label':'FIS','nombre':'','cantNotas':8},
-    {'id':4,'label':'CSO','nombre':'','cantNotas':7},
-    {'id':5,'label':'ART','nombre':'','cantNotas':10},
-    {'id':6,'label':'BIO','nombre':'','cantNotas':15},
-    {'id':7,'label':'EDF','nombre':'','cantNotas':4},
-    {'id':8,'label':'REL','nombre':'','cantNotas':5},
-  ];
+  asignaturas = [];
 
   alumnos = [
     {'id':1, 'alumnos':[
       {'numero':1,'nombre':'Ivan','apellidos':'Arenas','nMat':10,'exc':'','notas':[
-        {'id':1,'value':5.0},
-        {'id':2,'value': null},
-        {'id':3,'value': 4.6},
-        {'id':4,'value': 6.0},
-        {'id':5,'value': 5.7},
+        {'id':1,'valor':5.0},
+        {'id':2,'valor': null},
+        {'id':3,'valor': 4.6},
+        {'id':4,'valor': 6.0},
+        {'id':5,'valor': 5.7},
       ]},
       {'numero':2,'nombre':'Valentin','apellidos':'Trujillo','nMat':15,'exc':'','notas':[
-        {'id':6,'value':4.0},
-        {'id':7,'value': 7.0},
-        {'id':8,'value': null},
-        {'id':9,'value': null},
-        {'id':10,'value': 5.4},
+        {'id':6,'valor':4.0},
+        {'id':7,'valor': 7.0},
+        {'id':8,'valor': null},
+        {'id':9,'valor': null},
+        {'id':10,'valor': 5.4},
       ]},
       {'numero':3,'nombre':'Don','apellidos':'Carter','nMat':230,'exc':'','notas':[
-        {'id':11,'value':7.0},
-        {'id':12,'value': 7.0},
-        {'id':13,'value': null},
-        {'id':14,'value': 5.5},
-        {'id':15,'value': 6.4},
+        {'id':11,'valor':7.0},
+        {'id':12,'valor': 7.0},
+        {'id':13,'valor': null},
+        {'id':14,'valor': 5.5},
+        {'id':15,'valor': 6.4},
       ]},
     ]}
   ];
@@ -47,10 +42,33 @@ export class CursoNotasIngresarComponent implements OnInit {
   selectedAsignatura: any;
   selectedAsignaturaAlumnos = [];
 
-  constructor() { }
+  id: number;
+  private sub: any;
+
+  constructor(
+    private cursosService: CursosService,
+    private notasService: NotasService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
-    this.setAsignatura(1);
+    this.sub = this.route.parent.parent.params.subscribe(params => {
+      this.id = params['id'];
+    });
+
+    this.route.parent.parent.params
+      .switchMap((params: Params) => this.cursosService.getAsignaturasByCursoId(params['id']))
+      .subscribe((res) => {
+        this.asignaturas = res.asignaturas;
+        this.setAsignatura(this.asignaturas[0].asignatura.datos.id);
+      });
+
+    this.selectedAsignatura = {'datos':{
+      'id':1,
+      'nombre': 'Lenguaje y Comunicación',
+      'ponderacion':true,
+    },'cantidad':0,'info_notas':[]}
+
   }
 
   //template rendering
@@ -63,12 +81,14 @@ export class CursoNotasIngresarComponent implements OnInit {
   }
 
   setAsignatura(id: number) {
-    this.selectedAsignatura = this.asignaturas.find(res => res.id == id);
-    if (this.alumnos.find(res => res.id == id)){
-      this.selectedAsignaturaAlumnos = this.alumnos.find(res => res.id == id).alumnos;
-    } else {
-      this.selectedAsignaturaAlumnos =[];
-    }
+    this.selectedAsignatura = this.asignaturas.find(res => res.asignatura.datos.id == id).asignatura;
+    this.getAlumnos(this.selectedAsignatura);
+  }
+
+  getAlumnos(asignatura: any){
+    this.cursosService.getNotasAlumnosByCursoId(this.id,asignatura.datos.id).subscribe((res) => {
+      this.selectedAsignaturaAlumnos = res.notas_alumnos;
+    })
   }
 
   //logic
@@ -78,13 +98,13 @@ export class CursoNotasIngresarComponent implements OnInit {
       .notas.find(res => res.id == nota.id);
     if(nota.value > 7.0){
       nota.value=7.0;
-      updatedNota.value = nota.value;
+      updatedNota.valor = nota.value;
     }  else if(nota.value == 0){
       nota.value = null;
-      updatedNota.value = nota.value;
+      updatedNota.valor = nota.value;
     } else if(nota.value < 1.0 && nota.value!=null){
       nota.value=1.0;
-      updatedNota.value = nota.value;
+      updatedNota.valor = nota.value;
     }
   }
 
@@ -95,6 +115,9 @@ export class CursoNotasIngresarComponent implements OnInit {
   //services
   saveNota(nota: any){
     console.log(nota);
+    this.notasService.updateNota(nota).subscribe((res) =>{
+      nota = res;
+    });
   }
 
   saveNotas(){
@@ -103,6 +126,18 @@ export class CursoNotasIngresarComponent implements OnInit {
         this.saveNota(nota);
       }
     }
+  }
+
+  createNota(){
+    this.notasService.createNota(this.id,this.selectedAsignatura.datos.id).subscribe((res) => {
+      this.route.parent.parent.params
+        .switchMap((params: Params) => this.cursosService.getAsignaturasByCursoId(params['id']))
+        .subscribe((res) => {
+          this.asignaturas = res.asignaturas;
+          this.setAsignatura(this.selectedAsignatura.datos.id);
+        });
+    });
+
   }
 
 }

@@ -10,7 +10,7 @@ export class ProfesoresService {
     return [[Http]]
   }
 
-  private profesorsUrl = globalVar.apiUrl+'/profesors';
+  private profesorsUrl = globalVar.apiUrl+'/profesores';
 
   constructor(private http: Http) {
 

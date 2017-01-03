@@ -10,7 +10,8 @@ export class CursoAnotacionesComponent implements OnInit {
 
   private currentTabPath: string = '';
   tabs = [
-    {"id":1,"path":'ver',"label":"Ver","icon":"icon-eye"},
+    {"id":1,"path":'ver',"label":"Ver","icon":"icon-user"},
+    {"id":3,"path":'general',"label":"Ver Generales","icon":"icon-users"},
     {"id":2,"path":'ingresar',"label":"Ingresar","icon":"icon-plus"},
   ];
 

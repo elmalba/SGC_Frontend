@@ -42,6 +42,7 @@ import { CursoAsistenciaIngresarComponent } from './libros/cursos/curso-asistenc
 import { CursoAnotacionesComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones.component';
 import { CursoAnotacionesVerComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ver/curso-anotaciones-ver.component';
 import { CursoAnotacionesIngresarComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ingresar/curso-anotaciones-ingresar.component';
+import { CursoAnotacionesVerGenComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ver-gen/curso-anotaciones-ver-gen.component';
 ////Asignar Profesor
 import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
 
@@ -103,6 +104,7 @@ const routes: Routes = [
             children: [
               { path: '', redirectTo: 'ver' ,pathMatch: 'full' },
               { path:'ver', component: CursoAnotacionesVerComponent},
+              { path:'general', component: CursoAnotacionesVerGenComponent},
               { path:'ingresar', component: CursoAnotacionesIngresarComponent},
             ]
           },

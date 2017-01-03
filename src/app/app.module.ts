@@ -9,7 +9,9 @@ import './rxjs-extensions';
 
 //pipes
 import { FilterCursoProf } from './pipes/filter-curso-prof.pipe';
-import { CalcPromedio } from './pipes/calc-promedio.pipe'
+import { CalcPromedio } from './pipes/calc-promedio.pipe';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -53,6 +55,7 @@ import { CursoAsistenciaIngresarComponent } from './libros/cursos/curso-asistenc
 import { CursoAnotacionesComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones.component';
 import { CursoAnotacionesVerComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ver/curso-anotaciones-ver.component';
 import { CursoAnotacionesIngresarComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ingresar/curso-anotaciones-ingresar.component';
+import { CursoAnotacionesVerGenComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ver-gen/curso-anotaciones-ver-gen.component';
 ////Asignar Profesor
 import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
 
@@ -67,6 +70,7 @@ import {CursosService} from "./services/libros/cursos.service";
 import {ProfesoresService} from "./services/libros/profesores.service";
 import {AsignaturasService} from "./services/libros/asignaturas.service";
 import {Curso} from "./libros/cursos/curso";
+import {NotasService} from "./services/libros/notas.service";
 
 
 
@@ -104,9 +108,11 @@ import {Curso} from "./libros/cursos/curso";
     CursoAsistenciaVerComponent,
     CursoAsistenciaIngresarComponent,
     CursoAnotacionesVerComponent,
+    CursoAnotacionesVerGenComponent,
     CursoAnotacionesIngresarComponent,
     FilterCursoProf,
     CalcPromedio,
+    TruncateTextPipe,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +127,7 @@ import {Curso} from "./libros/cursos/curso";
     CursosService,
     ProfesoresService,
     AsignaturasService,
+    NotasService,
   ],
   bootstrap: [RootComponent]
 })
