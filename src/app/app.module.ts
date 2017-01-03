@@ -113,7 +113,7 @@ import {Curso} from "./libros/cursos/curso";
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    Ng2Bs3ModalModule
+    Ng2Bs3ModalModule,
   ],
   providers: [
     ColegiosService,

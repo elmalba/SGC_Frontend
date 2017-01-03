@@ -6,8 +6,7 @@
           <div class="col-sm-6" *ngFor="let tab of tabs">
             <button class="btn btn-block btn-outline-info"
                     [routerLink]="['.',tab.path]"
-                    (click)="setActive(tab.id)"
-                    [ngClass]="{'active': tab.id == selectedTabId}">
+                    [ngClass]="{'active': currentTabPath.includes(tab.path)}">
               <span class="icon icon-fw" [ngClass]=tab.icon></span>
               {{tab.label}}
             </button>

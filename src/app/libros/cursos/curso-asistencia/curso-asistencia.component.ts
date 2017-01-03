@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-curso-asistencia',
@@ -7,19 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CursoAsistenciaComponent implements OnInit {
 
-  selectedTabId: number;
+  private currentTabPath: string = '';
   tabs = [
     {"id":1,"path":'ver',"label":"Ver","icon":"icon-eye"},
     {"id":2,"path":'ingresar',"label":"Ingresar","icon":"icon-plus"},
   ];
 
-  constructor() { }
-
-  ngOnInit() {
-    this.selectedTabId = 1;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    this.router.events.subscribe((res) => {
+        this.currentTabPath = this.route.children[0].toString();
+      }
+    )
   }
 
-  setActive(id: number){
-    this.selectedTabId = id;
-  }
+  ngOnInit() { }
+
 }

@@ -1,3 +1,94 @@
-<p>
-  curso-anotaciones-ingresar works!
-</p>
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-8">
+            <button class="btn btn-block btn-success" (click)="saveAnotacion()"><span class="icon icon-fw icon-paper-plane-o"></span>Guardar</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="demo-form-wrapper">
+          <div class="form form-horizontal">
+            <div class="form-group">
+              <label for="demo-select2-1" class="col-sm-2 control-label form-label">Asignatura</label>
+              <div class="col-sm-4">
+                <select id="demo-select2-1" class="form-control" [(ngModel)]="anotacion.asignatura">
+                  <option *ngFor="let asignatura of asignaturas"
+                          value="asignatura.label">{{ asignatura.nombre }}</option>
+                </select>
+              </div>
+              <label class="col-sm-2 control-label" for="form-control-4">Fecha</label>
+              <div class="col-sm-4">
+                <div class="input-with-icon">
+                  <input class="form-control" id="form-control-4" type="text"
+                         [(ngModel)]="anotacion.fecha"
+                         value="16-July-2017"
+                         data-provide="datepicker"
+                         data-date-autoclose="true"
+                         data-date-format="dd-MM-yyyy">
+                  <span class="icon icon-calendar input-icon"></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="form-control-2">Detalle</label>
+              <div class="col-sm-10">
+                <textarea id="form-control-2" class="form-control" style="height: 100px" [(ngModel)]="anotacion.obs"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2">General</label>
+              <div class="col-md-1">
+                <label class="switch switch-info">
+                  <input class="switch-input" type="checkbox" [(ngModel)]="anotacion.general">
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </div>
+              <label class="col-sm-1 control-label" for="form-control-3" *ngIf="!(anotacion.general)">Alumno</label>
+              <div class="col-sm-8" *ngIf="!(anotacion.general)">
+                <input id="form-control-3" class="form-control" type="text" [(ngModel)]="anotacion.alumno" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive" *ngIf="!(anotacion.general)">
+          <table class="table table-bordered">
+            <thead>
+            <tr class="bg-info">
+              <th>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input" type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </th>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>N° Mat.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let alumno of alumnos">
+              <td>
+                <label class="custom-control custom-control-primary custom-checkbox">
+                  <input class="custom-control-input"
+                         name="toggleAsistencia"
+                         type="checkbox">
+                  <span class="custom-control-indicator"></span>
+                </label>
+              </td>
+              <td>{{alumno.numero}}</td>
+              <td>{{alumno.nombre}}</td>
+              <td>{{alumno.apellidos}}</td>
+              <td>{{alumno.nMat}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

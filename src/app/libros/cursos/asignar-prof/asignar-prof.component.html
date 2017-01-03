@@ -13,7 +13,7 @@
             <select class="form-control" id="form-control-1" type="text" [(ngModel)]="curso?.curso.prof_jefe">
               <option *ngFor="let profesor of profesores"
                       [ngValue]="profesor?.id">
-                {{ profesor?.usuario?.nombre }} {{ profesor?.usuario?.apellidos }}
+                {{ profesor?.usuario?.nombre }} {{ profesor?.usuario?.apellido_paterno }} {{ profesor?.usuario?.apellido_materno }}
               </option>
             </select>
           </div>

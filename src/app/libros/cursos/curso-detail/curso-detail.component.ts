@@ -43,6 +43,8 @@ export class CursoDetailComponent implements OnInit {
       .subscribe((curso) => {
         this.curso = curso;
       });
+
+
   }
 
   //navigation
@@ -55,7 +57,7 @@ export class CursoDetailComponent implements OnInit {
   goToTab(path: string){
     this.router.navigate(['.',path],{relativeTo: this.route});
   }
-  
+
   //service
 
 

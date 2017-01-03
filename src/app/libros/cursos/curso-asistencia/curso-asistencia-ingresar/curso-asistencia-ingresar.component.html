@@ -39,41 +39,42 @@
                       <h5>{{selectedDay?.day.toString() | date }}</h5>
                     </modal-header>
                     <modal-body>
-                      <div class="table-responsive">
-                        <table class="table table-bordered">
-                          <thead>
-                          <tr class="bg-info">
-                            <th>
-                              <label class="custom-control custom-control-primary custom-checkbox">
-                              <input class="custom-control-input" type="checkbox">
-                              <span class="custom-control-indicator"></span>
-                              </label>
-                            </th>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>N° Mat.</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr *ngFor="let alumno of selectedDay.alumnos" [ngClass]="{'bg-danger-inverse':!(alumno.asistencia)}">
-                            <td>
-                              <label class="custom-control custom-control-primary custom-checkbox">
-                                <input class="custom-control-input"
-                                       name="toggleAsistencia"
-                                       type="checkbox"
-                                       [ngModel]="!(alumno.asistencia)"
-                                       (change)="toggleValue(alumno)">
-                                <span class="custom-control-indicator"></span>
-                              </label>
-                            </td>
-                            <td>{{alumno.numero}}</td>
-                            <td>{{alumno.nombre}}</td>
-                            <td>{{alumno.apellidos}}</td>
-                            <td>{{alumno.nMat}}</td>
-                          </tr>
-                          </tbody>
-                        </table>
+                      <div class="row">
+                        <div class="col-md-2">
+                          <p class="text-primary"><small>Asistentes: </small>{{ selectedDay.alumnos.length - getInasistenciaByDia(selectedDay.day) }}</p>
+                        </div>
+                        <div class="col-md-2">
+                          <p class="text-danger"><small>Inasistentes: </small>{{ getInasistenciaByDia(selectedDay.day) }}</p>
+                        </div>
+                        <div class="col-md-4 col-md-offset-4">
+                          <button class="btn btn-block btn-info"><span class="icon icon-fw icon-calendar-plus-o"></span>Marcar Todos</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead>
+                              <tr class="bg-info">
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>N° Mat.</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr *ngFor="let alumno of selectedDay.alumnos"
+                                  [ngClass]="{'bg-danger':!(alumno.asistencia)}"
+                                  (click)="toggleValue(alumno)">
+                                <td>{{alumno.numero}}</td>
+                                <td>{{alumno.nombre}}</td>
+                                <td>{{alumno.apellidos}}</td>
+                                <td>{{alumno.nMat}}</td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </modal-body>
                     <modal-footer>
@@ -81,7 +82,6 @@
                       <button type="button" class="btn btn-primary" (click)="saveAsistencia()">Continuar</button>
                     </modal-footer>
                   </modal>
-
                 </div>
               </div>
             </div>
