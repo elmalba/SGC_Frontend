@@ -69,8 +69,9 @@ import {ColegiosService } from './services/sistema/ficha/colegios.service';
 import {CursosService} from "./services/libros/cursos.service";
 import {ProfesoresService} from "./services/libros/profesores.service";
 import {AsignaturasService} from "./services/libros/asignaturas.service";
-import {Curso} from "./libros/cursos/curso";
 import {NotasService} from "./services/libros/notas.service";
+import {AnotacionesService} from './services/libros/anotaciones.service';
+import {Curso} from "./libros/cursos/curso";
 
 
 
@@ -128,6 +129,7 @@ import {NotasService} from "./services/libros/notas.service";
     ProfesoresService,
     AsignaturasService,
     NotasService,
+    AnotacionesService,
   ],
   bootstrap: [RootComponent]
 })

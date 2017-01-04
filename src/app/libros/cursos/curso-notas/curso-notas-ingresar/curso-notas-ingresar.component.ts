@@ -13,31 +13,7 @@ export class CursoNotasIngresarComponent implements OnInit {
 
   asignaturas = [];
 
-  alumnos = [
-    {'id':1, 'alumnos':[
-      {'numero':1,'nombre':'Ivan','apellidos':'Arenas','nMat':10,'exc':'','notas':[
-        {'id':1,'valor':5.0},
-        {'id':2,'valor': null},
-        {'id':3,'valor': 4.6},
-        {'id':4,'valor': 6.0},
-        {'id':5,'valor': 5.7},
-      ]},
-      {'numero':2,'nombre':'Valentin','apellidos':'Trujillo','nMat':15,'exc':'','notas':[
-        {'id':6,'valor':4.0},
-        {'id':7,'valor': 7.0},
-        {'id':8,'valor': null},
-        {'id':9,'valor': null},
-        {'id':10,'valor': 5.4},
-      ]},
-      {'numero':3,'nombre':'Don','apellidos':'Carter','nMat':230,'exc':'','notas':[
-        {'id':11,'valor':7.0},
-        {'id':12,'valor': 7.0},
-        {'id':13,'valor': null},
-        {'id':14,'valor': 5.5},
-        {'id':15,'valor': 6.4},
-      ]},
-    ]}
-  ];
+  alumnos = [];
 
   selectedAsignatura: any;
   selectedAsignaturaAlumnos = [];
@@ -92,29 +68,24 @@ export class CursoNotasIngresarComponent implements OnInit {
   }
 
   //logic
-  restrictValue(nota: any, alumnoId: number, assignId: number){
-    let updatedNota = this.alumnos.find(res => res.id == assignId)
-      .alumnos.find(res => res.nMat == alumnoId)
-      .notas.find(res => res.id == nota.id);
-    if(nota.value > 7.0){
-      nota.value=7.0;
-      updatedNota.valor = nota.value;
-    }  else if(nota.value == 0){
-      nota.value = null;
-      updatedNota.valor = nota.value;
-    } else if(nota.value < 1.0 && nota.value!=null){
-      nota.value=1.0;
-      updatedNota.valor = nota.value;
+  restrictValue(nota: any){
+    if(nota.valor > 7.0){
+      nota.valor=7.0;
+    }  else if(nota.valor == 0){
+      nota.valor = null;
+    } else if(nota.valor < 1.0 && nota.valor!=null){
+      nota.valor=1.0;
     }
   }
 
   onChange(nota: any){
     this.saveNota(nota);
+
   }
 
   //services
   saveNota(nota: any){
-    console.log(nota);
+    this.restrictValue(nota);
     this.notasService.updateNota(nota).subscribe((res) =>{
       nota = res;
     });

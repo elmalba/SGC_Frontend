@@ -55,9 +55,13 @@
                        min="1.0"
                        max="7.0"
                        step="0.01"
+                       value="nota.valor"
                        [(ngModel)]="nota.valor"
+                       (keypress)="restrictValue(nota)"
+                       (keydown)="restrictValue(nota)"
+                       (keyup)="restrictValue(nota)"
+                       (ngModelChange)="restrictValue(nota)"
                        (change)="onChange(nota)"/>
-                <!--(ngModelChange)="restrictValue(nota,alumno.alumno.id,selectedAsignatura.datos.id)"-->
               </td>
               <td>{{ alumno.notas | calcPromedio | number:'1.1-2' }}</td>
             </tr>
