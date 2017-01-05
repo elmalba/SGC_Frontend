@@ -13,10 +13,8 @@ export class AnotacionesService {
   private anotacionessUrl = globalVar.apiUrl+'/anotaciones';
 
   constructor(private http: Http) {
-
     this.http=http;
   }
-
   private headers = new Headers({'Content-Type': 'application/json'});
 
   createAnotacion(anotacion): Observable<any>{
@@ -26,7 +24,7 @@ export class AnotacionesService {
 
     return this.http.post(this.anotacionessUrl, JSON.stringify(payload), options)
       .map(res => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t CREATE Anotacion'));
+      .catch((error:any) => Observable.throw(error.json().error || error.status ));
   }
 
 }

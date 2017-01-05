@@ -12,7 +12,7 @@
         <div class="demo-form-wrapper">
           <div class="form form-horizontal">
             <div class="form-group">
-              <label for="form-2" class="col-sm-2 control-label form-label">Funcionario</label>
+              <label for="form-2" class="col-sm-2 control-label form-label">Anotador</label>
               <div class="col-sm-3">
                 <select id="form-2" class="form-control" [(ngModel)]="anotacion.funcionario_id">
                   <option *ngFor="let funcionario of funcionarios"
@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <modal [animation]="animationsEnabled" #modal>
+        <modal [animation]="true" #modal>
           <modal-header [show-close]="false">
             <h4 class="modal-title">Inasistentes</h4>
             <h5>{{selectedDay?.day.toString() | date }}</h5>
@@ -118,12 +118,12 @@
           </modal-footer>
         </modal>
 
-        <modal [animation]="animationsEnabled" #confirm>
+        <modal [animation]="true" #confirm>
           <modal-header [show-close]="true">
-
+            <h3 class="modal-title">{{confirmMessage}}</h3>
           </modal-header>
           <modal-body>
-
+            <p class="card-text">{{confirmErrorMessage}}</p>
           </modal-body>
           <modal-footer>
             <button type="button" class="btn btn-primary" (click)="confirmClose()">Continuar</button>

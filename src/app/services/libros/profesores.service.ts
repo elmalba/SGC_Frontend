@@ -30,6 +30,13 @@ export class ProfesoresService {
       .map(profesors => profesors.find(profesor => profesor.id == id));
   }
 
+  getProfesorById(id: number): Observable<any> {
+    const url = `${this.profesorsUrl}/${id}`;
+    return this.http.get(url)
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Profesor By Id'));
+  }
+
   createProfesor(profesor: any): Observable<any>{
     let options = new RequestOptions({headers: this.headers});
     return this.http.post(this.profesorsUrl, JSON.stringify(profesor), options)

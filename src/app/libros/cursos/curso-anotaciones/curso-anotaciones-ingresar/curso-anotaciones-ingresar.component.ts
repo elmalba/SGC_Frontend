@@ -29,6 +29,9 @@ export class CursoAnotacionesIngresarComponent implements OnInit {
 
   anotacion: any;
 
+  confirmMessage: string;
+  confirmErrorMessage: string;
+
   constructor(
     private cursosService: CursosService,
     private anotacionesService: AnotacionesService,
@@ -73,6 +76,9 @@ export class CursoAnotacionesIngresarComponent implements OnInit {
       'seguimiento':false,
       'alumno': this.selectedAlumno,
     };
+
+    this.confirmMessage='';
+    this.confirmErrorMessage ='';
   }
 
   //logic
@@ -98,10 +104,32 @@ export class CursoAnotacionesIngresarComponent implements OnInit {
     this.anotacion.alumno = this.selectedAlumno;
   }
 
+  clearAnotacion(){
+    this.clearSelectedAlumno();
+    this.anotacion = {
+      'curso_id':this.id,
+      'funcionario_id':null,
+      'asignatura_id':null,
+      'fecha': '',
+      'observacion': '',
+      'general': false,
+      'tipo':false,
+      'seguimiento':false,
+      'alumno': this.selectedAlumno,
+    };
+  }
+
   //service
   saveAnotacion(){
     console.log(this.anotacion);
     this.anotacionesService.createAnotacion(this.anotacion).subscribe((res) =>{
+      this.confirmMessage = 'Anotacion creada con éxito.';
+      this.confirmOpen();
+      this.clearAnotacion();
+
+    }, (error:any) => {
+      this.confirmMessage = 'Error al intentar crear anotación.';
+      this.confirmErrorMessage = 'Presione Continuar e intentelo nuevamente.';
       this.confirmOpen();
     })
   }

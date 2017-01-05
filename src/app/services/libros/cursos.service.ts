@@ -80,4 +80,12 @@ export class CursosService {
       .map(() => null)
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t DELETE Curso'));
   }
+
+  getAnotacionesGenerales(id: number): Observable<any>{
+    const url = `${this.cursosUrl}/${id}/anotaciones_curso`;
+
+    return this.http.get(url)
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Anotaciones of Curso'));
+  }
 }

@@ -3,8 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
-
 import { CursosService } from '../../../../services/libros/cursos.service';
+import { ProfesoresService } from '../../../../services/libros/profesores.service';
 import { MatriculaService } from '../../../../services/sistema/ficha/matricula.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class CursoAnotacionesVerComponent implements OnInit {
 
   constructor(
     private cursosService: CursosService,
+    private profesoresService: ProfesoresService,
     private matriculaService: MatriculaService,
     private route: ActivatedRoute,
   ) { }
@@ -33,13 +34,44 @@ export class CursoAnotacionesVerComponent implements OnInit {
       this.id = +params['id'];
     });
 
+    this.selectedAlumno = {
+      'id':null
+    };
+
     this.cursosService.getCursoById(this.id).subscribe(curso => {
       this.alumnos = curso.alumnos;
       for (let alumno of this.alumnos){
-        this.matriculaService.getAnotacionesById(alumno.id,this.id).subscribe((res) =>{
-          alumno['anotaciones'] = res.anotaciones;
+        this.matriculaService.getAnotacionesById(alumno.id,this.id).subscribe((anotaciones) =>{
+          alumno['anotaciones'] = anotaciones.anotaciones;
           for (let anotacion of alumno.anotaciones){
-            anotacion['show'] = false
+            anotacion['show'] = false;
+            if(anotacion.profesor_id){
+              this.profesoresService.getProfesorById(anotacion.profesor_id).subscribe((profesor) => {
+                anotacion['profesor'] = {
+                  'nombre':profesor.usuario.nombre,
+                  'apellido_paterno': profesor.usuario.apellido_paterno,
+                  'apellido_materno': profesor.usuario.apellido_materno
+                }
+              });
+            } else {
+              anotacion['profesor'] = {
+                'nombre':'',
+                'apellido_paterno': '',
+                'apellido_materno': ''
+              }
+            }
+
+            if(anotacion.asignatura_id){
+              let asignatura: any;
+              this.cursosService.getAsignaturasByCursoId(this.id).subscribe((asignaturas) => {
+                asignatura = asignaturas.asignaturas.find(res => res.asignatura.datos.id == anotacion.asignatura_id);
+                anotacion['asignatura'] = {
+                  'nombre': asignatura.asignatura.datos.nombre,
+                }
+              })
+            } else {
+              anotacion['asignatura'] = {}
+            }
           }
         });
       }
@@ -50,7 +82,7 @@ export class CursoAnotacionesVerComponent implements OnInit {
 
   modalOpen(alumno: any){
     this.setSelected(alumno);
-    this.modal.open();
+    this.modal.open('lg');
   }
 
   modalClose(){
