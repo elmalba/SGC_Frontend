@@ -108,6 +108,9 @@ export class CursoNotasIngresarComponent implements OnInit {
           this.setAsignatura(this.selectedAsignatura.datos.id);
         });
     });
+  }
+
+  deleteNota(){
 
   }
 

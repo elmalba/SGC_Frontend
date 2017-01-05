@@ -4,4 +4,4 @@
 'use strict';
 
 export let apiUrl: string = 'http://192.168.1.168:3000';
-// export let apiUrl: string = 'http://api.innovacolegio.cl';
+// export let apiUrl: string = 'http://api.innovacolegio.cl:3000';

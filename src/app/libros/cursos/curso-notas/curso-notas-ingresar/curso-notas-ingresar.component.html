@@ -30,10 +30,13 @@
               <th rowspan="2" >Nombre</th>
               <th rowspan="2">Apellidos</th>
               <th rowspan="1" [attr.colspan]="selectedAsignatura.cantidad + 1" class="text-center">
-                <div class="btn-group pull-left">
+                <div class="btn-group pull-right">
                   <button class="btn btn-info btn-sm" (click)="createNota()"><span class="icon icon-fw icon-plus"></span></button>
                 </div>
                 Notas
+                <div class="btn-group pull-left">
+                  <button class="btn btn-info btn-sm" (click)="deleteNota()"><span class="icon icon-fw icon-minus"></span></button>
+                </div>
               </th>
             </tr>
             <tr class="bg-primary">

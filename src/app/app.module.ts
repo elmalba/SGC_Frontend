@@ -72,7 +72,7 @@ import {ProfesoresService} from "./services/libros/profesores.service";
 import {AsignaturasService} from "./services/libros/asignaturas.service";
 import {NotasService} from "./services/libros/notas.service";
 import {AnotacionesService} from './services/libros/anotaciones.service';
-import {Curso} from "./libros/cursos/curso";
+import {DpaService} from './services/sistema/dpa.service'
 
 
 
@@ -125,6 +125,7 @@ import {Curso} from "./libros/cursos/curso";
     Ng2Bs3ModalModule,
   ],
   providers: [
+    DpaService,
     ColegiosService,
     MatriculaService,
     CursosService,
