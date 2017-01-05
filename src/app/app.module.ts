@@ -11,6 +11,7 @@ import './rxjs-extensions';
 import { FilterCursoProf } from './pipes/filter-curso-prof.pipe';
 import { CalcPromedio } from './pipes/calc-promedio.pipe';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { AbbreviatePipe } from './pipes/abbreviate.pipe'
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -114,6 +115,7 @@ import {Curso} from "./libros/cursos/curso";
     FilterCursoProf,
     CalcPromedio,
     TruncateTextPipe,
+    AbbreviatePipe,
   ],
   imports: [
     BrowserModule,

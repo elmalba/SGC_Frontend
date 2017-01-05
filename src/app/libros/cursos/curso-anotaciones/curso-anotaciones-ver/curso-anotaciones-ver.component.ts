@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+
+
+import { CursosService } from '../../../../services/libros/cursos.service';
+import { MatriculaService } from '../../../../services/sistema/ficha/matricula.service';
 
 @Component({
   selector: 'app-curso-anotaciones-ver',
@@ -11,18 +16,35 @@ export class CursoAnotacionesVerComponent implements OnInit {
   @ViewChild('modal')
   modal: ModalComponent;
 
-  alumnos: any[] = [
-    {'nombre':'Ivan','apellido_paterno':'Arenas','apellido_materno':'Rossa','rut':'1111111-1',
-      'anotaciones': [
-        {'numero':1,'fecha_anotacion': new Date(),'asignatura':'Lenguaje','general':true,'positiva':false,'obs':'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla luctus diam, ac tempus sapien vestibulum vel. Morbi pretium nisl libero, sed semper leo tincidunt mollis. Morbi metus orci, eleifend nec varius quis, gravida id dui. Etiam ac orci nunc. Quisque non accumsan odio. Ut maximus quam sit amet lobortis porta. Morbi tempus tellus et ullamcorper pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut maximus lorem at erat convallis, ac sollicitudin mauris sodales. Curabitur ornare eros sapien, a lacinia orci dignissim a. Quisque at lacus vel ipsum sodales rutrum non ac enim. Morbi eget enim laoreet, congue ipsum quis, consequat sapien.'},
-      ]},
-  ];
+  id: number;
+  private sub: any;
+
+  alumnos: any[] = [];
   selectedAlumno: any;
 
-  constructor() { }
+  constructor(
+    private cursosService: CursosService,
+    private matriculaService: MatriculaService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
+    this.sub = this.route.parent.parent.params.subscribe(params => {
+      this.id = +params['id'];
+    });
 
+    this.cursosService.getCursoById(this.id).subscribe(curso => {
+      this.alumnos = curso.alumnos;
+      for (let alumno of this.alumnos){
+        this.matriculaService.getAnotacionesById(alumno.id,this.id).subscribe((res) =>{
+          alumno['anotaciones'] = res.anotaciones;
+          for (let anotacion of alumno.anotaciones){
+            anotacion['show'] = false
+          }
+        });
+      }
+      console.log(this.alumnos);
+    });
 
   }
 
@@ -38,6 +60,10 @@ export class CursoAnotacionesVerComponent implements OnInit {
 
   setSelected(alumno: any){
     this.selectedAlumno = alumno;
+  }
+
+  toggleShow(anotacion){
+    anotacion.show = !(anotacion.show);
   }
 
 }

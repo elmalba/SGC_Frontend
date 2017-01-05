@@ -12,15 +12,23 @@
         <div class="demo-form-wrapper">
           <div class="form form-horizontal">
             <div class="form-group">
-              <label for="form-1" class="col-sm-2 control-label form-label">Asignatura</label>
-              <div class="col-sm-4">
-                <select id="form-1" class="form-control" [(ngModel)]="anotacion.asignatura_id">
-                  <option *ngFor="let asignatura of asignaturas"
-                          value="{{asignatura?.asignatura.datos.id}}">{{ asignatura?.asignatura.datos.nombre }}</option>
+              <label for="form-2" class="col-sm-2 control-label form-label">Funcionario</label>
+              <div class="col-sm-3">
+                <select id="form-2" class="form-control" [(ngModel)]="anotacion.funcionario_id">
+                  <option *ngFor="let funcionario of funcionarios"
+                          value="{{funcionario.id}}">{{ funcionario.usuario.nombre }} {{ funcionario.usuario.apellido_paterno }} {{ funcionario.usuario.apellido_materno }}</option>
                 </select>
               </div>
-              <label class="col-sm-2 control-label" for="form-4">Fecha</label>
-              <div class="col-sm-4">
+
+              <label for="form-1" class="col-sm-1 control-label form-label">Asignatura</label>
+              <div class="col-sm-2">
+                <select id="form-1" class="form-control" [(ngModel)]="anotacion.asignatura_id">
+                  <option *ngFor="let asignatura of asignaturas"
+                          value="{{asignatura?.asignatura.datos.id}}">{{ asignatura?.asignatura.datos.nombre | abbreviate }}</option>
+                </select>
+              </div>
+              <label class="col-sm-1 control-label" for="form-4">Fecha</label>
+              <div class="col-sm-3">
                 <div class="input-with-icon">
                   <input id="form-4" class="form-control"
                          [(ngModel)]="anotacion.fecha"
@@ -31,16 +39,10 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 control-label" for="form-control-2">Detalle</label>
-              <div class="col-sm-10">
-                <textarea id="form-control-2" class="form-control" style="height: 100px" [(ngModel)]="anotacion.observacion"></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-2">Positiva/Negativa</label>
+              <label class="control-label col-md-2">Negativa/Positiva</label>
               <div class="col-md-1">
                 <label class="switch"
-                       [ngClass]="{'switch-success': anotacion.tipo}">
+                       [ngClass]="{'switch-success': anotacion.tipo,'switch-danger-special': !(anotacion.tipo)}">
                   <input class="switch-input" type="checkbox" [(ngModel)]="anotacion.tipo">
                   <span class="switch-track"></span>
                   <span class="switch-thumb"></span>
@@ -56,32 +58,77 @@
                 </label>
               </div>
 
+              <label class="control-label col-md-1" *ngIf="!(anotacion.general)">Seguimiento</label>
+              <div class="col-md-1" *ngIf="!(anotacion.general)">
+                <label class="switch switch-warning">
+                  <input class="switch-input" type="checkbox" [(ngModel)]="anotacion.seguimiento">
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+              </div>
+
               <label class="col-sm-1 control-label" for="form-control-3" *ngIf="!(anotacion.general)">Alumno</label>
-              <div class="col-sm-6" *ngIf="!(anotacion.general)">
-                <input id="form-control-3" class="form-control" type="text" [(ngModel)]="anotacion.alumno.fullname" readonly>
+              <div class="col-sm-4" *ngIf="!(anotacion.general)">
+                <div class="input-group">
+                  <input id="form-control-3" class="form-control" type="text" [(ngModel)]="anotacion.alumno.fullname" readonly>
+                  <div class="input-group-btn">
+                    <button class="btn btn-outline-danger" (click)="clearSelectedAlumno()" [disabled]="!(anotacion.alumno.rut)"><span class="icon icon-close icon-fw"></span></button>
+                    <button class="btn btn-primary" (click)="modalOpen()"><span class="icon icon-user icon-fw"></span></button>
+                  </div>
+                </div>
               </div>
 
             </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="form-control-2">Observación</label>
+              <div class="col-sm-10">
+                <textarea id="form-control-2" class="form-control" style="height: 100px" [(ngModel)]="anotacion.observacion"></textarea>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="table-responsive" *ngIf="!(anotacion.general)">
-          <table class="table table-bordered">
-            <thead>
-            <tr class="bg-info">
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Apellidos</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let alumno of alumnos" (click)="setSelectedAlumno(alumno)">
-              <td>{{alumno.numero}}</td>
-              <td>{{alumno.nombre}}</td>
-              <td>{{alumno.apellido_paterno}} {{alumno.apellido_materno}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+
+        <modal [animation]="animationsEnabled" #modal>
+          <modal-header [show-close]="false">
+            <h4 class="modal-title">Inasistentes</h4>
+            <h5>{{selectedDay?.day.toString() | date }}</h5>
+          </modal-header>
+          <modal-body>
+            <div class="table-responsive" *ngIf="!(anotacion.general)">
+              <table class="table table-bordered">
+                <thead>
+                <tr class="bg-info">
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let alumno of alumnos" (click)="setSelectedAlumno(alumno)" [ngClass]="{'bg-info': alumno.rut == anotacion.alumno.rut}">
+                  <td>{{alumno.numero}}</td>
+                  <td>{{alumno.nombre}}</td>
+                  <td>{{alumno.apellido_paterno}} {{alumno.apellido_materno}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </modal-body>
+          <modal-footer>
+            <button type="button" class="btn btn-primary" (click)="modalClose()">Continuar</button>
+          </modal-footer>
+        </modal>
+
+        <modal [animation]="animationsEnabled" #confirm>
+          <modal-header [show-close]="true">
+
+          </modal-header>
+          <modal-body>
+
+          </modal-body>
+          <modal-footer>
+            <button type="button" class="btn btn-primary" (click)="confirmClose()">Continuar</button>
+          </modal-footer>
+        </modal>
       </div>
     </div>
   </div>

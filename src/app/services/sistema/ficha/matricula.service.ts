@@ -21,7 +21,7 @@ export class MatriculaService {
   getMatriculas(): Observable<Matricula[]> {
     return this.http.get(this.matriculasUrl)
       .map(res => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Colegios'));
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Alumnos'));
   }
 
   getMatricula(id: number): Observable<Matricula> {
@@ -34,14 +34,14 @@ export class MatriculaService {
     return this.http
       .put(url, JSON.stringify(matricula), {headers: this.headers})
       .map(() => matricula)
-      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Colegio'));
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Alumno'));
   }
 
   createMatricula(matricula: Matricula): Observable<Matricula> {
     return this.http
       .post(this.matriculasUrl, JSON.stringify({nombre: matricula.nombre}), {headers: this.headers})
       .map(res => res.json().data)
-      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t CREATE Colegio'));
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t CREATE Alumno'));
   }
 
   deleteMatricula(id: number): Observable<any> {
@@ -49,8 +49,16 @@ export class MatriculaService {
     return this.http
       .delete(url, {headers: this.headers})
       .map(() => null)
-      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t DELETE Colegio'));
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t DELETE Alumno'));
 
+  }
+
+  getAnotacionesById(alumnoId: number, cursoId: number): Observable<any> {
+    const url = `${this.matriculasUrl}/${alumnoId}/anotaciones_alumno?curso_id=${cursoId}`;
+
+    return this.http.get(url)
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t GET Anotaciones by Alumno Id'));
   }
 
 }

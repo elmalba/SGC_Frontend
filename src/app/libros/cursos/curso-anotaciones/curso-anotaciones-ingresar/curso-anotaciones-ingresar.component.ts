@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { CursosService } from '../../../../services/libros/cursos.service';
+import { ProfesoresService } from '../../../../services/libros/profesores.service';
 import { AnotacionesService } from '../../../../services/libros/anotaciones.service';
 
 @Component({
@@ -10,8 +12,14 @@ import { AnotacionesService } from '../../../../services/libros/anotaciones.serv
   styleUrls: ['./curso-anotaciones-ingresar.component.css']
 })
 export class CursoAnotacionesIngresarComponent implements OnInit {
+  @ViewChild('modal') modal: ModalComponent;
+  @ViewChild('confirm') confirm: ModalComponent;
+
   id: number;
   private sub: any;
+
+  //actualmente sólo con profesores, se debe llenar con todo tipo de funcionarios en la plataforma
+  funcionarios = [];
 
   asignaturas = [];
 
@@ -24,6 +32,7 @@ export class CursoAnotacionesIngresarComponent implements OnInit {
   constructor(
     private cursosService: CursosService,
     private anotacionesService: AnotacionesService,
+    private profesoresService: ProfesoresService,
     private route: ActivatedRoute,
   ) { }
 
@@ -40,9 +49,12 @@ export class CursoAnotacionesIngresarComponent implements OnInit {
         this.alumnos = curso.alumnos;
     });
 
-    this.cursosService.getAsignaturasByCursoId(this.id).subscribe((res) => {
+    this.cursosService.getAsignaturasByCursoId(this.id).subscribe(res => {
       this.asignaturas = res.asignaturas;
-      console.log(this.asignaturas);
+    });
+
+    this.profesoresService.getProfesors().subscribe(res => {
+      this.funcionarios = res;
     });
 
     this.selectedAlumno = {
@@ -52,23 +64,23 @@ export class CursoAnotacionesIngresarComponent implements OnInit {
 
     this.anotacion = {
       'curso_id':this.id,
+      'funcionario_id':null,
       'asignatura_id':null,
       'fecha': '',
       'observacion': '',
       'general': false,
-      'tipo':true,
+      'tipo':false,
+      'seguimiento':false,
       'alumno': this.selectedAlumno,
     };
   }
 
+  //logic
   toggleGeneral(){
     this.anotacion.general = !(this.anotacion.general);
     if(!(this.anotacion.general)){
-      this.selectedAlumno = {
-        'fullname': '',
-        'rut':null,
-      };
-      this.anotacion.alumno = this.selectedAlumno;
+      this.clearSelectedAlumno();
+      this.anotacion.seguimiento = false;
     }
   };
 
@@ -78,9 +90,37 @@ export class CursoAnotacionesIngresarComponent implements OnInit {
     this.anotacion.alumno = this.selectedAlumno;
   }
 
-  saveAnotacion(){
-    console.log(this.anotacion);
-    this.anotacionesService.createAnotacion(this.anotacion).subscribe((res) =>{})
+  clearSelectedAlumno(){
+    this.selectedAlumno = {
+      'fullname': '',
+      'rut':null,
+    };
+    this.anotacion.alumno = this.selectedAlumno;
   }
 
+  //service
+  saveAnotacion(){
+    console.log(this.anotacion);
+    this.anotacionesService.createAnotacion(this.anotacion).subscribe((res) =>{
+      this.confirmOpen();
+    })
+  }
+
+  //modal
+  modalOpen(): void {
+    this.modal.open();
+  }
+
+  modalClose(): void {
+    this.modal.close();
+  }
+
+  //confirm
+  confirmOpen(): void {
+    this.confirm.open();
+  }
+
+  confirmClose(): void {
+    this.confirm.close();
+  }
 }
