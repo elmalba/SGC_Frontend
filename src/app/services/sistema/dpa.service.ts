@@ -15,24 +15,24 @@ export class DpaService {
   }
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  getRegiones(): Observable<any[]> {
-    const url =`${this.dpaUrl}/regiones`;
+  getRegiones(): Observable<any> {
+    const url =`${this.dpaUrl}/regiones?geolocation=false`;
 
     return this.http.get(url)
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json().error || error.status ));
   }
 
-  getProvinciasByRegionId(regionId: string): Observable<any[]> {
-    const url =`${this.dpaUrl}/regiones/${regionId}/provincias`;
+  getProvinciasByRegionId(regionId: string): Observable<any> {
+    const url =`${this.dpaUrl}/regiones/${regionId}/provincias?geolocation=false`;
 
     return this.http.get(url)
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json().error || error.status ));
   }
 
-  getComunasByProvinciaIdRegionId(regionId: string, provinciaId: string): Observable<any[]> {
-    const url =`${this.dpaUrl}/regiones/${regionId}/provincias/${provinciaId}/comunas`;
+  getComunasByProvinciaIdRegionId(regionId: string, provinciaId: string): Observable<any> {
+    const url =`${this.dpaUrl}/regiones/${regionId}/provincias/${provinciaId}/comunas?geolocation=false`;
 
     return this.http.get(url)
       .map(res => res.json())

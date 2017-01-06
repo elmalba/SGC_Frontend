@@ -26,13 +26,25 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="form-control-4">Región</label>
           <div class="col-sm-4">
-            <select id="form-control-4" class="form-control" type="text" [(ngModel)]="colegio.region">
-              <option *ngFor="let region of regiones">{{region.nom}}</option>
+            <select id="form-control-4"
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="colegio.region"
+                    (ngModelChange)="setRegion(colegio.region)">
+              <option *ngFor="let region of regiones"
+                      value="{{region.nombre}}">{{region.nombre}}</option>
             </select>
           </div>
           <label class="col-sm-2 control-label" for="form-control-5">Provincia</label>
           <div class="col-sm-4">
-            <input id="form-control-5" class="form-control" type="text" [(ngModel)]="colegio.provincia">
+            <select id="form-control-5"
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="colegio.provincia"
+                    (ngModelChange)="setProvincia(colegio.provincia)">
+              <option *ngFor="let provincia of provincias"
+                      value="{{provincia.nombre}}">{{provincia.nombre}}</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
@@ -42,7 +54,14 @@
           </div>
           <label class="col-sm-2 control-label" for="form-control-7">Comuna</label>
           <div class="col-sm-4">
-            <input id="form-control-7" class="form-control" type="text" [(ngModel)]="colegio.comuna">
+            <select id="form-control-7"
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="colegio.comuna"
+                    (ngModelChange)="setComuna(colegio.comuna)">
+              <option *ngFor="let comuna of comunas"
+                      value="{{comuna.nombre}}">{{comuna.nombre}}</option>
+            </select>
           </div>
         </div>
         <div class="form-group">

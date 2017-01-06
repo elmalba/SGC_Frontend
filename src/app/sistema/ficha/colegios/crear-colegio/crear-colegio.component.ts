@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
-import { Colegio } from '../colegio';
 import { ColegiosService } from '../../../../services/sistema/ficha/colegios.service';
+import { DpaService } from '../../../../services/sistema/dpa.service';
 
 @Component({
   selector: 'app-crear-colegio',
@@ -14,33 +14,65 @@ export class CrearColegioComponent implements OnInit {
   @ViewChild('modal')
   modal: ModalComponent;
 
-  colegio: Colegio;
+  colegio: any;
 
-  regiones: {val: number, nom: string}[] = [
-    {"val":1,"nom":"Tarapacá"},
-    {"val":2,"nom":"Antofagasta"},
-    {"val":3,"nom":"Atacama"},
-    {"val":4,"nom":"Coquimbo"},
-    {"val":5,"nom":"Valparaíso"},
-    {"val":6,"nom":"O'Higgins"},
-    {"val":7,"nom":"Maule"},
-    {"val":8,"nom":"Bío Bío"},
-    {"val":9,"nom":"Araucanía"},
-    {"val":10,"nom":"Los Lagos"},
-    {"val":11,"nom":"Aisén"},
-    {"val":12,"nom":"Magallanes"},
-    {"val":14,"nom":"Los Ríos"},
-    {"val":15,"nom":"Arica y Parinacota"},
-    {"val":16,"nom":"Metropolitana de Santiago"},
-  ];
+  regiones = [];
+  provincias = [];
+  comunas = [];
+
+  selectedRegion: any;
+  selectedProvincia: any;
+  selectedComuna: any;
 
   constructor(
       private location: Location,
       private colegiosService: ColegiosService,
+      private dpaService: DpaService,
   ) { }
 
   ngOnInit() {
-    this.colegio = new Colegio();
+    this.colegio = {
+    'id': null,
+    nombre: '',
+    direccion: '',
+    numeracion: '',
+    region: '',
+    provincia: '',
+    localidad: '',
+    comuna: '',
+    depto_prov: '',
+    telefono: '',
+    mail: '',
+    web: '',
+    director: '',
+    sostenedor: '',
+    rbd: '',
+    dependencia: '',
+    };
+    this.dpaService.getRegiones().subscribe(res => {
+      this.regiones = res;
+    });
+  }
+
+  setRegion(region: string){
+    this.colegio.provincia = '';
+    this.colegio.comuna = '';
+    this.selectedRegion = this.regiones.find(reg => reg.nombre == region);
+    this.dpaService.getProvinciasByRegionId(this.selectedRegion.codigo).subscribe(res => {
+      this.provincias = res;
+    });
+  };
+
+  setProvincia(provincia: string){
+    this.colegio.comuna = '';
+    this.selectedProvincia = this.provincias.find(prov => prov.nombre == provincia);
+    this.dpaService.getComunasByProvinciaIdRegionId(this.selectedRegion.codigo,this.selectedProvincia.codigo).subscribe(res => {
+      this.comunas = res;
+    });
+  };
+
+  setComuna(comuna: string){
+    this.selectedComuna = this.comunas.find(com => com.nombre == comuna);
   }
 
   goBack(): void {
