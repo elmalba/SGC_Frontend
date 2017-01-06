@@ -58,7 +58,7 @@ export class CrearColegioComponent implements OnInit {
     this.colegio.provincia = '';
     this.colegio.comuna = '';
     this.selectedRegion = this.regiones.find(reg => reg.nombre == region);
-    this.dpaService.getProvinciasByRegionId(this.selectedRegion.codigo).subscribe(res => {
+    this.dpaService.getProvinciasByRegionId(this.selectedRegion.id).subscribe(res => {
       this.provincias = res;
     });
   };
@@ -66,7 +66,7 @@ export class CrearColegioComponent implements OnInit {
   setProvincia(provincia: string){
     this.colegio.comuna = '';
     this.selectedProvincia = this.provincias.find(prov => prov.nombre == provincia);
-    this.dpaService.getComunasByProvinciaIdRegionId(this.selectedRegion.codigo,this.selectedProvincia.codigo).subscribe(res => {
+    this.dpaService.getComunasByProvinciaIdRegionId(this.selectedProvincia.id).subscribe(res => {
       this.comunas = res;
     });
   };

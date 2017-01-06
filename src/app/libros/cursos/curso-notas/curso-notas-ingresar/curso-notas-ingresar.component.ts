@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { CursosService } from '../../../../services/libros/cursos.service';
 import { NotasService } from '../../../../services/libros/notas.service';
@@ -10,9 +11,11 @@ import { NotasService } from '../../../../services/libros/notas.service';
   styleUrls: ['./curso-notas-ingresar.component.css'],
 })
 export class CursoNotasIngresarComponent implements OnInit {
+  @ViewChild('modalDelete') modalDelete: ModalComponent;
+  @ViewChild('modalCreate') modalCreate: ModalComponent;
+  @ViewChild('modalInfo') modalInfo: ModalComponent;
 
   asignaturas = [];
-
   alumnos = [];
 
   selectedAsignatura: any;
@@ -112,6 +115,39 @@ export class CursoNotasIngresarComponent implements OnInit {
 
   deleteNota(){
 
+  }
+
+  ////modals
+
+  //delete
+  modalDeleteOpen(){
+    this.modalDelete.open();
+  }
+
+  modalDeleteClose(){
+    this.modalDelete.close();
+  }
+
+  modalDeleteDismiss(){
+    this.modalDelete.dismiss();
+  }
+  //create
+  modalCreateOpen(){
+    this.modalCreate.open('lg');
+  }
+  modalCreateClose(){
+    this.modalCreate.close();
+  }
+  modalCreateDismiss(){
+    this.modalCreate.dismiss();
+  }
+  //info
+  modalInfoOpen(){
+    this.modalInfo.open();
+  }
+
+  modalInfoClose(){
+    this.modalInfo.close();
   }
 
 }

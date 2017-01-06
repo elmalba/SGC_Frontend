@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 
+import * as globalVar from '../../globals';
+
 @Injectable()
 export class DpaService {
   static get parameters(){
     return [[Http]]
   }
 
-  private dpaUrl = 'https://apis.modernizacion.cl/dpa/';
+  private dpaUrl = globalVar.apiUrl;
 
   constructor(private http: Http) {
     this.http=http;
@@ -16,7 +18,7 @@ export class DpaService {
   private headers = new Headers({'Content-Type': 'application/json'});
 
   getRegiones(): Observable<any> {
-    const url =`${this.dpaUrl}/regiones?geolocation=false`;
+    const url =`${this.dpaUrl}/regiones`;
 
     return this.http.get(url)
       .map(res => res.json())
@@ -24,15 +26,15 @@ export class DpaService {
   }
 
   getProvinciasByRegionId(regionId: string): Observable<any> {
-    const url =`${this.dpaUrl}/regiones/${regionId}/provincias?geolocation=false`;
+    const url =`${this.dpaUrl}/regiones/${regionId}/provincias`;
 
     return this.http.get(url)
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json().error || error.status ));
   }
 
-  getComunasByProvinciaIdRegionId(regionId: string, provinciaId: string): Observable<any> {
-    const url =`${this.dpaUrl}/regiones/${regionId}/provincias/${provinciaId}/comunas?geolocation=false`;
+  getComunasByProvinciaIdRegionId(provinciaId: string): Observable<any> {
+    const url =`${this.dpaUrl}/provincias/${provinciaId}/comunas?geolocation=false`;
 
     return this.http.get(url)
       .map(res => res.json())
