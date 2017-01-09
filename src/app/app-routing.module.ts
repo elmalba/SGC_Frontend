@@ -4,51 +4,51 @@ import { RouterModule, Routes } from '@angular/router';
 import { RootComponent } from './root.component';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //Sistema
 ////Colegios
-import { ColegiosComponent } from './sistema/ficha/colegios/colegios.component';
-import { CrearColegioComponent } from './sistema/ficha/colegios/crear-colegio/crear-colegio.component';
-import { EditarColegioComponent } from './sistema/ficha/colegios/editar-colegio/editar-colegio.component';
-import { VerColegioComponent } from './sistema/ficha/colegios/ver-colegio/ver-colegio.component';
-import { ColegioDetailComponent } from './sistema/ficha/colegios/colegio-detail/colegio-detail.component';
+import { ColegiosComponent } from './components/sistema/ficha/colegios/colegios.component';
+import { CrearColegioComponent } from './components/sistema/ficha/colegios/crear-colegio/crear-colegio.component';
+import { EditarColegioComponent } from './components/sistema/ficha/colegios/editar-colegio/editar-colegio.component';
+import { VerColegioComponent } from './components/sistema/ficha/colegios/ver-colegio/ver-colegio.component';
+import { ColegioDetailComponent } from './components/sistema/ficha/colegios/colegio-detail/colegio-detail.component';
 ////Matriculas
-import { MatriculaComponent } from './sistema/ficha/matricula/matricula.component';
-import { CrearMatriculaComponent } from './sistema/ficha/matricula/crear-matricula/crear-matricula.component';
-import { EditarMatriculaComponent } from './sistema/ficha/matricula/editar-matricula/editar-matricula.component';
-import { VerMatriculaComponent } from './sistema/ficha/matricula/ver-matricula/ver-matricula.component';
-import { MatriculaDetailComponent } from './sistema/ficha/matricula/matricula-detail/matricula-detail.component';
+import { MatriculaComponent } from './components/sistema/ficha/matricula/matricula.component';
+import { CrearMatriculaComponent } from './components/sistema/ficha/matricula/crear-matricula/crear-matricula.component';
+import { EditarMatriculaComponent } from './components/sistema/ficha/matricula/editar-matricula/editar-matricula.component';
+import { VerMatriculaComponent } from './components/sistema/ficha/matricula/ver-matricula/ver-matricula.component';
+import { MatriculaDetailComponent } from './components/sistema/ficha/matricula/matricula-detail/matricula-detail.component';
 
 //Libros
-import { CursosComponent } from './libros/cursos/cursos.component';
-import { CrearCursoComponent } from './libros/cursos/crear-curso/crear-curso.component';
-import { VerCursoComponent } from './libros/cursos/ver-curso/ver-curso.component';
-import { ModificarCursoComponent } from './libros/cursos/modificar-curso/modificar-curso.component';
-import { CursoDetailComponent } from './libros/cursos/curso-detail/curso-detail.component';
+import { CursosComponent } from './components/libros/cursos/cursos.component';
+import { CrearCursoComponent } from './components/libros/cursos/crear-curso/crear-curso.component';
+import { VerCursoComponent } from './components/libros/cursos/ver-curso/ver-curso.component';
+import { ModificarCursoComponent } from './components/libros/cursos/modificar-curso/modificar-curso.component';
+import { CursoDetailComponent } from './components/libros/cursos/curso-detail/curso-detail.component';
 ////Lista
-import { CursoListaComponent } from './libros/cursos/curso-lista/curso-lista.component';
+import { CursoListaComponent } from './components/libros/cursos/curso-lista/curso-lista.component';
 ////Notas
-import { CursoNotasComponent } from './libros/cursos/curso-notas/curso-notas.component';
-import { CursoNotasVerComponent } from './libros/cursos/curso-notas/curso-notas-ver/curso-notas-ver.component';
-import { CursoNotasIngresarComponent } from './libros/cursos/curso-notas/curso-notas-ingresar/curso-notas-ingresar.component';
+import { CursoNotasComponent } from './components/libros/cursos/curso-notas/curso-notas.component';
+import { CursoNotasVerComponent } from './components/libros/cursos/curso-notas/curso-notas-ver/curso-notas-ver.component';
+import { CursoNotasIngresarComponent } from './components/libros/cursos/curso-notas/curso-notas-ingresar/curso-notas-ingresar.component';
 ////Asistencia
-import { CursoAsistenciaComponent } from './libros/cursos/curso-asistencia/curso-asistencia.component';
-import { CursoAsistenciaVerComponent } from './libros/cursos/curso-asistencia/curso-asistencia-ver/curso-asistencia-ver.component';
-import { CursoAsistenciaIngresarComponent } from './libros/cursos/curso-asistencia/curso-asistencia-ingresar/curso-asistencia-ingresar.component';
+import { CursoAsistenciaComponent } from './components/libros/cursos/curso-asistencia/curso-asistencia.component';
+import { CursoAsistenciaVerComponent } from './components/libros/cursos/curso-asistencia/curso-asistencia-ver/curso-asistencia-ver.component';
+import { CursoAsistenciaIngresarComponent } from './components/libros/cursos/curso-asistencia/curso-asistencia-ingresar/curso-asistencia-ingresar.component';
 ////Anotaciones
-import { CursoAnotacionesComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones.component';
-import { CursoAnotacionesVerComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ver/curso-anotaciones-ver.component';
-import { CursoAnotacionesIngresarComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ingresar/curso-anotaciones-ingresar.component';
-import { CursoAnotacionesVerGenComponent } from './libros/cursos/curso-anotaciones/curso-anotaciones-ver-gen/curso-anotaciones-ver-gen.component';
+import { CursoAnotacionesComponent } from './components/libros/cursos/curso-anotaciones/curso-anotaciones.component';
+import { CursoAnotacionesVerComponent } from './components/libros/cursos/curso-anotaciones/curso-anotaciones-ver/curso-anotaciones-ver.component';
+import { CursoAnotacionesIngresarComponent } from './components/libros/cursos/curso-anotaciones/curso-anotaciones-ingresar/curso-anotaciones-ingresar.component';
+import { CursoAnotacionesVerGenComponent } from './components/libros/cursos/curso-anotaciones/curso-anotaciones-ver-gen/curso-anotaciones-ver-gen.component';
 ////Asignar Profesor
-import { AsignarProfComponent } from './libros/cursos/asignar-prof/asignar-prof.component';
+import { AsignarProfComponent } from './components/libros/cursos/asignar-prof/asignar-prof.component';
 
 //Profesor
-import { ProfesorComponent } from './libros/profesor/profesor.component';
-import { CrearProfesorComponent } from './libros/profesor/crear-profesor/crear-profesor.component';
+import { ProfesorComponent } from './components/libros/profesor/profesor.component';
+import { CrearProfesorComponent } from './components/libros/profesor/crear-profesor/crear-profesor.component';
 
 
 

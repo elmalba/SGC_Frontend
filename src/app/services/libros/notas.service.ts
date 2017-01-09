@@ -35,12 +35,29 @@ export class NotasService {
       .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t UPDATE Nota'));
   }
 
-  createNota(curso_id:number, asignatura_id: number){
+  createNota(curso_id:number, asignatura_id: number, nota: any){
     let options = new RequestOptions({headers: this.headers});
-    let payload = {'nota':{'curso_id':curso_id,'asignatura_id':asignatura_id}};
+    let payload = {'nota':{
+      'curso_id':curso_id,
+      'asignatura_id':asignatura_id,
+      'contenido':nota.contenido,
+      'fecha':nota.fecha,
+      'coeficiente':nota.coeficiente,
+      }
+    };
     return this.http.post(this.notasUrl, JSON.stringify(payload), options)
       .map(res => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t CREATE Nota'));
   }
+
+  deleteNotas(asign_id,notas){
+    console.log(notas);
+    const url = `${this.notasUrl}/${asign_id}?nota=${JSON.stringify(notas)}`;
+
+    return this.http.delete(url,{headers: this.headers})
+      .map(() => null)
+      .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t DELETE Notas'));
+  }
+
 
 }

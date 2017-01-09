@@ -3,7 +3,7 @@
  */
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Curso } from '../libros/cursos/curso'
+import { Curso } from '../components/libros/cursos/curso'
 
 @Pipe({ name: 'filterCursosProf' })
 export class FilterCursoProf implements PipeTransform {
