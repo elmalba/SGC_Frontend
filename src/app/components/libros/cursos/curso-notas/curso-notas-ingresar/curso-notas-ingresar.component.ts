@@ -223,7 +223,7 @@ export class CursoNotasIngresarComponent implements OnInit {
   //info
   modalInfoOpen(index: number){
     this.setInfoNota(index);
-    this.modalInfo.open();
+    this.modalInfo.open('sm');
   }
 
   modalInfoClose(){

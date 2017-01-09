@@ -194,21 +194,14 @@
                 </div>
               </form>
             </li>
-<!--            <li class="sidenav-heading">Navigation</li>
 
-            <li class="sidenav-item has-subnav active">
-              <a href="dashboard-1.html" aria-haspopup="true">
-                <span class="sidenav-icon icon icon-home"></span>
-                <span class="sidenav-label">Dashboards</span>
-              </a>
-              <ul class="sidenav-subnav collapse">
-                <li class="sidenav-subheading">Dashboards</li>
-                <li class="active"><a href="dashboard-1.html">Dashboard 1</a></li>
-                <li><a href="dashboard-2.html">Dashboard 2</a></li>
-                <li><a href="dashboard-3.html">Dashboard 3</a></li>
-              </ul>
-            </li>
             <li class="sidenav-item">
+              <a aria-haspopup="true">
+                <span class="sidenav-icon icon icon-home"></span>
+                <span class="sidenav-label">Dashboard</span>
+              </a>
+            </li>
+<!--            <li class="sidenav-item">
               <a href="#">
                 <span class="badge badge-success">26</span>
                 <span class="sidenav-icon icon icon-th"></span>
@@ -228,12 +221,24 @@
                 <span class="sidenav-label">Ficha Matriculas</span>
               </a>
             </li>
-            <li class="sidenav-heading">Libros</li>
+            <li class="sidenav-heading">Modulos</li>
             <li class="sidenav-item">
               <a [routerLink]="['libros']">
                 <span class="sidenav-icon icon icon-book"></span>
                 <span class="sidenav-label">Libros de Clases</span>
               </a>
+            </li>
+            <li class="sidenav-item has-subnav">
+              <a [routerLink]="['informes']">
+                <span class="sidenav-icon icon icon-files-o"></span>
+                <span class="sidenav-label">Informes y Certificados</span>
+              </a>
+              <ul class="sidenav-subnav collapse">
+                <li class="sidenav-subheading">Informes y Certificados</li>
+                <li><a [routerLink]="['informes/alumno']">Por Alumno</a></li>
+                <li><a [routerLink]="['informes/curso']">Por Curso</a></li>
+                <li><a [routerLink]="['informes/grado']">Por Grado</a></li>
+              </ul>
             </li>
           </ul>
         </nav>
@@ -270,7 +275,7 @@
   <div class="layout-footer">
     <div class="layout-footer-body">
       <small class="version">Version 0.0.0</small>
-      <small class="copyright">2016 &copy; InnovaColegios</small>
+      <small class="copyright">2017 &copy; InnovaColegios</small>
     </div>
   </div>
 </div>

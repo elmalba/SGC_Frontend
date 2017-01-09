@@ -22,7 +22,8 @@
               <th rowspan="1" [attr.colspan]="selectedAsignatura.cantidad + 1" class="text-center  ">Notas</th>
             </tr>
             <tr class="bg-primary">
-              <th rowspan="1" colspan="1" *ngFor="let item of createRange(selectedAsignatura.cantidad); let currentIndex = index">{{currentIndex+1}}</th>
+              <th rowspan="1" colspan="1" *ngFor="let item of createRange(selectedAsignatura.cantidad); let currentIndex = index"
+                  (click)="modalInfoOpen(currentIndex)">{{currentIndex+1}}</th>
               <th rowspan="1" colspan="1">Prom</th>
             </tr>
             </thead>
@@ -41,3 +42,17 @@
     </div>
   </div>
 </div>
+
+<modal [animation]="true" #modalInfo>
+  <modal-header [show-close]="true">
+    <h3 class="modal-title">Evaluación</h3>
+  </modal-header>
+  <modal-body>
+    <p class="card-text">Contenido: {{infoNota.contenido}}</p>
+    <p class="card-text">Fecha de Evaluación: {{infoNota.fecha}}</p>
+    <p class="card-text">Coeficiente: {{infoNota.coeficiente}}</p>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn btn-primary" (click)="modalInfoClose()">Continuar</button>
+  </modal-footer>
+</modal>

@@ -50,6 +50,11 @@ import { AsignarProfComponent } from './components/libros/cursos/asignar-prof/as
 import { ProfesorComponent } from './components/libros/profesor/profesor.component';
 import { CrearProfesorComponent } from './components/libros/profesor/crear-profesor/crear-profesor.component';
 
+//Informes y Certificados
+import { InformesComponent } from './components/informes-certificados/informes/informes.component'
+import { InformesPorAlumnoComponent } from './components/informes-certificados/informes/informes-por-alumno/informes-por-alumno.component';
+import { InformesPorCursoComponent } from './components/informes-certificados/informes/informes-por-curso/informes-por-curso.component';
+import { InformesPorGradoComponent } from './components/informes-certificados/informes/informes-por-grado/informes-por-grado.component';
 
 
 const routes: Routes = [
@@ -114,6 +119,14 @@ const routes: Routes = [
       { path: ':id/asignar-prof',  component: AsignarProfComponent },
       { path: 'editar-curso/:id',  component: ModificarCursoComponent },
       // { path: 'profesor/crear-profesor',  component: CrearProfesorComponent },
+    ]
+  },
+  { path: 'informes', component: InformesComponent,
+    children:[
+      {path: '', redirectTo: 'alumno', pathMatch: 'full' },
+      {path: 'alumno', component: InformesPorAlumnoComponent },
+      {path: 'curso', component: InformesPorCursoComponent },
+      {path: 'grado', component: InformesPorGradoComponent },
     ]
   },
 ];

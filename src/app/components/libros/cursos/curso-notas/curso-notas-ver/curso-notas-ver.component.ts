@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { CursosService } from '../../../../../services/libros/cursos.service';
 
@@ -9,8 +10,15 @@ import { CursosService } from '../../../../../services/libros/cursos.service';
   styleUrls: ['curso-notas-ver.component.css']
 })
 export class CursoNotasVerComponent implements OnInit {
+  @ViewChild('modalInfo') modalInfo: ModalComponent;
 
   asignaturas = [];
+
+  infoNota = {
+    'contenido':'',
+    'fecha':'',
+    'coeficiente':null,
+  };
 
   alumnos = [
     {'id':1, 'alumnos':[
@@ -92,6 +100,11 @@ export class CursoNotasVerComponent implements OnInit {
     })
   }
 
+  //set
+  setInfoNota(index: number) {
+    this.infoNota = this.selectedAsignatura.info_notas[index];
+  }
+
   //logic
   public getPromedio(notas): number{
     let sum: number = 0;
@@ -103,6 +116,22 @@ export class CursoNotasVerComponent implements OnInit {
       }
     }
     return isNaN(sum/total)? 1.0 : sum/total ;
+  }
+
+  ////modal
+  //info
+  modalInfoOpen(index: number){
+    this.setInfoNota(index);
+    this.modalInfo.open('sm');
+  }
+
+  modalInfoClose(){
+    this.infoNota = {
+      'contenido':'',
+      'fecha':'',
+      'coeficiente':null,
+    };
+    this.modalInfo.close();
   }
 
 }

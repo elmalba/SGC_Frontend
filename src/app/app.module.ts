@@ -64,6 +64,12 @@ import { AsignarProfComponent } from './components/libros/cursos/asignar-prof/as
 import { ProfesorComponent } from './components/libros/profesor/profesor.component';
 import { CrearProfesorComponent } from './components/libros/profesor/crear-profesor/crear-profesor.component';
 
+//Informes y Certificados
+import { InformesComponent } from './components/informes-certificados/informes/informes.component'
+import { InformesPorAlumnoComponent } from './components/informes-certificados/informes/informes-por-alumno/informes-por-alumno.component';
+import { InformesPorCursoComponent } from './components/informes-certificados/informes/informes-por-curso/informes-por-curso.component';
+import { InformesPorGradoComponent } from './components/informes-certificados/informes/informes-por-grado/informes-por-grado.component';
+
 //Servicios
 import { MatriculaService } from "./services/sistema/ficha/matricula.service";
 import {ColegiosService } from './services/sistema/ficha/colegios.service';
@@ -72,7 +78,7 @@ import {ProfesoresService} from "./services/libros/profesores.service";
 import {AsignaturasService} from "./services/libros/asignaturas.service";
 import {NotasService} from "./services/libros/notas.service";
 import {AnotacionesService} from './services/libros/anotaciones.service';
-import {DpaService} from './services/sistema/dpa.service'
+import {DpaService} from './services/sistema/dpa.service';
 
 
 
@@ -116,6 +122,10 @@ import {DpaService} from './services/sistema/dpa.service'
     CalcPromedio,
     TruncateTextPipe,
     AbbreviatePipe,
+    InformesComponent,
+    InformesPorAlumnoComponent,
+    InformesPorCursoComponent,
+    InformesPorGradoComponent,
   ],
   imports: [
     BrowserModule,
