@@ -50,9 +50,8 @@ export class NotasService {
     .catch((error:any) => Observable.throw(error.json().error || 'Server Error: Couldn\'t CREATE Nota'));
   }
 
-  deleteNotas(asign_id,notas){
-    console.log(notas);
-    const url = `${this.notasUrl}/${asign_id}?nota=${JSON.stringify(notas)}`;
+  deleteNotas(notas){
+    const url = `${this.notasUrl}/${notas[0]}?nota=${JSON.stringify(notas)}`;
 
     return this.http.delete(url,{headers: this.headers})
       .map(() => null)

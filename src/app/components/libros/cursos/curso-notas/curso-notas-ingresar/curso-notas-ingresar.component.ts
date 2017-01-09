@@ -152,23 +152,10 @@ export class CursoNotasIngresarComponent implements OnInit {
     for (let nota of this.notaToDelete.notas){
       notas.push(nota.nota.id);
     }
-    this.notasService.deleteNotas(this.selectedAsignatura.datos.id,notas).subscribe(() => {
+    this.notasService.deleteNotas(notas).subscribe(() => {
       this.notaToDelete = {
         'evaluacion': {},
-        'notas': [
-          {
-            'alumno': {
-              'id':null,
-              'nombre':'',
-              'apellido_paterno':'',
-              'apellido_materno':'',
-            },
-            'nota': {
-              'id':null,
-              'valor':null,
-            }
-          }
-        ],
+        'notas': [],
       };
 
       this.route.parent.parent.params
@@ -206,6 +193,7 @@ export class CursoNotasIngresarComponent implements OnInit {
         }
       );
     }
+    index = null;
   }
 
   ////modals
