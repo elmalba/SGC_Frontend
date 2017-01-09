@@ -21,6 +21,11 @@ export class CursoNotasIngresarComponent implements OnInit {
   selectedAsignatura: any;
   selectedAsignaturaAlumnos = [];
 
+  infoNota = {};
+  createdNota = {};
+  notaToDelete = {};
+  deleteCandidates = [];
+
   id: number;
   private sub: any;
 
@@ -109,6 +114,7 @@ export class CursoNotasIngresarComponent implements OnInit {
         .subscribe((res) => {
           this.asignaturas = res.asignaturas;
           this.setAsignatura(this.selectedAsignatura.datos.id);
+          this.modalCreate.close();
         });
     });
   }
@@ -121,6 +127,7 @@ export class CursoNotasIngresarComponent implements OnInit {
 
   //delete
   modalDeleteOpen(){
+    this.setDeleteCandidates();
     this.modalDelete.open();
   }
 
@@ -136,18 +143,51 @@ export class CursoNotasIngresarComponent implements OnInit {
     this.modalCreate.open('lg');
   }
   modalCreateClose(){
-    this.modalCreate.close();
+    this.createNota();
   }
   modalCreateDismiss(){
     this.modalCreate.dismiss();
   }
   //info
-  modalInfoOpen(){
+  modalInfoOpen(index: number){
+    this.setInfoNota(index);
     this.modalInfo.open();
   }
 
   modalInfoClose(){
     this.modalInfo.close();
+  }
+
+  //set
+  setInfoNota(index: number) {
+    console.log(index);
+  }
+
+  setNotaToDelete() {
+
+  }
+
+  setDeleteCandidates() {
+    let checkNull: boolean = false;
+    let notaIdArray =[];
+    for (let index in this.selectedAsignatura.notas){
+      for (let alumno of this.selectedAsignaturaAlumnos){
+        if (!(alumno.notas[index])){
+          notaIdArray.push(alumno.notas[index]);
+          checkNull = true;
+        }
+      }
+      if (checkNull){
+        this.deleteCandidates.push(
+          {
+            'evaluacion': this.selectedAsignatura.notas[index],
+            'notas': notaIdArray,
+          }
+        );
+      }
+      checkNull = false;
+      notaIdArray = [];
+    }
   }
 
 }

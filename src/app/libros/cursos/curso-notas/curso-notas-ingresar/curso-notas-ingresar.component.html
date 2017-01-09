@@ -35,12 +35,14 @@
                 </div>
                 Notas
                 <div class="btn-group pull-left">
-                  <button class="btn btn-info btn-sm" (click)="deleteNota()"><span class="icon icon-fw icon-minus"></span></button>
+                  <button class="btn btn-info btn-sm" (click)="modalDeleteOpen()"><span class="icon icon-fw icon-minus"></span></button>
                 </div>
               </th>
             </tr>
             <tr class="bg-primary">
-              <th rowspan="1" colspan="1" *ngFor="let item of createRange(selectedAsignatura.cantidad); let currentIndex = index">{{currentIndex+1}}</th>
+              <th rowspan="1" colspan="1"
+                  *ngFor="let item of createRange(selectedAsignatura.cantidad); let currentIndex = index"
+                  (click)="modalInfoOpen(currentIndex)">{{currentIndex+1}}</th>
               <th rowspan="1" colspan="1">Prom</th>
             </tr>
             </thead>
@@ -82,9 +84,19 @@
   </modal-header>
   <modal-body>
     <p class="card-text"></p>
-
+    <div class="demo-form-wrapper">
+      <div class="form form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="form-control-3">Fecha/Contenido</label>
+          <div class="col-sm-7">
+            <input id="form-control-3" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
   </modal-body>
   <modal-footer>
+    <button type="button" class="btn btn-default" (click)="modalDeleteDismiss()">Cancelar</button>
     <button type="button" class="btn btn-primary" (click)="modalDeleteClose()">Continuar</button>
   </modal-footer>
 </modal>
@@ -113,6 +125,7 @@
     </div>
   </modal-body>
   <modal-footer>
+    <button type="button" class="btn btn-default" (click)="modalCreateDismiss()">Cancelar</button>
     <button type="button" class="btn btn-primary" (click)="modalCreateClose()">Continuar</button>
   </modal-footer>
 </modal>

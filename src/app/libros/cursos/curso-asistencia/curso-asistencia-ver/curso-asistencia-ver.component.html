@@ -33,7 +33,7 @@
                     {{day.date.toString() | date }}
                   </button>
 
-                  <modal [animation]="animationsEnabled" #modal>
+                  <modal [animation]="true" #modal>
                     <modal-header [show-close]="false">
                       <h4 class="modal-title">Inasistentes</h4>
                       <h5>{{selectedDay?.day.toString() | date }}</h5>
