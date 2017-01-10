@@ -4,8 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { RootComponent } from './root.component';
 
 import { AppComponent } from './app.component';
+
+//Login
 import { LoginComponent } from './components/login/login.component';
 
+//Dashboard
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //Sistema
@@ -50,12 +53,10 @@ import { AsignarProfComponent } from './components/libros/cursos/asignar-prof/as
 import { ProfesorComponent } from './components/libros/profesor/profesor.component';
 import { CrearProfesorComponent } from './components/libros/profesor/crear-profesor/crear-profesor.component';
 
-//Informes y Certificados
-import { InformesComponent } from './components/informes-certificados/informes/informes.component'
-import { InformesPorAlumnoComponent } from './components/informes-certificados/informes/informes-por-alumno/informes-por-alumno.component';
-import { InformesPorCursoComponent } from './components/informes-certificados/informes/informes-por-curso/informes-por-curso.component';
-import { InformesPorGradoComponent } from './components/informes-certificados/informes/informes-por-grado/informes-por-grado.component';
-
+//Documentos
+import { DocumentosComponent } from './components/documentos/documentos.component';
+import { InformesComponent } from './components/documentos/informes/informes.component';
+import { CertificadosComponent } from './components/documentos/certificados/certificados.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -121,12 +122,11 @@ const routes: Routes = [
       // { path: 'profesor/crear-profesor',  component: CrearProfesorComponent },
     ]
   },
-  { path: 'informes', component: InformesComponent,
-    children:[
-      {path: '', redirectTo: 'alumno', pathMatch: 'full' },
-      {path: 'alumno', component: InformesPorAlumnoComponent },
-      {path: 'curso', component: InformesPorCursoComponent },
-      {path: 'grado', component: InformesPorGradoComponent },
+  { path: 'docs', component: DocumentosComponent,
+    children: [
+      { path: '', redirectTo: 'informes', pathMatch: 'full' },
+      { path: 'informes', component: InformesComponent },
+      { path: 'certificados', component: CertificadosComponent },
     ]
   },
 ];

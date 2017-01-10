@@ -195,8 +195,8 @@
               </form>
             </li>
 
-            <li class="sidenav-item">
-              <a aria-haspopup="true">
+            <li class="sidenav-item" routerLinkActive="active">
+              <a [routerLink]="['dashboard']"  aria-haspopup="true">
                 <span class="sidenav-icon icon icon-home"></span>
                 <span class="sidenav-label">Dashboard</span>
               </a>
@@ -209,35 +209,34 @@
               </a>
             </li>-->
             <li class="sidenav-heading">Sistema</li>
-            <li class="sidenav-item">
+            <li class="sidenav-item" routerLinkActive="active">
               <a [routerLink]="['sistema/ficha/colegios']">
                 <span class="sidenav-icon icon icon-file-text"></span>
                 <span class="sidenav-label">Ficha Colegios</span>
               </a>
             </li>
-            <li class="sidenav-item">
+            <li class="sidenav-item" routerLinkActive="active">
               <a [routerLink]="['sistema/ficha/matriculas']">
                 <span class="sidenav-icon icon icon-folder"></span>
                 <span class="sidenav-label">Ficha Matriculas</span>
               </a>
             </li>
             <li class="sidenav-heading">Modulos</li>
-            <li class="sidenav-item">
+            <li class="sidenav-item" routerLinkActive="active">
               <a [routerLink]="['libros']">
                 <span class="sidenav-icon icon icon-book"></span>
                 <span class="sidenav-label">Libros de Clases</span>
               </a>
             </li>
-            <li class="sidenav-item has-subnav">
-              <a [routerLink]="['informes']">
+            <li class="sidenav-item has-subnav" routerLinkActive="active">
+              <a>
                 <span class="sidenav-icon icon icon-files-o"></span>
-                <span class="sidenav-label">Informes y Certificados</span>
+                <span class="sidenav-label">Documentos</span>
               </a>
-              <ul class="sidenav-subnav collapse">
-                <li class="sidenav-subheading">Informes y Certificados</li>
-                <li><a [routerLink]="['informes/alumno']">Por Alumno</a></li>
-                <li><a [routerLink]="['informes/curso']">Por Curso</a></li>
-                <li><a [routerLink]="['informes/grado']">Por Grado</a></li>
+              <ul class="sidenav-subnav collapse" routerLinkActive="active">
+                <li class="sidenav-subheading">Documentos</li>
+                <li routerLinkActive="active" [routerLink]="['docs/informes']"><a>Informes</a></li>
+                <li routerLinkActive="active" [routerLink]="['docs/certificados']"><a>Certificados</a></li>
               </ul>
             </li>
           </ul>
