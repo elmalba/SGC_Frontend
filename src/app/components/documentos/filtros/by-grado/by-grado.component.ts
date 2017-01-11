@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-by-grado',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./by-grado.component.css']
 })
 export class ByGradoComponent implements OnInit {
+  @Input('docs') docs: string[];
 
   constructor() { }
 

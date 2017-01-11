@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class CertificadosComponent implements OnInit {
 
   certificados = [
-    {'id':1,'nombre':'Certificado Matricula'},
-    {'id':2,'nombre':'Certificado Alumno Regular'},
-    {'id':3,'nombre':'Certificado de Inscripción'},
-    {'id':4,'nombre':'Certificado de Asistencia'},
-    {'id':5,'nombre':'Certificado de Traslado'},
-    {'id':6,'nombre':'Ranking 4tos Medios'},
+    {'id':'cMatricula','nombre':'Certificado Matricula'},
+    {'id':'cAlumnoRegular','nombre':'Certificado Alumno Regular'},
+    {'id':'cInscripcion','nombre':'Certificado de Inscripción'},
+    {'id':'cAsistencia','nombre':'Certificado de Asistencia'},
+    {'id':'cTRaslado','nombre':'Certificado de Traslado'},
+    {'id':'cRanking','nombre':'Ranking 4tos Medios'},
   ];
 
   options = [
@@ -23,7 +23,7 @@ export class CertificadosComponent implements OnInit {
     {'id':4,'nombre':'Por Alumno','icon':'icon-user'},
   ];
 
-  certificadosId: number[] = [];
+  docsId: string[] = [];
   optionId: number;
 
   constructor() { }
@@ -31,11 +31,11 @@ export class CertificadosComponent implements OnInit {
   ngOnInit() {
   }
 
-  setCertificado(id: number){
-    if(this.include(this.certificadosId,id)){
-      this.certificadosId.splice(this.certificadosId.indexOf(id),1);
+  setCertificado(id: string){
+    if(this.include(this.docsId,id)){
+      this.docsId.splice(this.docsId.indexOf(id),1);
     } else {
-      this.certificadosId.push(id);
+      this.docsId.push(id);
     }
   }
 

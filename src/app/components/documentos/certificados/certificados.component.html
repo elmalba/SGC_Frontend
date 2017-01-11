@@ -1,7 +1,7 @@
 <div class="title-bar">
   <h1 class="title-bar-title">Certificados</h1>
   <p class="title-bar-description">
-    abcdefg
+    sample text
   </p>
 </div>
 
@@ -13,7 +13,7 @@
           <div class="media">
             <div class="media-middle media-left">
               <span class="circle sq-36"
-                [ngClass]="{'bg-info': include(certificadosId,cert.id), 'bg-info-inverse': !(include(certificadosId,cert.id))}">
+                [ngClass]="{'bg-info': include(docsId,cert.id), 'bg-info-inverse': !(include(docsId,cert.id))}">
                 <span class="icon icon-file-o"></span>
               </span>
             </div>
@@ -54,11 +54,10 @@
   </div>
 </div>
 
-<app-by-tipo-ensenanza *ngIf="optionId == 1"></app-by-tipo-ensenanza>
-<app-by-grado *ngIf="optionId == 2"></app-by-grado>
-<app-by-curso *ngIf="optionId == 3"></app-by-curso>
-<app-by-alumno *ngIf="optionId == 4"></app-by-alumno>
-
+<app-by-tipo-ensenanza [docs]="docsId" *ngIf="optionId == 1"></app-by-tipo-ensenanza>
+<app-by-grado [docs]="docsId" *ngIf="optionId == 2"></app-by-grado>
+<app-by-curso [docs]="docsId" *ngIf="optionId == 3"></app-by-curso>
+<app-by-alumno [docs]="docsId" *ngIf="optionId == 4"></app-by-alumno>
 
 
 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { Select2Module } from 'ng2-select2';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import './rxjs-extensions';
 
@@ -138,6 +139,7 @@ import { ByAlumnoComponent } from './components/documentos/filtros/by-alumno/by-
     HttpModule,
     AppRoutingModule,
     Ng2Bs3ModalModule,
+    Select2Module,
   ],
   providers: [
     DpaService,
