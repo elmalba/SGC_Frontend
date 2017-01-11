@@ -14,17 +14,20 @@ export class CertificadosComponent implements OnInit {
     {'id':'cAsistencia','nombre':'Certificado de Asistencia'},
     {'id':'cTRaslado','nombre':'Certificado de Traslado'},
     {'id':'cRanking','nombre':'Ranking 4tos Medios'},
+    {'id':'cAccidenteEscolar','nombre':'Certificado de Accidente Escolar'},
+    {'id':'cPermisoSalida','nombre':'Permiso de Salida'},
   ];
 
   options = [
-    {'id':1,'nombre':'Por Tipo de Enseñanza','icon':'icon-institution'},
-    {'id':2,'nombre':'Por Grado','icon':'icon-mortar-board'},
-    {'id':3,'nombre':'Por Curso','icon':'icon-users'},
-    {'id':4,'nombre':'Por Alumno','icon':'icon-user'},
+    {'id':'fTipoEnsenanza','nombre':'Por Tipo de Enseñanza','icon':'icon-institution'},
+    {'id':'fGrado','nombre':'Por Grado','icon':'icon-mortar-board'},
+    {'id':'fCurso','nombre':'Por Curso','icon':'icon-users'},
+    {'id':'fNombre','nombre':'Por Alumno','icon':'icon-user'},
   ];
 
   docsId: string[] = [];
-  optionId: number;
+  optionId: string;
+  subjectsId: string[] = [];
 
   constructor() { }
 
@@ -39,7 +42,8 @@ export class CertificadosComponent implements OnInit {
     }
   }
 
-  setOption(id: number){
+  setOption(id: string){
+    this.subjectsId = [];
     if(this.optionId == id){
       this.optionId = null;
     } else {
@@ -49,6 +53,25 @@ export class CertificadosComponent implements OnInit {
 
   include(arr,obj) {
     return (arr.indexOf(obj) != -1);
+  }
+
+  onSelectSubjects(subjects){
+    if (subjects){
+      this.subjectsId = subjects;
+    } else {
+      this.subjectsId = [];
+    }
+
+  }
+
+  generateDocs(){
+    let payload = {
+      'docs':this.docsId,
+      'filtro': this.optionId,
+      'sujetos':this.subjectsId,
+    };
+
+    console.log(payload);
   }
 
 

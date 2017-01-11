@@ -1,4 +1,14 @@
 <div class="title-bar">
+  <div class="title-bar-actions">
+    <div class="btn-group fit-width">
+      <button class="btn btn-outline-success btn-block"
+              [disabled]="(subjectsId.length == 0)||(docsId.length == 0)"
+              [ngClass]="{'active':!((subjectsId.length == 0)||(docsId.length == 0))}"
+              (click)="generateDocs()">
+        <span class="icon icon-paper-plane-o btn-icon"></span> Generar Documentos
+      </button>
+    </div>
+  </div>
   <h1 class="title-bar-title">Certificados</h1>
   <p class="title-bar-description">
     sample text
@@ -7,7 +17,12 @@
 
 <div class="row gutter-xs" id="docs-cert-selectcert">
   <div class="col-md-12">
-    <div class="col-sm-4" *ngFor="let cert of certificados">
+    <div class="title-bar">
+      <h5 class="title-bar-title">Documentos</h5>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-sm-3" *ngFor="let cert of certificados">
       <div class="card" (click)="setCertificado(cert.id)">
         <div class="card-body">
           <div class="media">
@@ -28,10 +43,12 @@
 </div>
 
 <div class="row" id="docs-cert-selectsubj">
-  <div class="col-md-10 col-sm-offset-1">
+  <div class="col-md-12">
     <div class="title-bar">
       <h5 class="title-bar-title">Filtros</h5>
     </div>
+  </div>
+  <div class="col-md-10 col-sm-offset-1">
     <div class="row gutter-xs">
       <div class="col-md-3" *ngFor="let option of options">
         <div class="card" (click)="setOption(option.id)">
@@ -54,10 +71,21 @@
   </div>
 </div>
 
-<app-by-tipo-ensenanza [docs]="docsId" *ngIf="optionId == 1"></app-by-tipo-ensenanza>
-<app-by-grado [docs]="docsId" *ngIf="optionId == 2"></app-by-grado>
-<app-by-curso [docs]="docsId" *ngIf="optionId == 3"></app-by-curso>
-<app-by-alumno [docs]="docsId" *ngIf="optionId == 4"></app-by-alumno>
+<app-by-tipo-ensenanza [docs]="docsId" (onSelect)="onSelectSubjects($event)" *ngIf="optionId == 1"></app-by-tipo-ensenanza>
+<app-by-grado [docs]="docsId" (onSelect)="onSelectSubjects($event)" *ngIf="optionId == 2"></app-by-grado>
+<app-by-curso [docs]="docsId" (onSelect)="onSelectSubjects($event)" *ngIf="optionId == 3"></app-by-curso>
+<app-by-alumno [docs]="docsId" (onSelect)="onSelectSubjects($event)" *ngIf="optionId == 4"></app-by-alumno>
+
+<div class="row" *ngIf="docsId.length > 0">
+  <div class="col-md-10 col-md-offset-1">
+    <button class="btn btn-block btn-outline-success"
+            [disabled]="(subjectsId.length == 0)||(docsId.length == 0)"
+            [ngClass]="{'active':!((subjectsId.length == 0)||(docsId.length == 0))}"
+            (click)="generateDocs()">
+      <span class="icon icon-paper-plane-o btn-icon"></span> Generar Documentos
+    </button>
+  </div>
+</div>
 
 
 
